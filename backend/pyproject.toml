@@ -1,0 +1,21 @@
+[tool.ruff]
+target-version = "py313"
+line-length = 88
+exclude = ["apps/identity/migrations"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings"
+python_files = ["test_*.py"]
+testpaths = ["tests"]
+addopts = "--strict-markers"
+
+[tool.mypy]
+plugins = ["mypy_django_plugin.main"]
+strict = true
+exclude = ["apps/identity/migrations/"]
+
+[tool.django-stubs]
+django_settings_module = "config.settings"

@@ -1,0 +1,11 @@
+Django>=5.2,<5.3
+djangorestframework>=3.16,<3.17
+django-cors-headers>=4.7,<5
+psycopg[binary]>=3.2,<4
+python-dotenv>=1.1,<2
+pytest>=8,<10
+pytest-django>=4.11,<5
+ruff>=0.11,<1
+mypy>=1.15,<2
+django-stubs>=5.2,<5.3
+djangorestframework-stubs>=3.16,<3.17

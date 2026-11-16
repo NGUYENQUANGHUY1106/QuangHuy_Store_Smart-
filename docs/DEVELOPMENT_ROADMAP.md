@@ -1,10 +1,10 @@
 # DEVELOPMENT ROADMAP — QuangHuy_Sport
 
-Ngày: 16/11/2026. Kế hoạch mục tiêu bốn tuần, không phải lịch đã cam kết hoặc báo cáo thực thi. Chưa xác nhận số người/giờ mỗi tuần/ngày bắt đầu, ngân sách tối đa và môi trường demo (DEC-006/007). Mọi task chưa bắt đầu; chưa có test pass hoặc release evidence.
+Ngày: 16/11/2026. Kế hoạch mục tiêu bốn tuần, không phải lịch đã cam kết. Chưa xác nhận số người/giờ mỗi tuần/ngày bắt đầu, ngân sách tối đa và môi trường demo (DEC-006/007). QHS-003/004 Project Foundation đã triển khai theo chỉ dẫn trực tiếp của chủ dự án, trạng thái Review; [local evidence](evidence/PROJECT_FOUNDATION.md) có test/build PASS, chưa có release hoặc CI remote evidence. Các task nghiệp vụ chưa bắt đầu.
 
 ## Nguồn và cách vận hành
 
-Tuân thủ [AGENTS.md](../AGENTS.md); task/FR/AC/test/dependencies/DoD tại [IMPLEMENTATION_BACKLOG.md](IMPLEMENTATION_BACKLOG.md). Đối chiếu SRS/BR/UC, UIUX DOCX, audit và [OPEN_DECISIONS.md](OPEN_DECISIONS.md). Chưa thấy phê duyệt mới cho 16 DEC; chỉ dẫn hiện tại cho phép chuẩn bị tài liệu, không tự đóng approval nghiệp vụ.
+Tuân thủ [AGENTS.md](../AGENTS.md); task/FR/AC/test/dependencies/DoD tại [IMPLEMENTATION_BACKLOG.md](IMPLEMENTATION_BACKLOG.md). Đối chiếu SRS/BR/UC, UIUX DOCX, audit và [OPEN_DECISIONS.md](OPEN_DECISIONS.md). Chỉ dẫn mới cho phép code Project Foundation; không tự đóng 16 DEC hoặc approval nghiệp vụ ngoài phạm vi này.
 
 Quy trình task: Backlog → Ready → In Progress → Review → Done, hoặc Blocked khi thiếu quyết định/dependency/môi trường. Ready cần owner và AC/test rõ, quyết định liên quan có evidence. Không bắt đầu code của phần đang bị chặn; có thể tiếp tục nghiên cứu/contract độc lập. Không tuyên bố Done khi mandatory test chưa chạy hoặc lỗi.
 

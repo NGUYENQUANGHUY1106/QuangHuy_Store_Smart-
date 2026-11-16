@@ -1,6 +1,6 @@
 # Quy trình phát triển QuangHuy_Sport
 
-Áp dụng cho toàn repository. Ngày lập: 16/11/2026. Đây là quy tắc làm việc cho developer/AI agent; không phê duyệt thay các quyết định nghiệp vụ còn OPEN. Giai đoạn hiện tại chỉ chuẩn bị tài liệu, chưa được yêu cầu viết code ứng dụng.
+Áp dụng cho toàn repository. Ngày lập: 16/11/2026. Đây là quy tắc làm việc cho developer/AI agent; không phê duyệt thay các quyết định nghiệp vụ còn OPEN. Chủ dự án đã cho phép triển khai Project Foundation (QHS-003/004); các chức năng kinh doanh khác chỉ thực hiện khi được giao và đủ dependencies.
 
 ## Đọc và xác định phạm vi trước khi sửa
 
@@ -14,7 +14,7 @@
 
 ## Cấu trúc dự kiến và tên file
 
-Chưa có mã ứng dụng. Dùng cấu trúc này khi bắt đầu implementation; chỉ tạo thư mục khi cần, không dựng toàn bộ module P2 trước.
+Foundation đã có mã khởi tạo. Giữ cấu trúc này khi implementation; chỉ tạo thư mục khi cần, không dựng toàn bộ module P2 trước.
 
 ```text
 frontend/

@@ -1,13 +1,13 @@
 # IMPLEMENTATION BACKLOG — QuangHuy_Sport
 
-Ngày: 16/11/2026. Chưa triển khai. Đây là backlog theo SRS draft và kết quả audit, không phải phê duyệt nghiệp vụ. `OPEN_DECISIONS.md` vẫn ghi 16 DEC là OPEN; chưa thấy xác nhận mới. Không tự đóng quyết định theo lời khuyến nghị.
+Ngày: 16/11/2026. Project Foundation QHS-003/004 đã triển khai theo chỉ dẫn trực tiếp mới của chủ dự án; trạng thái Review, chưa triển khai nghiệp vụ khác. Đây là backlog theo SRS draft và kết quả audit, không phải phê duyệt toàn bộ nghiệp vụ. `OPEN_DECISIONS.md` vẫn ghi 16 DEC là OPEN; không tự đóng các quyết định ngoài foundation.
 
 ## Quy ước
 
-- FR/BR/UC/NFR tham chiếu `02_Requirements/`; TC-001…010 tham chiếu test plan. Test bổ sung bên dưới là đề xuất, **tất cả NOT RUN**, evidence chưa có.
+- FR/BR/UC/NFR tham chiếu `02_Requirements/`; TC-001…010 tham chiếu test plan. Test bổ sung bên dưới là đề xuất; chỉ QHS-003/004 có [evidence foundation](evidence/PROJECT_FOUNDATION.md), test nghiệp vụ còn NOT RUN.
 - Phạm vi file/module là dự kiến, chưa có mã ứng dụng. Mỗi dòng là một task với đầy đủ tám trường yêu cầu; mô tả nằm trong cột Task. AC của dòng có ID `<Task ID>-AC1`; các mệnh đề trong AC đều bắt buộc, tách AC2… khi chi tiết hóa PR.
 - **DoD-C:** đạt mọi AC; test/check phù hợp đã chạy có lệnh, môi trường/DB, expected/actual, evidence; review xong; callers/fixtures/contracts/docs đồng bộ; migration/data/rollback được review khi có; không còn lỗi nghiêm trọng hoặc mandatory test fail/skip/not-run. Cập nhật trạng thái và vấn đề còn mở. Tài liệu dùng check đối chiếu/link/ID; spike dùng evidence và kết luận go/no-go, không cần test ứng dụng.
-- Mọi task chưa bắt đầu. QHS-001 Ready để đối chiếu hồ sơ; task còn lại **Blocked** theo dependencies/gate. Owner: chưa phân công, phải điền trước In Progress. Approval evidence cho DEC là điều kiện riêng, không được coi dependency kỹ thuật Done là đã đủ.
+- QHS-003/004: **Review**, owner Codex thực hiện, chủ dự án review; local checks PASS, CI remote chưa xác nhận. User đã cho phép foundation trước khi đóng mọi dependency domain của QHS-002; đây là ngoại lệ có phạm vi, không phê duyệt stock/payment/cancel/AI. QHS-001 Ready để đối chiếu; task còn lại Blocked theo dependencies/gate, owner chưa phân công. Approval evidence cho DEC là điều kiện riêng.
 - Không kéo task P2 trước P0 DoD nếu chưa có quyết định ngoại lệ. Task mở rộng P2 là ứng viên, phải chia API/logic/UI thành task con có đủ tám trường trước Ready. Task core cũng cần tách tiếp nếu không thể review một hành vi rõ trong một PR.
 
 ## P0 — nền tảng và hành trình COD

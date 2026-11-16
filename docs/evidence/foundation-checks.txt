@@ -1,0 +1,218 @@
+
+[backend] python -m ruff check .
+All checks passed!
+
+EXIT CODE: 0
+
+[backend] python -m ruff format --check .
+unformatted: File would be reformatted
+  --> config\settings.py:69:54
+   |
+68 |         "NAME": (
+   -             "django.contrib.auth.password_validation."
+   -             "UserAttributeSimilarityValidator"
+69 +             "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
+70 |         )
+   |
+
+1 file would be reformatted, 12 files already formatted
+
+EXIT CODE: 1
+
+[backend] python -m mypy config apps tests
+Success: no issues found in 12 source files
+
+EXIT CODE: 0
+
+[backend] python manage.py check
+System check identified no issues (0 silenced).
+
+EXIT CODE: 0
+
+[backend] python manage.py makemigrations --check --dry-run
+No changes detected
+
+EXIT CODE: 0
+
+[backend] python manage.py migrate --noinput
+Operations to perform:
+  Apply all migrations: auth, contenttypes, identity, sessions
+Running migrations:
+  No migrations to apply.
+
+EXIT CODE: 0
+
+[backend] python -m pytest -v
+============================= test session starts =============================
+platform win32 -- Python 3.13.3, pytest-9.2.0, pluggy-1.7.0 -- D:\QuangHuy_Store_Smart\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+django: version: 5.2.19, settings: config.settings (from ini)
+rootdir: D:\QuangHuy_Store_Smart\backend
+configfile: pyproject.toml
+testpaths: tests
+plugins: django-4.14.0
+collecting ... collected 6 items
+
+tests/test_health.py::test_health_queries_postgresql PASSED              [ 16%]
+tests/test_health.py::test_health_database_failure_is_safe PASSED        [ 33%]
+tests/test_health.py::test_health_rejects_post PASSED                    [ 50%]
+tests/test_health.py::test_cors_denies_unlisted_origin PASSED            [ 66%]
+tests/test_settings.py::test_missing_required_configuration_fails_without_sqlite[POSTGRES_DB] PASSED [ 83%]
+tests/test_settings.py::test_missing_required_configuration_fails_without_sqlite[DJANGO_SECRET_KEY] PASSED [100%]
+
+============================== 6 passed in 1.57s ==============================
+
+EXIT CODE: 0
+
+[frontend] npm.cmd ci
+
+added 122 packages, and audited 129 packages in 6s
+
+25 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+EXIT CODE: 0
+
+[frontend] npm.cmd run lint
+
+> quanghuy-sport-frontend@0.0.0 lint
+> oxlint
+
+
+EXIT CODE: 0
+
+[frontend] npm.cmd run format:check
+
+> quanghuy-sport-frontend@0.0.0 format:check
+> prettier --check .
+
+Checking formatting...
+All matched files use Prettier code style!
+
+EXIT CODE: 0
+
+[frontend] npm.cmd run typecheck
+
+> quanghuy-sport-frontend@0.0.0 typecheck
+> tsc -b
+
+
+EXIT CODE: 0
+
+[frontend] npm.cmd run test
+
+> quanghuy-sport-frontend@0.0.0 test
+> vitest run
+
+
+ RUN  v5.1.0 D:/QuangHuy_Store_Smart/frontend
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  22:03:12
+   Duration  3.13s (environment 79%, setup 13%, tests 5%, transform 2%)
+
+
+EXIT CODE: 0
+
+[frontend] npm.cmd run build
+
+> quanghuy-sport-frontend@0.0.0 build
+> tsc -b && vite build
+
+vite v8.3.8 building client environment for production...
+transforming...
+✓ 16 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.42 kB │ gzip:  0.29 kB
+dist/assets/index-Br4uFNzq.css    7.18 kB │ gzip:  2.25 kB
+dist/assets/index-fqCl-9y8.js   220.39 kB │ gzip: 69.07 kB
+
+✓ built in 178ms
+
+EXIT CODE: 0
+
+FINAL BACKEND RECHECK AFTER FORMATTING FIX
+
+python -m ruff check .
+All checks passed!
+
+EXIT CODE: 0
+
+python -m ruff format --check .
+13 files already formatted
+
+EXIT CODE: 0
+
+python -m mypy config apps tests
+Success: no issues found in 12 source files
+
+EXIT CODE: 0
+
+python manage.py check
+System check identified no issues (0 silenced).
+
+EXIT CODE: 0
+
+python manage.py makemigrations --check --dry-run
+No changes detected
+
+EXIT CODE: 0
+
+python -m pytest -v
+============================= test session starts =============================
+platform win32 -- Python 3.13.3, pytest-9.2.0, pluggy-1.7.0 -- D:\QuangHuy_Store_Smart\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+django: version: 5.2.19, settings: config.settings (from ini)
+rootdir: D:\QuangHuy_Store_Smart\backend
+configfile: pyproject.toml
+testpaths: tests
+plugins: django-4.14.0
+collecting ... collected 6 items
+
+tests/test_health.py::test_health_queries_postgresql PASSED              [ 16%]
+tests/test_health.py::test_health_database_failure_is_safe PASSED        [ 33%]
+tests/test_health.py::test_health_rejects_post PASSED                    [ 50%]
+tests/test_health.py::test_cors_denies_unlisted_origin PASSED            [ 66%]
+tests/test_settings.py::test_missing_required_configuration_fails_without_sqlite[POSTGRES_DB] PASSED [ 83%]
+tests/test_settings.py::test_missing_required_configuration_fails_without_sqlite[DJANGO_SECRET_KEY] PASSED [100%]
+
+============================== 6 passed in 3.03s ==============================
+
+EXIT CODE: 0
+
+DISPOSABLE POSTGRESQL 18 (loopback:55432) INITIAL MIGRATION
+python manage.py migrate --noinput
+Operations to perform:
+  Apply all migrations: auth, contenttypes, identity, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0001_initial... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying identity.0001_initial... OK
+  Applying sessions.0001_initial... OK
+
+EXIT CODE: 0
+
+HTTP SMOKE GET http://127.0.0.1:8000/health: 200; expected content present
+
+HTTP SMOKE GET http://127.0.0.1:5173/: 200; expected content present
+
+HTTP SMOKE GET http://127.0.0.1:5173/health: 200; expected content present
+
+Tailwind build smoke: generated CSS contains .bg-slate-950: PASS
