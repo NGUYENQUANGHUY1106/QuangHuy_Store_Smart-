@@ -9,7 +9,7 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 
 
-@api_view(["GET"])
+@api_view(["GET", "HEAD"])
 @authentication_classes([])
 @permission_classes([AllowAny])
 def health(request: Request) -> Response:

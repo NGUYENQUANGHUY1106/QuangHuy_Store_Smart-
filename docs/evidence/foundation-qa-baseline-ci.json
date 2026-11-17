@@ -1,0 +1,137 @@
+{
+  "checked_date": "2026-11-17",
+  "head_sha": "618a95b0576b9d31932d038dd9a3f210bd747994",
+  "status": "completed",
+  "conclusion": "success",
+  "url": "https://github.com/NGUYENQUANGHUY1106/QuangHuy_Store_Smart-/actions/runs/43892927141",
+  "jobs": [
+    {
+      "name": "frontend",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npm ci",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npm run lint",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npm run format:check",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npm run typecheck",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npm run test",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npm run build",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "name": "backend",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Initialize containers",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -c \"import secrets; print('DJANGO_SECRET_KEY=' + secrets.token_urlsafe(64))\" >> \"$GITHUB_ENV\"",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m pip install -r requirements.txt",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m ruff check .",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m ruff format --check .",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m mypy config apps tests",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python manage.py check",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python manage.py makemigrations --check --dry-run",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python manage.py migrate --noinput",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m pytest -v",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Stop containers",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ]
+}

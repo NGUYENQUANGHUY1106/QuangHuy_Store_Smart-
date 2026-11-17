@@ -1,0 +1,9 @@
+PASS: scanned 80 Git-history blobs for exact configured local secret/password and private-key headers. No matched credential values logged.
+PASS: actual .env, node_modules, virtualenv not tracked.
+PASS: local env ignored; .env.example sensitive fields blank. CI password explicitly test-only.
+PASS HTTP GET http://127.0.0.1:49556/health: 200; expected body validated.
+PASS HTTP HEAD http://127.0.0.1:49556/health: 200; expected body validated.
+PASS HTTP GET http://127.0.0.1:49557/: 200; expected body validated.
+PASS HTTP GET http://127.0.0.1:49557/health: 200; expected body validated.
+PASS: built Tailwind CSS contains .bg-slate-950.
+All smoke-owned server processes stopped; no existing database reset/deletion.

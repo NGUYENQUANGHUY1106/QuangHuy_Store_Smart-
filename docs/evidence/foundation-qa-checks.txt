@@ -1,0 +1,182 @@
+2026-11-17: QHS-003/004 Foundation QA
+Baseline: 618a95b
+
+RED regression before fix
+[backend] python -m pytest tests/test_health.py::test_health_head_checks_database_without_response_body -v
+============================= test session starts =============================
+platform win32 -- Python 3.13.3, pytest-9.2.0, pluggy-1.7.0 -- D:\QuangHuy_Store_Smart\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+django: version: 5.2.19, settings: config.settings (from ini)
+rootdir: D:\QuangHuy_Store_Smart\backend
+configfile: pyproject.toml
+plugins: django-4.14.0
+collecting ... collected 1 item
+
+tests/test_health.py::test_health_head_checks_database_without_response_body FAILED [100%]
+
+================================== FAILURES ===================================
+___________ test_health_head_checks_database_without_response_body ____________
+
+client = <django.test.client.Client object at 0x00000225B8205310>
+
+    @pytest.mark.django_db
+    def test_health_head_checks_database_without_response_body(client: Client) -> None:
+        response = client.head("/health")
+>       assert response.status_code == 200
+E       assert 405 == 200
+E        +  where 405 = <Response status_code=405, "application/json">.status_code
+
+tests\test_health.py:20: AssertionError
+---------------------------- Captured stderr setup ----------------------------
+Creating test database for alias 'default'...
+
+------------------------------ Captured log call ------------------------------
+WARNING  django.request:log.py:293 Method Not Allowed: /health
+-------------------------- Captured stderr teardown ---------------------------
+Destroying test database for alias 'default'...
+
+=========================== short test summary info ===========================
+FAILED tests/test_health.py::test_health_head_checks_database_without_response_body
+============================== 1 failed in 1.16s ==============================
+
+EXIT CODE: 1
+
+FINAL BACKEND CHECKS AFTER FIX
+
+[backend] python -m pip check
+No broken requirements found.
+
+EXIT CODE: 0
+
+[backend] python manage.py check
+System check identified no issues (0 silenced).
+
+EXIT CODE: 0
+
+[backend] python manage.py makemigrations --check --dry-run
+No changes detected
+
+EXIT CODE: 0
+
+[backend] python manage.py migrate --noinput
+Operations to perform:
+  Apply all migrations: auth, contenttypes, identity, sessions
+Running migrations:
+  No migrations to apply.
+
+EXIT CODE: 0
+
+[backend] python manage.py showmigrations --plan
+[X]  contenttypes.0001_initial
+[X]  contenttypes.0002_remove_content_type_name
+[X]  auth.0001_initial
+[X]  auth.0002_alter_permission_name_max_length
+[X]  auth.0003_alter_user_email_max_length
+[X]  auth.0004_alter_user_username_opts
+[X]  auth.0005_alter_user_last_login_null
+[X]  auth.0006_require_contenttypes_0002
+[X]  auth.0007_alter_validators_add_error_messages
+[X]  auth.0008_alter_user_username_max_length
+[X]  auth.0009_alter_user_last_name_max_length
+[X]  auth.0010_alter_group_name_max_length
+[X]  auth.0011_update_proxy_permissions
+[X]  auth.0012_alter_user_first_name_max_length
+[X]  identity.0001_initial
+[X]  sessions.0001_initial
+
+EXIT CODE: 0
+
+[backend] python -m ruff check .
+All checks passed!
+
+EXIT CODE: 0
+
+[backend] python -m ruff format --check .
+13 files already formatted
+
+EXIT CODE: 0
+
+[backend] python -m mypy config apps tests
+tests\test_health.py:46: error: "Client" has no attribute "settings"  [attr-defined]
+Found 1 error in 1 file (checked 12 source files)
+
+EXIT CODE: 1
+
+[backend] python -m pytest -v
+============================= test session starts =============================
+platform win32 -- Python 3.13.3, pytest-9.2.0, pluggy-1.7.0 -- D:\QuangHuy_Store_Smart\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+django: version: 5.2.19, settings: config.settings (from ini)
+rootdir: D:\QuangHuy_Store_Smart\backend
+configfile: pyproject.toml
+testpaths: tests
+plugins: django-4.14.0
+collecting ... collected 8 items
+
+tests/test_health.py::test_health_queries_postgresql PASSED              [ 12%]
+tests/test_health.py::test_health_head_checks_database_without_response_body PASSED [ 25%]
+tests/test_health.py::test_health_database_failure_is_safe PASSED        [ 37%]
+tests/test_health.py::test_health_rejects_post PASSED                    [ 50%]
+tests/test_health.py::test_cors_denies_unlisted_origin PASSED            [ 62%]
+tests/test_health.py::test_cors_allows_only_configured_origin FAILED     [ 75%]
+tests/test_settings.py::test_missing_required_configuration_fails_without_sqlite[POSTGRES_DB] PASSED [ 87%]
+tests/test_settings.py::test_missing_required_configuration_fails_without_sqlite[DJANGO_SECRET_KEY] PASSED [100%]
+
+================================== FAILURES ===================================
+___________________ test_cors_allows_only_configured_origin ___________________
+
+client = <django.test.client.Client object at 0x000001BCE5A46CF0>
+
+    def test_cors_allows_only_configured_origin(client: Client) -> None:
+        origin = "http://localhost:5173"
+>       with client.settings(CORS_ALLOWED_ORIGINS=[origin], CORS_ALLOW_CREDENTIALS=True):
+             ^^^^^^^^^^^^^^^
+E       AttributeError: 'Client' object has no attribute 'settings'
+
+tests\test_health.py:46: AttributeError
+=========================== short test summary info ===========================
+FAILED tests/test_health.py::test_cors_allows_only_configured_origin - Attrib...
+========================= 1 failed, 7 passed in 1.73s =========================
+
+EXIT CODE: 1
+
+FINAL RECHECK: corrected test fixture to Django override_settings
+
+python -m ruff check .
+All checks passed!
+
+EXIT CODE: 0
+
+python -m ruff format --check .
+13 files already formatted
+
+EXIT CODE: 0
+
+python -m mypy config apps tests
+Success: no issues found in 12 source files
+
+EXIT CODE: 0
+
+python -m pytest -v
+============================= test session starts =============================
+platform win32 -- Python 3.13.3, pytest-9.2.0, pluggy-1.7.0 -- D:\QuangHuy_Store_Smart\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+django: version: 5.2.19, settings: config.settings (from ini)
+rootdir: D:\QuangHuy_Store_Smart\backend
+configfile: pyproject.toml
+testpaths: tests
+plugins: django-4.14.0
+collecting ... collected 8 items
+
+tests/test_health.py::test_health_queries_postgresql PASSED              [ 12%]
+tests/test_health.py::test_health_head_checks_database_without_response_body PASSED [ 25%]
+tests/test_health.py::test_health_database_failure_is_safe PASSED        [ 37%]
+tests/test_health.py::test_health_rejects_post PASSED                    [ 50%]
+tests/test_health.py::test_cors_denies_unlisted_origin PASSED            [ 62%]
+tests/test_health.py::test_cors_allows_only_configured_origin PASSED     [ 75%]
+tests/test_settings.py::test_missing_required_configuration_fails_without_sqlite[POSTGRES_DB] PASSED [ 87%]
+tests/test_settings.py::test_missing_required_configuration_fails_without_sqlite[DJANGO_SECRET_KEY] PASSED [100%]
+
+============================== 8 passed in 1.92s ==============================
+
+EXIT CODE: 0

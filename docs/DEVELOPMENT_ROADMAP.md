@@ -2,6 +2,8 @@
 
 Ngày: 16/11/2026. Kế hoạch mục tiêu bốn tuần, không phải lịch đã cam kết. Chưa xác nhận số người/giờ mỗi tuần/ngày bắt đầu, ngân sách tối đa và môi trường demo (DEC-006/007). QHS-003/004 Project Foundation đã triển khai theo chỉ dẫn trực tiếp của chủ dự án, trạng thái Review; [local evidence](evidence/PROJECT_FOUNDATION.md) có test/build PASS, chưa có release hoặc CI remote evidence. Các task nghiệp vụ chưa bắt đầu.
 
+Cập nhật 17/11/2026: hoàn tất checkpoint Prompt 01 [Foundation QA](FOUNDATION_QA_REPORT.md), sửa HEAD health và bổ sung regression/CORS allowlist. Local backend 8 tests, frontend 1 test và checks/build PASS; CI baseline 618a95b đã xác nhận PASS trên GitHub. QHS-003/004 giữ Review vì owner acceptance/browser review còn mở; không chuyển Authentication tự động trong lượt này. CI commit QA mới phải kiểm theo SHA sau push.
+
 ## Nguồn và cách vận hành
 
 Tuân thủ [AGENTS.md](../AGENTS.md); task/FR/AC/test/dependencies/DoD tại [IMPLEMENTATION_BACKLOG.md](IMPLEMENTATION_BACKLOG.md). Đối chiếu SRS/BR/UC, UIUX DOCX, audit và [OPEN_DECISIONS.md](OPEN_DECISIONS.md). Chỉ dẫn mới cho phép code Project Foundation; không tự đóng 16 DEC hoặc approval nghiệp vụ ngoài phạm vi này.
