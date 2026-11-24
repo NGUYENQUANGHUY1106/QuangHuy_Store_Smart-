@@ -7,14 +7,14 @@
 ## Business Rules
 
 - BR-001 — Một SKU xác định duy nhất biến thể; giá và tồn tính ở server
-- BR-002 — Giỏ hàng không tự giữ tồn; giữ/trừ tồn ở checkpoint xác định trong checkout
+- BR-002 — Giỏ hàng chỉ kiểm tồn; một kho, trừ khi tạo đơn thành công và hoàn đúng một lần khi hủy (DEC-003).
 - BR-003 — Đơn và tồn kho cập nhật atomically; tránh double deduction và double refund
 - BR-004 — Chỉ đánh giá khi đã mua và đủ điều kiện; chính sách đánh giá cần chốt
-- BR-005 — Chỉ staff được đổi trạng thái đơn; chuyển trạng thái theo state machine
+- BR-005 — Admin chuyển PENDING → CONFIRMED → SHIPPING → COMPLETED. Customer chỉ hủy đơn của mình ở PENDING. Admin hủy ở PENDING hoặc CONFIRMED. COMPLETED và CANCELLED là terminal (DEC-008/011).
 - BR-006 — Webhook cổng thanh toán phải xác thực và idempotent
 - BR-007 — Try-on cần consent, retention, policy xóa ảnh; không sử dụng ảnh để huấn luyện khi chưa cho phép
 - BR-008 — AI không được cam kết kích cỡ vừa chân/người chỉ từ ảnh tạo ra
-- BR-009 — Giá/giảm giá, tổng đơn, phí ship đều tính server-side
+- BR-009 — Server tính VND từ đơn giá và số lượng, trừ giảm giá và cộng phí ship. Phí chuẩn 30.000đ; miễn phí từ tạm tính 500.000đ. Tối đa một voucher, áp điều kiện min/thời gian/quota và trần giảm phần trăm (DEC-009/015).
 - BR-010 — Không hiển thị thông tin riêng tư của khách hàng cho người không có quyền
 
 ## Acceptance criteria

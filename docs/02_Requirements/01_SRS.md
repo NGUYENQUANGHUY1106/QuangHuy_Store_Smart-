@@ -4,6 +4,10 @@
 
 > Tài liệu đề xuất. Chưa có kết quả triển khai hoặc kiểm thử thực tế.
 
+## Phạm vi MVP theo approval ngày 21/11/2026
+
+DEC-010 giữ 20 mã FR để truy vết. MVP triển khai auth, catalog, cart, COD/checkout, orders, inventory, voucher cơ bản, React admin và dashboard cơ bản. DEC-015 đưa voucher cơ bản FR-VOU-001 vào MVP; các mở rộng chưa được duyệt giữ ngoài MVP. AI và review ở P2 theo DEC-010, các spike AI còn phụ thuộc DEC-001/005/013. QHS-031 chờ DEC-016 để phân loại ưu tiên. Doanh thu và tiền COD chờ DEC-012.
+
 ## Purpose & Scope
 
 Đặc tả chức năng Web User/Admin cho website bán đồ thể thao có trải nghiệm AI thử đồ ảnh tải lên; phạm vi có nhãn P0/P1/P2.
@@ -42,11 +46,11 @@
 - FR-INV-002 — M05 — P0 — Hoàn tồn khi hủy đơn hợp lệ — Không hoàn tồn hai lần; trạng thái nhất quán
 - FR-ADM-001 — M06 — P0 — Admin quản lý sản phẩm/biến thể và đơn hàng — Chỉ staff có quyền thao tác và ghi log thao tác quan trọng
 - FR-DASH-001 — M06 — P0 — Dashboard doanh thu/đơn hàng/top sản phẩm — Dữ liệu mẫu có định nghĩa thời điểm và trạng thái tính doanh thu
-- FR-TRY-001 — M07 — P1 — Tạo yêu cầu thử đồ bằng ảnh người dùng và ảnh sản phẩm — Chỉ chấp nhận file hợp lệ và đồng ý xử lý; trả kết quả hoặc lý do thất bại
-- FR-TRY-002 — M07 — P1 — Quản lý lưu/xóa ảnh thử đồ — Có chính sách TTL/xóa và không lưu vô hạn mặc định
+- FR-TRY-001 — M07 — P2 — Tạo yêu cầu thử đồ bằng ảnh người dùng và ảnh sản phẩm — Chỉ chấp nhận file hợp lệ và đồng ý xử lý; trả kết quả hoặc lý do thất bại
+- FR-TRY-002 — M07 — P2 — Quản lý lưu/xóa ảnh thử đồ — Có chính sách TTL/xóa và không lưu vô hạn mặc định
 - FR-PAY-001 — M08 — P2 — Thanh toán sandbox qua một cổng online — Webhook có xác thực, chống xử lý trùng, không tin redirect client
 - FR-OAUTH-001 — M08 — P2 — Đăng nhập OAuth Google/Facebook — Liên kết tài khoản an toàn, xử lý email trùng
-- FR-VOU-001 — M09 — P2 — Áp voucher theo điều kiện — Không áp nhiều lần trái quy tắc, backend kiểm chứng
+- FR-VOU-001 — M09 — P0 (voucher cơ bản theo DEC-015) — Áp voucher theo điều kiện — Không áp nhiều lần trái quy tắc, backend kiểm chứng
 - FR-REV-001 — M09 — P2 — Đánh giá sản phẩm sau mua thành công — Chỉ đơn đủ điều kiện được đánh giá
 - FR-BG-001 — M10 — P2 — Gửi email đơn hàng bằng background job — Job có idempotency/retry và không gửi sai trạng thái
 - FR-BG-002 — M10 — P2 — Tự hủy đơn quá hạn thanh toán — Không hủy đơn đã thanh toán; hoàn tồn đúng một lần

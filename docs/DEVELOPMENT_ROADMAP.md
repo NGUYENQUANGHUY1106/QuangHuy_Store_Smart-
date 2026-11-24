@@ -1,6 +1,6 @@
 # DEVELOPMENT ROADMAP — QuangHuy_Sport
 
-Ngày: 16/11/2026. Kế hoạch mục tiêu bốn tuần, không phải lịch đã cam kết. Chưa xác nhận số người/giờ mỗi tuần/ngày bắt đầu, ngân sách tối đa và môi trường demo (DEC-006/007). QHS-003/004 Project Foundation đã triển khai theo chỉ dẫn trực tiếp của chủ dự án, trạng thái Review; [local evidence](evidence/PROJECT_FOUNDATION.md) có test/build PASS, chưa có release hoặc CI remote evidence. Các task nghiệp vụ chưa bắt đầu.
+Ngày: 16/11/2026. Kế hoạch mục tiêu bốn tuần, không phải lịch đã cam kết. Chưa xác nhận số người/giờ mỗi tuần/ngày bắt đầu, ngân sách tối đa và môi trường demo (DEC-006/007). Cập nhật 23/11/2026. Đã có mã nghiệp vụ P0 và lượt kiểm thử local. Tình trạng từng task và gate xem [backlog](IMPLEMENTATION_BACKLOG.md) và [evidence Auto-Loop](evidence/AUTO_LOOP_2026-11-23.md). Release demo local đã duyệt theo DEC-006/007; chờ gate QHS-024.
 
 Cập nhật 17/11/2026: hoàn tất checkpoint Prompt 01 [Foundation QA](FOUNDATION_QA_REPORT.md), sửa HEAD health và bổ sung regression/CORS allowlist. Local backend 8 tests, frontend 1 test và checks/build PASS; CI baseline 618a95b đã xác nhận PASS trên GitHub. QHS-003/004 giữ Review vì owner acceptance/browser review còn mở; không chuyển Authentication tự động trong lượt này. CI commit QA mới phải kiểm theo SHA sau push.
 
@@ -36,12 +36,12 @@ Không đồng nghĩa các nhánh độc lập phải được làm bởi nhiề
 
 | Gate | Quyết định cần chốt | Khi chưa chốt |
 |---|---|---|
-| Baseline/core contract | DEC-002/003/004/007/008/009/010/011 | Chỉ đối chiếu/soạn contract phần độc lập; không tự chọn COD/stock/auth/cancel/fee/admin scope |
+| Baseline/core contract | DEC-002/003/004/008/009/010/011/015 đã duyệt | Đồng bộ contract; đối chiếu phần thiếu tại backlog. DEC-007 duyệt kế hoạch 23–27/11/2026 cho MVP local. |
 | Dữ liệu/UI | DEC-014; DEC-016 cho change password/reset | Không lấy bảng size/ảnh không có quyền; không giả reset email hoặc bỏ change password âm thầm |
-| Dashboard | DEC-012 | Không gọi tổng đơn tạo mới là doanh thu đã thu |
+| Dashboard | DEC-012 đã duyệt ngày 23/11/2026 | Không gọi tổng đơn tạo mới là doanh thu đã thu |
 | AI spike/integration | DEC-001/005/013, scope/timebox từ DEC-007 | Chỉ nghiên cứu bằng nguồn công khai/ảnh có quyền; không mở upload thật, không cam kết giày và áo cùng model |
-| Demo release | DEC-006/007 và gate theo tính năng bật | Không tự deploy giao dịch production; không giả SLA miễn phí |
-| P2 | DEC-015 và provider/budget/policy liên quan | Giữ backlog ngoài lịch, không bỏ validation khi được chọn |
+| Demo release | DEC-006/007 đã duyệt local; QHS-024 | Không tự deploy giao dịch production; không giả SLA miễn phí |
+| P2 | Provider/budget/policy mở rộng | DEC-015 duyệt voucher cơ bản cho MVP. Review, gateway thật và mở rộng voucher theo gate riêng. |
 
 ## Kiểm chứng và quản lý lỗi
 

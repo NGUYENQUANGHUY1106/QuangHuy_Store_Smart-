@@ -12,7 +12,7 @@
 - UC-M04-01 — Cart & Checkout: luồng khởi tạo/xem — P0
 - UC-M05-01 — Orders & Inventory: luồng khởi tạo/xem — P0
 - UC-M06-01 — Admin & Reporting: luồng khởi tạo/xem — P0
-- UC-M07-01 — AI Virtual Try-On: luồng khởi tạo/xem — P1
+- UC-M07-01 — AI Virtual Try-On: luồng khởi tạo/xem — P2
 - UC-M08-01 — OAuth & Payment: luồng khởi tạo/xem — P2
 - UC-M09-01 — Promotions & Reviews: luồng khởi tạo/xem — P2
 - UC-M10-01 — Async & AI Assistant: luồng khởi tạo/xem — P2
@@ -25,7 +25,7 @@
 
 ### Main Flow
 
-- User chọn địa chỉ và COD; backend kiểm tra tồn, tính lại giá và phí; tạo đơn và snapshot order items trong transaction; ghi tồn theo chính sách; trả mã đơn
+- Customer chọn địa chỉ và COD. Server tính lại giá VND, phí giao hàng và một voucher đủ điều kiện. Trong cùng transaction PostgreSQL, server khóa tồn theo thứ tự SKU, trừ tồn, lưu snapshot địa chỉ và dòng hàng, ghi biến động và trả mã đơn COD UNPAID (DEC-002/003/009/015).
 
 ### Alternatives
 
@@ -33,7 +33,7 @@
 
 ### Postconditions
 
-- Chỉ 1 đơn cho cùng idempotency key; tồn không âm; tổng tiền do backend tính
+- Mỗi user có một đơn cho cùng Idempotency-Key và payload. Gửi lại cùng payload nhận lại đơn, payload khác trả 409. Tồn không âm. Hủy theo DEC-008 và hoàn tồn đúng một lần.
 
 ## UC-TRY-01 — AI virtual try-on
 

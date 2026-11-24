@@ -1,0 +1,105 @@
+{
+  "database": "QuangHuy_Store_Smart",
+  "postgresql": "18.6",
+  "db_type": "bytea",
+  "published": 20,
+  "by_brand": {
+    "Adidas": 4,
+    "Nike": 5,
+    "Mizuno": 10,
+    "Puma": 1
+  },
+  "by_category": {
+    "Giày bóng đá": 17,
+    "Quần áo thể thao": 1,
+    "Phụ kiện bóng đá": 2
+  },
+  "webp_rows": 107,
+  "unique_hashes": 107,
+  "webp_http_200": 107,
+  "published_without_photo": 0,
+  "reconciled_seed_skus": 170,
+  "gallery_by_product": {
+    "Adidas F50 Pro TF": {
+      "Trắng": 1,
+      "Hồng": 1
+    },
+    "Adidas Predator 24 League": {
+      "Đen": 1,
+      "Trắng": 1
+    },
+    "Adidas Predator Accuracy.1 TF": {
+      "Đen/Hồng": 1,
+      "Trắng/Vàng chanh": 1
+    },
+    "Áo khoác Adidas Tiro 24 Training": {
+      "Đen": 1,
+      "Xanh dương": 1
+    },
+    "Balo Nike Academy Team": {
+      "Đen": 5,
+      "Xanh navy": 3
+    },
+    "Mizuno A II Pro": {
+      "Đỏ": 5,
+      "Trắng": 3
+    },
+    "Mizuno Alpha III Pro AS": {
+      "Xanh dương": 5,
+      "Trắng/Đỏ cam": 3
+    },
+    "Mizuno Alpha III Select": {
+      "Hồng": 5,
+      "Xanh dương": 3
+    },
+    "Mizuno Monarcida Neo III Select": {
+      "Trắng/Hồng": 5,
+      "Đen/Trắng": 3
+    },
+    "Mizuno Morelia II Japan": {
+      "Đen/Trắng": 5,
+      "Trắng/Vàng kim": 3
+    },
+    "Mizuno Morelia Neo IV": {
+      "Trắng": 5,
+      "Đen": 3
+    },
+    "Mizuno Morelia Neo IV Beta Elite": {
+      "Trắng/Vàng kim": 5,
+      "Trắng/Hồng": 3
+    },
+    "Mizuno Morelia Neo IV Pro": {
+      "Trắng/Vàng kim": 5,
+      "Xanh dương": 3
+    },
+    "Mizuno Morelia Neo V Beta Japan": {
+      "Trắng/Đen": 5,
+      "Đen/Cam": 3
+    },
+    "Mizuno Morelia Neo V Pro AS": {
+      "Trắng/Cam": 5,
+      "Đen/Cam": 3
+    },
+    "Nike Mercurial Lite": {
+      "Đen": 1,
+      "Trắng": 1
+    },
+    "Nike Mercurial Vapor 15 Pro TF": {
+      "Hồng": 1,
+      "Vàng": 1
+    },
+    "Nike Mercurial Vapor 16 Elite": {
+      "Đen": 1,
+      "Cam": 1
+    },
+    "Nike Phantom GX 2 Pro TF": {
+      "Đen": 1,
+      "Trắng": 1,
+      "Cam": 1
+    },
+    "Puma Future 7 Match": {
+      "Cam": 1,
+      "Đen": 1
+    }
+  }
+}

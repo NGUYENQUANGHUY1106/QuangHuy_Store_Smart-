@@ -1,0 +1,333 @@
+[
+  {
+    "model": "Vapor 15 Pro TF",
+    "product_url": "https://htsports.com.vn/collections/vapor-15-pro",
+    "page_status": 200,
+    "source_title": "Nike Vapor 15 Pro TF",
+    "image_url": "http://file.hstatic.net/200000843327/collection/banner-vapor-15-pro_048d02a7c24a4c348196eed9fb4ce75b.jpg",
+    "image_status": 200,
+    "width": 1920,
+    "height": 720,
+    "edge_score": 31.28,
+    "webp_sha256": "6a431146c0419f36b4114782e214493352c7e757e7b07702da1fc58db385d48f",
+    "excluded_reason": "Banner bộ sưu tập, có text, không phải ảnh phối màu đơn lẻ."
+  },
+  {
+    "model": "Vapor 16 Elite",
+    "product_url": "https://www.nike.com/fr/t/chaussure-de-foot-a-crampons-basse-fg-mercurial-vapor-16-elite-cj8ALkRK/FQ1457-446",
+    "page_status": 200,
+    "source_title": "Chaussure de foot à crampons basse FG Nike Mercurial Vapor 16 Elite",
+    "image_url": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/4d6636dc-a184-49f5-aa60-9bc7809bc3a1/ZM+VAPOR+16+ELITE+FG.png",
+    "image_status": 200,
+    "width": 320,
+    "height": 400
+  },
+  {
+    "model": "Phantom GX 2 Pro TF",
+    "product_url": "https://www.sport9.vn/nike-react-phantom-gx-2-pro-tf-mau-xamxanh-fj2583-003",
+    "page_status": 200,
+    "source_title": "Nike Phantom GX 2 Pro TF - Màu Xám/Xanh - FJ2583-003",
+    "image_url": "https://www.sport9.vn/images/thumbs/002/0024075_nike-phantom-gx-2-pro-tf-mau-xamxanh-fj2583-003_1000.jpeg",
+    "image_status": 200,
+    "width": 1000,
+    "height": 1000,
+    "edge_score": 28.2,
+    "webp_sha256": "39c14f5632219413279c1aca3c97711ac26753dbb8fb27e6f7b91dcdbcd33b1c"
+  },
+  {
+    "model": "Morelia Neo IV Pro AS",
+    "product_url": "https://vnm.mizuno.com/products/morelia-neo-iv-pro-as-p1gd2435-2025aw",
+    "page_status": 404
+  },
+  {
+    "model": "Morelia Neo IV Pro AS",
+    "product_url": "https://vnm.mizuno.com/en/collections/2026ss/products/p1gd2635-morelia-neo-iv-pro-as-2026ss-3",
+    "page_status": 404
+  },
+  {
+    "model": "Manchester United Home 2025/26",
+    "product_url": "https://www.adidas.com/us/manchester-united-25-26-home-jersey/JI7428.html",
+    "page_status": 403
+  },
+  {
+    "model": "Vietnam Red Edition",
+    "product_url": "https://jogarbola.com.vn/products/ao-thi-dau-doi-tuyen-bong-da-quoc-gia-2025-ban-fan",
+    "page_status": 200,
+    "source_title": "Áo thi đấu Đội tuyển bóng đá Quốc gia 2025 (bản Fan)",
+    "image_url": "https://product.hstatic.net/200000365171/product/thi_dau_do__2__a644961e1ce0438ca29b9fcab81526d3_grande.png",
+    "image_status": 200,
+    "width": 600,
+    "height": 600
+  },
+  {
+    "model": "Adidas Tiro",
+    "product_url": "https://www.adidas.com.vn/vi/ao-track-jacket-house-of-tiro/IX1349.html",
+    "page_status": 403
+  },
+  {
+    "model": "Adidas Tiro",
+    "product_url": "https://www.adidas.com.vn/vi/ao-track-jacket-tiro/IS4343.html",
+    "page_status": 403
+  },
+  {
+    "model": "Dong Luc UHV 2.07 Galaxy",
+    "product_url": "https://htsports.com.vn/products/bong-dong-luc-uhv-2-07-galaxy-so-5-trang-do-vang-001010101006",
+    "page_status": 200,
+    "source_title": "Bóng Động Lực UHV 2.07 Galaxy Số 5 - Trắng/Đỏ/Vàng - 001010101006",
+    "image_url": "http://product.hstatic.net/200000843327/product/bong-dong-luc-uhv-2-07-galaxy-so-5-trang-do-vang-001010101006_fe402323130c48dda1f7a2d3fe323b81_grande.jpg",
+    "image_status": 200,
+    "width": 600,
+    "height": 600
+  },
+  {
+    "model": "Dong Luc UHV 2.07 Galaxy",
+    "product_url": "https://thethaodangquang.vn/products/bong-da-dong-luc-fifa-2-07-galaxy",
+    "page_status": 200,
+    "source_title": "Bóng đá Động Lực Fifa Quality Pro UHV 2.07 GALAXY",
+    "image_url": "http://product.hstatic.net/1000379968/product/z1500806788677_0453007f0c01bd3219d3576ef9e9c3a1_ce949e132f5447108c539685455a070d_grande.jpg",
+    "image_status": 200,
+    "width": 500,
+    "height": 500
+  },
+  {
+    "model": "Nike Mercurial Lite",
+    "product_url": "https://www.nike.com/t/mercurial-lite-soccer-shin-guards-oxUXc5yv",
+    "page_status": 200,
+    "source_title": "Nike Mercurial Lite Soccer Shin Guards",
+    "image_url": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/5c23b9fb-d38e-424f-805a-5de641b7a805/NK+MERC+LITE+NOCSAE.png",
+    "image_status": 200,
+    "width": 320,
+    "height": 400
+  },
+  {
+    "model": "Nike Mercurial Lite",
+    "product_url": "https://www.nike.com/gb/t/football-shinguards-mercurial-lite-lZcTLV/DN3611-100",
+    "page_status": 200,
+    "source_title": "Nike Mercurial Lite Football Shinguards",
+    "image_url": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/65fe7634-6429-44c8-8377-e786680ba4e0/NK+MERC+LITE+-+FA22.png",
+    "image_status": 200,
+    "width": 320,
+    "height": 400
+  },
+  {
+    "model": "Nike Academy Team 30L",
+    "product_url": "https://www.nike.com/t/academy-team-backpack-30l-qDB2Kk/DV0761-410",
+    "page_status": 404
+  },
+  {
+    "model": "Nike Academy Team 30L",
+    "product_url": "https://www.nike.com/gb/t/academy-team-backpack-Pk4bC7/DV0761-383",
+    "page_status": 200,
+    "source_title": "Nike Academy Team Backpack (30L)",
+    "image_url": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/4e867631-265e-4b7f-8494-987f388d8eca/NK+ACDMY+TEAM+BKPK+2.3.png",
+    "image_status": 200,
+    "width": 320,
+    "height": 400
+  },
+  {
+    "model": "Vapor 15 Pro TF",
+    "product_url": "https://htsports.com.vn/products/nike-zoom-mercurial-vapor-15-den-xanh-pro-tf-dj5605-040",
+    "page_status": 200,
+    "source_title": "Nike Zoom Mercurial Vapor 15 Đen/Xanh Pro TF - DJ5605-040",
+    "image_url": "https://product.hstatic.net/200000843327/product/nike-zoom-mercurial-vapor-15-pro-tf-den-xanh-dj5605-040__0248eb23b2324fddbfaa95935c5d9b2b.jpg",
+    "image_status": 200,
+    "width": 1024,
+    "height": 1024,
+    "edge_score": 36.36,
+    "webp_sha256": "1a236cf8e8f3db089c1af88a2757bc177f6ac5b797f154cb340f657e21899126",
+    "excluded_reason": "Ảnh có logo nhà bán hàng."
+  },
+  {
+    "model": "F50 Pro TF",
+    "product_url": "https://www.7topsports.vn/p/adidas-f50-pro-tf-white-core-black-solar-yellow-ie1220",
+    "page_status": 200,
+    "source_title": "Adidas F50 Pro TF -  White/Core Black/Solar Yellow IE1220",
+    "image_url": "https://cdn.7topsports.vn/imported/100/386/658/products/1-min-ddd86bab-0c2d-44e4-9bdf-0b185feb83dd.jpg",
+    "image_status": 200,
+    "width": 2480,
+    "height": 2480,
+    "edge_score": 17.59,
+    "webp_sha256": "f3896360eab5101ec8c02e196a07a628d0c1d0f1421716f65b498f8c19175131",
+    "excluded_reason": "Ảnh chụp trên hộp, nền không sạch như yêu cầu."
+  },
+  {
+    "model": "F50 Pro TF",
+    "product_url": "https://thanhhungfutsal.com/products/adidas-f50-pro-tf-ie1219-xanh-hong",
+    "page_status": 200,
+    "source_title": "ADIDAS F50 PRO TF - IE1219 - XANH/HỒNG",
+    "image_url": "https://product.hstatic.net/200000278317/product/thanh-hung-futsal-giay-da-bong-adidas-f50-pro-tf-ie1219-xanh-hong-1_7303a4b2b7e648c0a31d04b9ceba527e.jpg",
+    "image_status": 200,
+    "width": 900,
+    "height": 900,
+    "edge_score": 32.9,
+    "webp_sha256": "3f50aa5ba9dcb4e3471b57636fc6e163c784e0cbdecf1b2a56e55973bbc43f80",
+    "excluded_reason": "Có dấu nhà bán hàng phía dưới."
+  },
+  {
+    "model": "Predator Accuracy.1 TF",
+    "product_url": "https://www.unisportstore.com/football-boots/adidas-predator-accuracy-1-tf-own-your-football-core-blackfootwear-whiteshock-pink/261788/",
+    "page_status": 200,
+    "source_title": "adidas Predator Accuracy .1 TF Own Your Football - Core Black/Footwear White/Shock Pink",
+    "image_url": "https://thumblr.uniid.it/product/261788/d032a8945949.jpg",
+    "image_status": 200,
+    "width": 900,
+    "height": 900,
+    "edge_score": 41.92,
+    "webp_sha256": "9fa849d0002a29806ae65a7a6c8c923d21dc6ebf235f85d91764fc6abc07a940"
+  },
+  {
+    "model": "Predator Accuracy.1 TF",
+    "product_url": "https://thanhhungfutsal.com/products/adidas-predator-accuracy-1-tf-gz0009-trang-vang-chanh",
+    "page_status": 200,
+    "source_title": "ADIDAS PREDATOR ACCURACY.1 TF - GZ0009 - TRẮNG/VÀNG CHANH",
+    "image_url": "https://product.hstatic.net/200000278317/product/giay-da-bong-adidas-predator-accuracy-1-tf-gz0009-trang-vang-chanh-1_f7ec87f718cc4ac48676e758dde12a5d.jpg",
+    "image_status": 200,
+    "width": 900,
+    "height": 900,
+    "edge_score": 26.76,
+    "webp_sha256": "5e41ecfebafef616aa3f781695f558e80033d3c591cfc03e418d6a0d3fe726b0",
+    "excluded_reason": "Có dấu nhà bán hàng phía dưới."
+  },
+  {
+    "model": "Phantom GX 2 Pro TF",
+    "product_url": "https://www.sskamo.co.jp/s/g/gFJ2583-600/",
+    "page_status": 202
+  },
+  {
+    "model": "Morelia Neo IV Pro AS",
+    "product_url": "https://www.sport9.vn/mizuno-morelia-neo-iv-pro-as-vang-xanhdo-p1gd243445",
+    "page_status": 200,
+    "source_title": "Mizuno Morelia Neo IV Pro AS - Vàng Xanh/Đỏ - P1GD243445",
+    "image_url": "https://www.sport9.vn/images/thumbs/002/0023126_mizuno-morelia-neo-iv-pro-as-vang-xanhdo-p1gd243445_1000.jpeg",
+    "image_status": 200,
+    "width": 1000,
+    "height": 1000,
+    "edge_score": 17.81,
+    "webp_sha256": "7eeb7c7df98ae1aab7dd873dbfe0131cc5d5e0a181aa0adff8768fe03e301242"
+  },
+  {
+    "model": "Morelia Neo IV Pro AS",
+    "product_url": "https://www.hoanganhsport.com.vn/neo4-pro-as-xanh-chuoi",
+    "page_status": 200,
+    "source_title": "MIZUNO MORELIA NEO IV PRO AS - P1GD243445 - VÀNG/ĐỎ",
+    "image_url": "https://bizweb.dktcdn.net/thumb/grande/100/554/875/products/bdn-phu-vai-me-f478ea1f45004a51a94a413c919aae7d-master-9d21abc7-9e7a-4aa5-b042-010a92cef15a-2256cb22-1235-4f64-9aeb-3dd71953d165.jpg?v=1743601642930",
+    "image_status": 200,
+    "width": 600,
+    "height": 600
+  },
+  {
+    "model": "Nike Dri-FIT Strike",
+    "product_url": "https://www.nike.com/sk/t/dri-fit-strike-mens-knit-football-tracksuit-VQKLnH",
+    "page_status": 200,
+    "source_title": "Nike Dri-FIT Strike Men's Knit Football Tracksuit",
+    "image_url": "https://static.nike.com/a/images/c_limit,w_1200/e9e1fa98-a4f1-48cd-b548-0caa2d2b4a8a/M+NK+DRY+STRKE+TRK+SUIT+HD+K.png",
+    "image_status": 200,
+    "width": 1200,
+    "height": 1500,
+    "edge_score": 23.38,
+    "webp_sha256": "32a383f2b8eef3a4c42d5f2ebc2635a7b628a094de53f3ae4fe4fdb3718e0045"
+  },
+  {
+    "model": "Nike Mercurial Lite",
+    "product_url": "https://www.nike.com/pt/en/t/mercurial-lite-football-shinguards-wGprtX/DN3611-010",
+    "page_status": 200,
+    "source_title": "Nike Mercurial Lite Football Shinguards",
+    "image_url": "https://static.nike.com/a/images/c_limit,w_1200/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/8bd809e7-a1f8-4443-9d62-5e1de94ecd3a/NK+MERC+LITE+-+FA22.png",
+    "image_status": 200,
+    "width": 1200,
+    "height": 1500,
+    "edge_score": 26.69,
+    "webp_sha256": "8c8631d5e882af0d988d561d5404a3bc50f8aecea317c864eec65dc82e4f63ec",
+    "visual_check": "Ảnh studio đúng màu, không thấy watermark trong ảnh kiểm tra."
+  },
+  {
+    "model": "Nike Academy Team 30L",
+    "product_url": "https://www.nike.com/be/de/t/academy-team-rucksack-Pk4bC7/DV0761-410",
+    "page_status": 200,
+    "source_title": "Nike Academy Team Rucksack (30 l)",
+    "image_url": "https://static.nike.com/a/images/c_limit,w_1200/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/4e867631-265e-4b7f-8494-987f388d8eca/NK+ACDMY+TEAM+BKPK+2.3.png",
+    "image_status": 200,
+    "width": 1200,
+    "height": 1500,
+    "edge_score": 24.96,
+    "webp_sha256": "43e389db032cc1186443961d75f82eebc9dcaa91c3d462317f5ed87ee798281f"
+  },
+  {
+    "model": "Vapor 16 Elite",
+    "product_url": "https://www.nike.com/fr/t/chaussure-de-foot-a-crampons-basse-fg-mercurial-vapor-16-elite-cj8ALkRK/FQ1457-446",
+    "image_url": "https://static.nike.com/a/images/c_limit,w_1200/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/4d6636dc-a184-49f5-aa60-9bc7809bc3a1/ZM+VAPOR+16+ELITE+FG.png",
+    "source_title": "Chaussure de foot à crampons basse FG Nike Mercurial Vapor 16 Elite",
+    "image_status": 200,
+    "width": 1200,
+    "height": 1500,
+    "edge_score": 27.09,
+    "webp_sha256": "4b41d1cee0259c5fbf169dbfef95c315f71bdae84936d3f760e817d7705de166"
+  },
+  {
+    "model": "Vietnam Red Edition",
+    "product_url": "https://jogarbola.com.vn/products/ao-thi-dau-doi-tuyen-bong-da-quoc-gia-2025-ban-fan",
+    "image_url": "https://product.hstatic.net/200000365171/product/thi_dau_do__2__a644961e1ce0438ca29b9fcab81526d3.png",
+    "source_title": "Áo thi đấu Đội tuyển bóng đá Quốc gia 2025 (bản Fan)",
+    "image_status": 200,
+    "width": 800,
+    "height": 800,
+    "edge_score": 19.02,
+    "webp_sha256": "0bd7b7084840707974c694eacfef1a21734e1e4cef518f537651bcc0217eb486"
+  },
+  {
+    "model": "Dong Luc UHV 2.07 Galaxy",
+    "product_url": "https://htsports.com.vn/products/bong-dong-luc-uhv-2-07-galaxy-so-5-trang-do-vang-001010101006",
+    "image_url": "https://product.hstatic.net/200000843327/product/bong-dong-luc-uhv-2-07-galaxy-so-5-trang-do-vang-001010101006_fe402323130c48dda1f7a2d3fe323b81.jpg",
+    "source_title": "Bóng Động Lực UHV 2.07 Galaxy Số 5 - Trắng/Đỏ/Vàng - 001010101006",
+    "image_status": 200,
+    "width": 1200,
+    "height": 1200,
+    "edge_score": 38.69,
+    "webp_sha256": "f5c65da03b8dd570881be35c3bc1b8e50ce0950b60ae7823b82a8cc8757a6d7b",
+    "excluded_reason": "Ảnh có chữ và logo nhà bán hàng."
+  },
+  {
+    "model": "Dong Luc UHV 2.07 Galaxy",
+    "product_url": "https://thethaodangquang.vn/products/bong-da-dong-luc-fifa-2-07-galaxy",
+    "image_url": "https://product.hstatic.net/1000379968/product/z1500806788677_0453007f0c01bd3219d3576ef9e9c3a1_ce949e132f5447108c539685455a070d.jpg",
+    "source_title": "Bóng đá Động Lực Fifa Quality Pro UHV 2.07 GALAXY",
+    "image_status": 200,
+    "width": 500,
+    "height": 500
+  },
+  {
+    "model": "Nike Mercurial Lite",
+    "product_url": "https://www.nike.com/t/mercurial-lite-soccer-shin-guards-oxUXc5yv",
+    "image_url": "https://static.nike.com/a/images/c_limit,w_1200/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/5c23b9fb-d38e-424f-805a-5de641b7a805/NK+MERC+LITE+NOCSAE.png",
+    "source_title": "Nike Mercurial Lite Soccer Shin Guards",
+    "image_status": 200,
+    "width": 1200,
+    "height": 1500,
+    "edge_score": 20.05,
+    "webp_sha256": "c8a2893b1ee1d7c58e43f6b68d7f3c804d764c33d3c3c6518663f216f2254dc1"
+  },
+  {
+    "model": "Nike Mercurial Lite",
+    "product_url": "https://www.nike.com/gb/t/football-shinguards-mercurial-lite-lZcTLV/DN3611-100",
+    "image_url": "https://static.nike.com/a/images/c_limit,w_1200/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/65fe7634-6429-44c8-8377-e786680ba4e0/NK+MERC+LITE+-+FA22.png",
+    "source_title": "Nike Mercurial Lite Football Shinguards",
+    "image_status": 200,
+    "width": 1200,
+    "height": 1500,
+    "edge_score": 22.12,
+    "webp_sha256": "be98ba8efd3086758163c17bca60619e3b45c196ad0bb0a44cb6282f5dc82565",
+    "visual_check": "Ảnh studio đúng màu, không thấy watermark trong ảnh kiểm tra."
+  },
+  {
+    "model": "Nike Academy Team 30L",
+    "product_url": "https://www.nike.com/gb/t/academy-team-backpack-Pk4bC7/DV0761-383",
+    "image_url": "https://static.nike.com/a/images/c_limit,w_1200/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/4e867631-265e-4b7f-8494-987f388d8eca/NK+ACDMY+TEAM+BKPK+2.3.png",
+    "source_title": "Nike Academy Team Backpack (30L)",
+    "image_status": 200,
+    "width": 1200,
+    "height": 1500,
+    "edge_score": 24.96,
+    "webp_sha256": "43e389db032cc1186443961d75f82eebc9dcaa91c3d462317f5ed87ee798281f",
+    "excluded_reason": "Trùng SHA-256 với ảnh số 25."
+  }
+]

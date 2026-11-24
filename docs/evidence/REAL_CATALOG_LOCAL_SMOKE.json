@@ -1,0 +1,386 @@
+{
+  "database": "QuangHuy_Store_Smart",
+  "server_version": "18.6",
+  "image_column_type": "bytea",
+  "counts": {
+    "categories": 5,
+    "products": 13,
+    "variants": 114,
+    "bytea_images": 23,
+    "unique_webp_sha256": 23
+  },
+  "products_with_real_images": {
+    "phu-kien-bong-da": 2,
+    "giay-bong-da": 8,
+    "quan-ao-the-thao": 1
+  },
+  "http": {
+    "catalog_list": 200,
+    "images": [
+      {
+        "product": "Nike Mercurial Lite",
+        "color": "Đen",
+        "status": 200,
+        "content_type": "image/webp",
+        "size": [
+          1200,
+          1500
+        ],
+        "sha256": "8c8631d5e882af0d988d561d5404a3bc50f8aecea317c864eec65dc82e4f63ec"
+      },
+      {
+        "product": "Puma Future 7 Match",
+        "color": "Cam",
+        "status": 200,
+        "content_type": "image/webp",
+        "size": [
+          1200,
+          1200
+        ],
+        "sha256": "62889a7c97a31c1232d5c8265a75c73c1edf381b39c2a53b40d6eb243c553844"
+      },
+      {
+        "product": "Mizuno Morelia Neo IV",
+        "color": "Trắng",
+        "status": 200,
+        "content_type": "image/webp",
+        "size": [
+          1700,
+          1700
+        ],
+        "sha256": "59fcb3d758399034c5acc1d5b0ce92a123e5be271d531660ea2c04983a596bbf"
+      },
+      {
+        "product": "Nike Mercurial Vapor 16 Elite",
+        "color": "Đen",
+        "status": 200,
+        "content_type": "image/webp",
+        "size": [
+          1200,
+          1500
+        ],
+        "sha256": "93b4018e7691a2f61a934ce18ab9c3ec75c8711b68bb0f4be9e6ac380db98690"
+      },
+      {
+        "product": "Balo Nike Academy Team",
+        "color": "Đen",
+        "status": 200,
+        "content_type": "image/webp",
+        "size": [
+          1200,
+          1500
+        ],
+        "sha256": "6b60894a891aa770f82c1ec08e22811a2793e9c80f48745d322ff9464bbd46f1"
+      },
+      {
+        "product": "Adidas Predator 24 League",
+        "color": "Đen",
+        "status": 200,
+        "content_type": "image/webp",
+        "size": [
+          1000,
+          1000
+        ],
+        "sha256": "2c7ff91a0ac74073cb2d17996a25906e12b1e449db13b8e217421964fa171029"
+      },
+      {
+        "product": "Nike Mercurial Vapor 15 Pro TF",
+        "color": "Hồng",
+        "status": 200,
+        "content_type": "image/webp",
+        "size": [
+          1000,
+          1000
+        ],
+        "sha256": "0de9715385aaf8cbcd637aedafd364f52d575369d04546d2954ca9262a51f963"
+      },
+      {
+        "product": "Nike Phantom GX 2 Pro TF",
+        "color": "Đen",
+        "status": 200,
+        "content_type": "image/webp",
+        "size": [
+          1000,
+          1000
+        ],
+        "sha256": "324b792076dc5a02eed7394862c4fa758c86141ae1ef872318a9afaee05ea8c0"
+      },
+      {
+        "product": "Áo khoác Adidas Tiro 24 Training",
+        "color": "Đen",
+        "status": 200,
+        "content_type": "image/webp",
+        "size": [
+          900,
+          900
+        ],
+        "sha256": "1f3020c0ea76efd3a263096b9f8a10a4cfe0c8139f5769a280961ec3390ee20c"
+      },
+      {
+        "product": "Adidas F50 Pro TF",
+        "color": "Trắng",
+        "status": 200,
+        "content_type": "image/webp",
+        "size": [
+          1000,
+          1000
+        ],
+        "sha256": "1f0a9e13f26c2bcae50ebc954b3915a1f0458c8a8dd0da3a76bfe6d4d6df764e"
+      },
+      {
+        "product": "Adidas Predator Accuracy.1 TF",
+        "color": "Đen/Hồng",
+        "status": 200,
+        "content_type": "image/webp",
+        "size": [
+          900,
+          900
+        ],
+        "sha256": "9fa849d0002a29806ae65a7a6c8c923d21dc6ebf235f85d91764fc6abc07a940"
+      },
+      {
+        "product": "Nike Mercurial Lite",
+        "color": "Trắng",
+        "status": 200,
+        "content_type": "image/webp",
+        "size": [
+          1200,
+          1500
+        ],
+        "sha256": "be98ba8efd3086758163c17bca60619e3b45c196ad0bb0a44cb6282f5dc82565"
+      },
+      {
+        "product": "Puma Future 7 Match",
+        "color": "Đen",
+        "status": 200,
+        "content_type": "image/webp",
+        "size": [
+          1200,
+          1200
+        ],
+        "sha256": "36f51c8b99f31676f3efb3b68198cd8a25e0b3567922ba2ad91cc2f79dd99a9f"
+      },
+      {
+        "product": "Mizuno Morelia Neo IV",
+        "color": "Đen",
+        "status": 200,
+        "content_type": "image/webp",
+        "size": [
+          1700,
+          1700
+        ],
+        "sha256": "9af33519c64be305efd3c5496b796e354993468d2bf19f0f2e27f26f2849c18c"
+      },
+      {
+        "product": "Nike Mercurial Vapor 16 Elite",
+        "color": "Cam",
+        "status": 200,
+        "content_type": "image/webp",
+        "size": [
+          1000,
+          1000
+        ],
+        "sha256": "00dae4359b642ea20ea01f811f4c3594ac595d34fb6cdfe0d2019d7da28378dc"
+      },
+      {
+        "product": "Balo Nike Academy Team",
+        "color": "Xanh navy",
+        "status": 200,
+        "content_type": "image/webp",
+        "size": [
+          1200,
+          1500
+        ],
+        "sha256": "43e389db032cc1186443961d75f82eebc9dcaa91c3d462317f5ed87ee798281f"
+      },
+      {
+        "product": "Adidas Predator 24 League",
+        "color": "Trắng",
+        "status": 200,
+        "content_type": "image/webp",
+        "size": [
+          750,
+          750
+        ],
+        "sha256": "a59729ce33c9f29151652596929a5469c41a1ddb0b7252a880820e35bae19150"
+      },
+      {
+        "product": "Nike Mercurial Vapor 15 Pro TF",
+        "color": "Vàng",
+        "status": 200,
+        "content_type": "image/webp",
+        "size": [
+          1000,
+          1000
+        ],
+        "sha256": "b1c68178ceb1fced6cf209bea517ba96bedab66cf0e55c12842dcc12b8c40ed5"
+      },
+      {
+        "product": "Nike Phantom GX 2 Pro TF",
+        "color": "Trắng",
+        "status": 200,
+        "content_type": "image/webp",
+        "size": [
+          2000,
+          1333
+        ],
+        "sha256": "90962d959570dda2adea7b2ce73ddacd36c981c0007a978e36fc128f057840f8"
+      },
+      {
+        "product": "Áo khoác Adidas Tiro 24 Training",
+        "color": "Xanh dương",
+        "status": 200,
+        "content_type": "image/webp",
+        "size": [
+          1000,
+          1000
+        ],
+        "sha256": "84eaa21d2dc83c4a076830b9da3c85a722ef7cbe16cd44acfced860ddc695b68"
+      },
+      {
+        "product": "Adidas F50 Pro TF",
+        "color": "Hồng",
+        "status": 200,
+        "content_type": "image/webp",
+        "size": [
+          1200,
+          630
+        ],
+        "sha256": "8ea10207f3ce3b1cff791e1c738c4bb3863e5e6584dfcbda011eda7051791726"
+      },
+      {
+        "product": "Adidas Predator Accuracy.1 TF",
+        "color": "Trắng/Vàng chanh",
+        "status": 200,
+        "content_type": "image/webp",
+        "size": [
+          2000,
+          2000
+        ],
+        "sha256": "586641d523b02aee7ecc3dd04f7163741cf69466cbf5dc1d134c4a79490c70a8"
+      },
+      {
+        "product": "Nike Phantom GX 2 Pro TF",
+        "color": "Cam",
+        "status": 200,
+        "content_type": "image/webp",
+        "size": [
+          1000,
+          1000
+        ],
+        "sha256": "8f287a34ac940f6121c55f134e83956955bbfa4136c6e62a543d4566aab24972"
+      }
+    ]
+  },
+  "inventory": {
+    "new_skus_reconciled": 80,
+    "zero_stock": 9
+  },
+  "chrome": {
+    "/": {
+      "status": 200,
+      "cards": [
+        {
+          "name": "Adidas Predator Accuracy.1 TF",
+          "db": true,
+          "width": 900
+        },
+        {
+          "name": "Adidas F50 Pro TF",
+          "db": true,
+          "width": 1000
+        },
+        {
+          "name": "Áo khoác Adidas Tiro 24 Training",
+          "db": true,
+          "width": 900
+        },
+        {
+          "name": "Nike Phantom GX 2 Pro TF",
+          "db": true,
+          "width": 1000
+        }
+      ]
+    },
+    "/category/giay-bong-da": {
+      "status": 200,
+      "cards": [
+        {
+          "name": "Adidas Predator Accuracy.1 TF",
+          "db": true,
+          "width": 900
+        },
+        {
+          "name": "Adidas F50 Pro TF",
+          "db": true,
+          "width": 1000
+        },
+        {
+          "name": "Nike Phantom GX 2 Pro TF",
+          "db": true,
+          "width": 1000
+        },
+        {
+          "name": "Nike Mercurial Vapor 15 Pro TF",
+          "db": true,
+          "width": 1000
+        },
+        {
+          "name": "Puma Future 7 Match",
+          "db": true,
+          "width": 1200
+        },
+        {
+          "name": "Mizuno Morelia Neo IV",
+          "db": true,
+          "width": 1700
+        },
+        {
+          "name": "Adidas Predator 24 League",
+          "db": true,
+          "width": 1000
+        },
+        {
+          "name": "Nike Mercurial Vapor 16 Elite",
+          "db": true,
+          "width": 1200
+        }
+      ]
+    },
+    "/category/quan-ao-the-thao": {
+      "status": 200,
+      "cards": [
+        {
+          "name": "Áo khoác Adidas Tiro 24 Training",
+          "db": true,
+          "width": 900
+        },
+        {
+          "name": "Quần short training",
+          "db": false,
+          "width": 150
+        },
+        {
+          "name": "Áo training không logo",
+          "db": false,
+          "width": 150
+        }
+      ]
+    },
+    "/category/phu-kien-bong-da": {
+      "status": 200,
+      "cards": [
+        {
+          "name": "Balo Nike Academy Team",
+          "db": true,
+          "width": 1200
+        },
+        {
+          "name": "Nike Mercurial Lite",
+          "db": true,
+          "width": 1200
+        }
+      ]
+    }
+  }
+}

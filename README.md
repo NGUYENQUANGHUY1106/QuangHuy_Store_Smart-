@@ -1,6 +1,6 @@
 # QuangHuy_Sport
 
-Project Foundation — QHS-003/004. React + TypeScript + Tailwind CSS, Django REST Framework, PostgreSQL. Hiện chỉ có trang nền tảng và `GET /health`; chưa có catalog, login, cart, checkout hoặc AI.
+React + TypeScript + Tailwind CSS, Django REST Framework và PostgreSQL 18. Workspace có API và UI cho các phần của MVP. Phạm vi nghiệm thu và tình trạng từng task xem [backlog](docs/IMPLEMENTATION_BACKLOG.md) và [evidence Auto-Loop](docs/evidence/AUTO_LOOP_2026-11-23.md).
 
 ## Yêu cầu và cấu trúc
 
@@ -15,8 +15,6 @@ frontend/src/test/      Vitest setup
 docs/03_Design/         architecture, database, API, security, AI design
 docs/evidence/          lệnh và kết quả kiểm chứng thực tế
 ```
-
-Chỉ tạo app/feature khi có task, không thêm thư mục rỗng cho mọi module P2. `identity.User` hiện kế thừa AbstractUser với UUID PK để cố định AUTH_USER_MODEL từ migration đầu; **chưa triển khai email login/manager/profile**. QHS-005 phải hoàn thiện email uniqueness/normalization và migration tiếp theo trước auth API; không xóa DB/migration để thay user.
 
 ## Backend — PowerShell, từ thư mục gốc
 
@@ -50,9 +48,20 @@ npm.cmd ci
 npm.cmd run dev
 ```
 
-Mở `http://127.0.0.1:5173`, nhấn link health để kiểm chứng proxy tới backend. `npm.cmd` tránh lỗi ExecutionPolicy của npm.ps1 trên Windows, không cần sửa policy. Linux/macOS dùng `npm` và Python trong `.venv/bin/python` thay cho đường dẫn Windows.
+Mở `http://127.0.0.1:5173`. Vite proxy `/health`. Các API ứng dụng dùng `VITE_API_ORIGIN` (mặc định `http://127.0.0.1:8000`). Trong `backend/.env` local, thêm đúng origin frontend vào `DJANGO_CORS_ALLOWED_ORIGINS`, ví dụ `http://127.0.0.1:5173`. Restart Django sau khi cập nhật biến. `VITE_API_ORIGIN` là public. Với React admin, tạo tài khoản local và gán role ADMIN qua quy trình quản trị database/shell được phép; server API kiểm role.
 
-Vite chỉ proxy `/health` hiện có; task API mới bổ sung routes proxy tương ứng. Browser gọi cùng origin, CORS mặc định không cho origin ngoài. Khi chủ động dùng cross-origin local, đặt danh sách chính xác trong `DJANGO_CORS_ALLOWED_ORIGINS` và `DJANGO_CSRF_TRUSTED_ORIGINS`, không wildcard. CORS không thay CSRF. Vite preview/static build không tự proxy backend: deployment phải reverse proxy API cùng origin.
+### Browser smoke với database test PostgreSQL
+
+1. Khởi động Vite ở `127.0.0.1:5173` bằng `npm.cmd run dev`. Giữ port 8000 trống cho Django fixture.
+2. Cài Playwright trong venv và dùng Chrome đã cài. Chạy từ `backend/` với origin CORS local ở trên.
+
+```powershell
+../.venv/Scripts/python.exe -m pip install playwright==1.65.2
+$env:DJANGO_DEBUG = 'true'
+../.venv/Scripts/python.exe -m pytest e2e/test_p0_smoke.py --liveserver=127.0.0.1:8000 -q
+```
+
+Fixture pytest-django tạo database test riêng. Dữ liệu và mã mật khẩu trong bài smoke chỉ dùng cho fixture.
 
 ## Lint, format, typecheck, tests
 
@@ -78,13 +87,13 @@ npm.cmd run test
 npm.cmd run build
 ```
 
-Formatting: `npm.cmd run format`. Oxlint theo template Vite, Prettier, TypeScript strict, Vitest/Testing Library/jsdom. Backend dùng pytest-django, Ruff, mypy/django-stubs. PostgreSQL test bắt buộc cho integration/concurrency; mock chỉ kiểm lỗi health không lộ thông tin, không chứng minh connection thật. Chưa có concurrency nghiệp vụ trong task này.
+Formatting: `npm.cmd run format`. Oxlint theo template Vite, Prettier, TypeScript strict, Vitest/Testing Library/jsdom. Backend dùng pytest-django, Ruff, mypy/django-stubs. PostgreSQL test bắt buộc cho integration/concurrency; mock chỉ kiểm lỗi health không lộ thông tin, không chứng minh connection thật. Các ca concurrency nghiệp vụ nằm trong `backend/tests/test_concurrency_postgres.py`.
 
 GitHub Actions cấu hình service PostgreSQL 18 tạm thời và checks riêng frontend/backend. Kết quả local không chứng minh workflow remote đã PASS; phải mở Actions sau push. Thông tin đăng nhập service CI chỉ dành container tạm, không dùng deployment.
 
 ## Bảo mật và giới hạn foundation
 
-Mặc định DEBUG=false nếu không cấu hình; `.env.example` chỉ bật debug cho localhost. Public phải có secret riêng, hosts cụ thể, HTTPS, DEBUG=false và kiểm tra deployment trước chạy. Secure cookies/SSL redirect/HSTS bật khi non-debug; chưa cấu hình proxy-trust tự động. Không dùng runserver production. Session backend PostgreSQL/cookie HttpOnly/SameSite=Lax; chưa có auth endpoints hoặc toàn bộ middleware absolute-login-expiry của thiết kế.
+Mặc định DEBUG=false nếu không cấu hình; `.env.example` chỉ bật debug cho localhost. Public phải có secret riêng, hosts cụ thể, HTTPS, DEBUG=false và kiểm tra deployment trước chạy. Secure cookies/SSL redirect/HSTS bật khi non-debug; chưa cấu hình proxy-trust tự động. Không dùng runserver production. API dùng JWT bearer và bcrypt theo DEC-004. Xem security design để biết giới hạn vòng đời phiên browser và phần kiểm thử còn mở.
 
 Không tạo account admin, secret production, dữ liệu giá/tồn hoặc provider AI. Redis/Celery chưa cần. Tham khảo [quy trình](AGENTS.md), [backlog](docs/IMPLEMENTATION_BACKLOG.md), [roadmap](docs/DEVELOPMENT_ROADMAP.md), [evidence](docs/evidence/PROJECT_FOUNDATION.md).
 

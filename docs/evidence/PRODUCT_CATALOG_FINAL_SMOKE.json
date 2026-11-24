@@ -1,0 +1,955 @@
+{
+  "date": "2026-11-24",
+  "environment": "local demo",
+  "db": "QuangHuy_Store_Smart",
+  "postgresql": "18.6",
+  "products_total": 24,
+  "products_published": 22,
+  "by_brand": {
+    "Adidas": 4,
+    "Nike": 7,
+    "Mizuno": 10,
+    "Puma": 1
+  },
+  "by_category": {
+    "Giày bóng đá": 17,
+    "Quần áo thể thao": 2,
+    "Phụ kiện bóng đá": 3
+  },
+  "published_without_image": 0,
+  "without_description": 0,
+  "without_variants": 0,
+  "duplicate_sku": 0,
+  "without_valid_inventory": 0,
+  "webp_rows": 135,
+  "unique_hashes": 135,
+  "image_http_200": 135,
+  "image_url_errors": 0,
+  "reconciled_demo_sku": 180,
+  "gallery_complete_published": 13,
+  "gallery_by_slug": {
+    "real-adidas-f50-pro-tf": {
+      "Trắng": [
+        "lateral",
+        "medial",
+        "top",
+        "outsole",
+        "heel"
+      ],
+      "Hồng": [
+        "lateral",
+        "medial",
+        "outsole"
+      ]
+    },
+    "adidas-predator-24-league": {
+      "Đen": [
+        "unclassified"
+      ],
+      "Trắng": [
+        "unclassified"
+      ]
+    },
+    "real-adidas-predator-accuracy1-tf": {
+      "Đen/Hồng": [
+        "unclassified"
+      ],
+      "Trắng/Vàng chanh": [
+        "unclassified"
+      ]
+    },
+    "real-ao-khoac-adidas-tiro-24-training": {
+      "Đen": [
+        "unclassified"
+      ],
+      "Xanh dương": [
+        "unclassified"
+      ]
+    },
+    "real-ao-tap-nike-dri-fit-strike": {
+      "Xanh navy": [
+        "front",
+        "back",
+        "side",
+        "detail",
+        "logo"
+      ],
+      "Đen": [
+        "front",
+        "back",
+        "detail"
+      ]
+    },
+    "real-balo-nike-academy-team": {
+      "Đen": [
+        "unclassified",
+        "unclassified",
+        "unclassified",
+        "detail",
+        "top"
+      ],
+      "Xanh navy": [
+        "unclassified",
+        "unclassified",
+        "unclassified"
+      ]
+    },
+    "real-mizuno-a-ii-pro": {
+      "Đỏ": [
+        "lateral",
+        "medial",
+        "top",
+        "outsole",
+        "heel"
+      ],
+      "Trắng": [
+        "lateral",
+        "top",
+        "heel"
+      ]
+    },
+    "real-mizuno-alpha-iii-pro-as": {
+      "Xanh dương": [
+        "lateral",
+        "medial",
+        "top",
+        "outsole",
+        "heel"
+      ],
+      "Trắng/Đỏ cam": [
+        "lateral",
+        "top",
+        "heel"
+      ]
+    },
+    "real-mizuno-alpha-iii-select": {
+      "Hồng": [
+        "lateral",
+        "medial",
+        "top",
+        "outsole",
+        "heel"
+      ],
+      "Xanh dương": [
+        "lateral",
+        "top",
+        "heel"
+      ]
+    },
+    "real-mizuno-monarcida-neo-iii-select": {
+      "Trắng/Hồng": [
+        "lateral",
+        "medial",
+        "top",
+        "outsole",
+        "heel"
+      ],
+      "Đen/Trắng": [
+        "lateral",
+        "top",
+        "heel"
+      ]
+    },
+    "real-mizuno-morelia-ii-japan": {
+      "Đen/Trắng": [
+        "lateral",
+        "medial",
+        "top",
+        "outsole",
+        "heel"
+      ],
+      "Trắng/Vàng kim": [
+        "lateral",
+        "top",
+        "heel"
+      ]
+    },
+    "mizuno-morelia-neo-iv": {
+      "Trắng": [
+        "lateral",
+        "medial",
+        "top",
+        "outsole",
+        "heel"
+      ],
+      "Đen": [
+        "lateral",
+        "top",
+        "heel"
+      ]
+    },
+    "real-mizuno-morelia-neo-iv-beta-elite": {
+      "Trắng/Vàng kim": [
+        "lateral",
+        "medial",
+        "top",
+        "outsole",
+        "heel"
+      ],
+      "Trắng/Hồng": [
+        "lateral",
+        "top",
+        "heel"
+      ]
+    },
+    "real-mizuno-morelia-neo-iv-pro": {
+      "Trắng/Vàng kim": [
+        "lateral",
+        "medial",
+        "top",
+        "outsole",
+        "heel"
+      ],
+      "Xanh dương": [
+        "lateral",
+        "top",
+        "heel"
+      ]
+    },
+    "real-mizuno-morelia-neo-v-beta-japan": {
+      "Trắng/Đen": [
+        "lateral",
+        "medial",
+        "top",
+        "outsole",
+        "heel"
+      ],
+      "Đen/Cam": [
+        "lateral",
+        "top",
+        "heel"
+      ]
+    },
+    "real-mizuno-morelia-neo-v-pro-as": {
+      "Trắng/Cam": [
+        "lateral",
+        "medial",
+        "top",
+        "outsole",
+        "heel"
+      ],
+      "Đen/Cam": [
+        "lateral",
+        "top",
+        "heel"
+      ]
+    },
+    "real-nike-mercurial-lite": {
+      "Đen": [
+        "unclassified"
+      ],
+      "Trắng": [
+        "unclassified"
+      ]
+    },
+    "real-nike-mercurial-vapor-15-pro-tf": {
+      "Hồng": [
+        "unclassified"
+      ],
+      "Vàng": [
+        "unclassified"
+      ]
+    },
+    "nike-mercurial-vapor-16-elite": {
+      "Đen": [
+        "unclassified"
+      ],
+      "Cam": [
+        "unclassified"
+      ]
+    },
+    "real-nike-phantom-gx-2-pro-tf": {
+      "Đen": [
+        "unclassified"
+      ],
+      "Trắng": [
+        "unclassified"
+      ],
+      "Cam": [
+        "unclassified"
+      ]
+    },
+    "puma-future-7-match": {
+      "Cam": [
+        "lateral",
+        "medial",
+        "top",
+        "outsole",
+        "heel"
+      ],
+      "Đen": [
+        "lateral",
+        "top",
+        "heel"
+      ]
+    },
+    "real-tui-trong-nike-academy-40l": {
+      "Đen": [
+        "front",
+        "side",
+        "back",
+        "top",
+        "detail"
+      ],
+      "Xanh navy": [
+        "front",
+        "side",
+        "top"
+      ]
+    }
+  },
+  "asset_gaps": {
+    "real-adidas-f50-pro-tf": {
+      "Hồng": {
+        "status": "MISSING_VERIFIED_ASSET",
+        "angles_found": [
+          "lateral",
+          "medial",
+          "outsole"
+        ],
+        "count_target": 3,
+        "missing_required_angles": [
+          "heel",
+          "top"
+        ]
+      }
+    },
+    "adidas-predator-24-league": {
+      "Xanh": "MISSING_VERIFIED_ASSET",
+      "Đen": {
+        "status": "MISSING_VERIFIED_ASSET",
+        "angles_found": [
+          "unclassified"
+        ],
+        "count_target": 5,
+        "missing_required_angles": [
+          "heel",
+          "lateral",
+          "medial",
+          "outsole",
+          "top"
+        ]
+      },
+      "Trắng": {
+        "status": "MISSING_VERIFIED_ASSET",
+        "angles_found": [
+          "unclassified"
+        ],
+        "count_target": 3,
+        "missing_required_angles": [
+          "heel",
+          "lateral",
+          "top"
+        ]
+      }
+    },
+    "real-adidas-predator-accuracy1-tf": {
+      "Đen/Hồng": {
+        "status": "MISSING_VERIFIED_ASSET",
+        "angles_found": [
+          "unclassified"
+        ],
+        "count_target": 5,
+        "missing_required_angles": [
+          "heel",
+          "lateral",
+          "medial",
+          "outsole",
+          "top"
+        ]
+      },
+      "Trắng/Vàng chanh": {
+        "status": "MISSING_VERIFIED_ASSET",
+        "angles_found": [
+          "unclassified"
+        ],
+        "count_target": 3,
+        "missing_required_angles": [
+          "heel",
+          "lateral",
+          "top"
+        ]
+      }
+    },
+    "real-ao-khoac-adidas-tiro-24-training": {
+      "Đen": {
+        "status": "MISSING_VERIFIED_ASSET",
+        "angles_found": [
+          "unclassified"
+        ],
+        "count_target": 5,
+        "missing_required_angles": []
+      },
+      "Xanh dương": {
+        "status": "MISSING_VERIFIED_ASSET",
+        "angles_found": [
+          "unclassified"
+        ],
+        "count_target": 3,
+        "missing_required_angles": []
+      }
+    },
+    "real-nike-mercurial-lite": {
+      "Đen": {
+        "status": "MISSING_VERIFIED_ASSET",
+        "angles_found": [
+          "unclassified"
+        ],
+        "count_target": 5,
+        "missing_required_angles": []
+      },
+      "Trắng": {
+        "status": "MISSING_VERIFIED_ASSET",
+        "angles_found": [
+          "unclassified"
+        ],
+        "count_target": 3,
+        "missing_required_angles": []
+      }
+    },
+    "real-nike-mercurial-vapor-15-pro-tf": {
+      "Hồng": {
+        "status": "MISSING_VERIFIED_ASSET",
+        "angles_found": [
+          "unclassified"
+        ],
+        "count_target": 5,
+        "missing_required_angles": [
+          "heel",
+          "lateral",
+          "medial",
+          "outsole",
+          "top"
+        ]
+      },
+      "Vàng": {
+        "status": "MISSING_VERIFIED_ASSET",
+        "angles_found": [
+          "unclassified"
+        ],
+        "count_target": 3,
+        "missing_required_angles": [
+          "heel",
+          "lateral",
+          "top"
+        ]
+      }
+    },
+    "nike-mercurial-vapor-16-elite": {
+      "Đen": {
+        "status": "MISSING_VERIFIED_ASSET",
+        "angles_found": [
+          "unclassified"
+        ],
+        "count_target": 5,
+        "missing_required_angles": [
+          "heel",
+          "lateral",
+          "medial",
+          "outsole",
+          "top"
+        ]
+      },
+      "Cam": {
+        "status": "MISSING_VERIFIED_ASSET",
+        "angles_found": [
+          "unclassified"
+        ],
+        "count_target": 3,
+        "missing_required_angles": [
+          "heel",
+          "lateral",
+          "top"
+        ]
+      }
+    },
+    "real-nike-phantom-gx-2-pro-tf": {
+      "Đen": {
+        "status": "MISSING_VERIFIED_ASSET",
+        "angles_found": [
+          "unclassified"
+        ],
+        "count_target": 5,
+        "missing_required_angles": [
+          "heel",
+          "lateral",
+          "medial",
+          "outsole",
+          "top"
+        ]
+      },
+      "Trắng": {
+        "status": "MISSING_VERIFIED_ASSET",
+        "angles_found": [
+          "unclassified"
+        ],
+        "count_target": 3,
+        "missing_required_angles": [
+          "heel",
+          "lateral",
+          "top"
+        ]
+      },
+      "Cam": {
+        "status": "MISSING_VERIFIED_ASSET",
+        "angles_found": [
+          "unclassified"
+        ],
+        "count_target": 3,
+        "missing_required_angles": [
+          "heel",
+          "lateral",
+          "top"
+        ]
+      }
+    },
+    "puma-future-7-match": {
+      "Xanh": "MISSING_VERIFIED_ASSET"
+    }
+  },
+  "new_products": [
+    "real-ao-tap-nike-dri-fit-strike",
+    "real-tui-trong-nike-academy-40l"
+  ],
+  "new_skus": [
+    "REAL-0157B072C059ED293BF531FD",
+    "REAL-1DBFCF3EE671C92D67B2531D",
+    "REAL-2AA5A65A29C11BF35F9F43DF",
+    "REAL-4C2FB351BE7FA94B524C256F",
+    "REAL-626FD741AFBE90E1D084924F",
+    "REAL-75F15D53292B1E0DF85E22F1",
+    "REAL-76EDF6AC39214B98D3AE31FC",
+    "REAL-8F7B0495D0C64A0F6AB407D6",
+    "REAL-9F1ABCF32307138AD4E97FB5",
+    "REAL-B737329EE160FB1EB02FCC9E"
+  ],
+  "new_images": [
+    {
+      "product": "real-tui-trong-nike-academy-40l",
+      "url": "/media/catalog-db/0f481d8f-c878-4374-9bcb-e4db2308bda5",
+      "color": "Đen",
+      "alt": "Túi trống Nike Academy 40L - Đen - Mặt trước",
+      "sha256": "2b59b7c377a1e4a6f2419cc594249fde66bef6d272f5b686ae01d00136f6202d"
+    },
+    {
+      "product": "real-ao-tap-nike-dri-fit-strike",
+      "url": "/media/catalog-db/6e6dae1a-c8ff-460e-a86d-451ebe0b58b9",
+      "color": "Xanh navy",
+      "alt": "Áo tập Nike Dri-FIT Strike - Xanh navy - Mặt trước",
+      "sha256": "577a6d6f86b738a70ba2ba64ab199cd36fe3d3c6f1af5fa9f9314d6fd5bf6675"
+    },
+    {
+      "product": "puma-future-7-match",
+      "url": "/media/catalog-db/3a1c471e-7da8-49d4-8d4e-9fe77e97cc21",
+      "color": "Cam",
+      "alt": "Puma Future 7 Match - Cam - Má ngoài",
+      "sha256": "8c5475bf14dfd6cd86952fec62f01f82070b14a1a06052e6a42df4f59e8b6a21"
+    },
+    {
+      "product": "real-adidas-f50-pro-tf",
+      "url": "/media/catalog-db/15f6b5f6-a6ea-47be-9c1d-e449928cce37",
+      "color": "Trắng",
+      "alt": "Adidas F50 Pro TF - Trắng - Má ngoài",
+      "sha256": "d5b9c661a3c367d1c8b8affe883c01cbb9b3200d895beb82a67ab270be29cbf0"
+    },
+    {
+      "product": "real-tui-trong-nike-academy-40l",
+      "url": "/media/catalog-db/9a7458b1-d39e-4ff2-96e9-c4a59ff2e404",
+      "color": "Đen",
+      "alt": "Túi trống Nike Academy 40L - Đen - Mặt bên",
+      "sha256": "d189078b0762c1f65a7cd7f92deb94fb551aff61dee3f18c57fe5d383acdca78"
+    },
+    {
+      "product": "real-ao-tap-nike-dri-fit-strike",
+      "url": "/media/catalog-db/38b142f6-9e9c-4579-86f1-1bb8cfac4a92",
+      "color": "Xanh navy",
+      "alt": "Áo tập Nike Dri-FIT Strike - Xanh navy - Mặt sau",
+      "sha256": "2071e43ac5dd27591360d0eefdbbf22d27f356c0f43b2d24c447eb5f07316917"
+    },
+    {
+      "product": "puma-future-7-match",
+      "url": "/media/catalog-db/64b727db-08d6-479f-aa09-f6951aba9d7d",
+      "color": "Cam",
+      "alt": "Puma Future 7 Match - Cam - Má trong",
+      "sha256": "0dc3c1d84ba2b57a28af6ecd9ed1a0f878d2150d6a974489efb6f2e653227443"
+    },
+    {
+      "product": "real-adidas-f50-pro-tf",
+      "url": "/media/catalog-db/d34105dd-edd1-47ed-8e23-ef4ccbaa24d5",
+      "color": "Trắng",
+      "alt": "Adidas F50 Pro TF - Trắng - Má trong",
+      "sha256": "61f28da454af1d6693211141b9697e3db9292455ee4ad708a71d19e1a6fcd4a2"
+    },
+    {
+      "product": "real-tui-trong-nike-academy-40l",
+      "url": "/media/catalog-db/44a40b4b-0cbc-471a-91c0-b192a0ccc9b2",
+      "color": "Đen",
+      "alt": "Túi trống Nike Academy 40L - Đen - Mặt sau",
+      "sha256": "464ea81f9cfcd23a77bd356114985f0ec347f527a91935d579ac82faa9a5b351"
+    },
+    {
+      "product": "real-ao-tap-nike-dri-fit-strike",
+      "url": "/media/catalog-db/c8bdb914-20f7-40a4-b01b-c3fca01e7f2b",
+      "color": "Xanh navy",
+      "alt": "Áo tập Nike Dri-FIT Strike - Xanh navy - Mặt bên",
+      "sha256": "22684a07b25b91f4123cfc5ee3dfd8fe7367f63d47a95344ec863a95c5ec41c7"
+    },
+    {
+      "product": "puma-future-7-match",
+      "url": "/media/catalog-db/c5f834b3-9f8a-4444-8a84-8004da692cce",
+      "color": "Cam",
+      "alt": "Puma Future 7 Match - Cam - Mặt trên",
+      "sha256": "5fd744fc6ed82492625cd32288c8b6658880e7f5766183f0cbf3fd5894cf5301"
+    },
+    {
+      "product": "real-adidas-f50-pro-tf",
+      "url": "/media/catalog-db/b7b29454-cb7c-4d03-94c9-30fcee8b8ff0",
+      "color": "Trắng",
+      "alt": "Adidas F50 Pro TF - Trắng - Mặt trên",
+      "sha256": "b9c46d521cfb37267f1f65a9128d5fb05c6ab9dc2e5bc8909155719fde94a0f8"
+    },
+    {
+      "product": "real-tui-trong-nike-academy-40l",
+      "url": "/media/catalog-db/4b5f4362-df12-4ebc-a7f4-69c92304d0a4",
+      "color": "Đen",
+      "alt": "Túi trống Nike Academy 40L - Đen - Mặt trên",
+      "sha256": "692edf1ddb66f0ba8f2af6ad962da7d8b3f21d826acd20faa75648c53a5d4e56"
+    },
+    {
+      "product": "real-ao-tap-nike-dri-fit-strike",
+      "url": "/media/catalog-db/f443a45c-5a2c-447f-bbb7-336ff1dc045d",
+      "color": "Xanh navy",
+      "alt": "Áo tập Nike Dri-FIT Strike - Xanh navy - Chi tiết",
+      "sha256": "aca6ff4789b1d8ef0458137d35d86e5241ba972096cf079b642381cdcdd02b25"
+    },
+    {
+      "product": "puma-future-7-match",
+      "url": "/media/catalog-db/844dd1a7-03f3-4dea-8937-97a32bb5f3aa",
+      "color": "Cam",
+      "alt": "Puma Future 7 Match - Cam - Mặt đế",
+      "sha256": "694a29c834c6193fbcf42c7365a1e6481a751f818b29d121a079442cdeef33d3"
+    },
+    {
+      "product": "real-adidas-f50-pro-tf",
+      "url": "/media/catalog-db/7bda1fa2-49a5-4618-a155-45c40d514663",
+      "color": "Trắng",
+      "alt": "Adidas F50 Pro TF - Trắng - Mặt đế",
+      "sha256": "74f8401cb93d30d9acb1cff4db99dbf2bfb6975afaf87fa1168613e909997933"
+    },
+    {
+      "product": "real-tui-trong-nike-academy-40l",
+      "url": "/media/catalog-db/6a6abb6b-c9f9-453c-915d-bf2583689871",
+      "color": "Đen",
+      "alt": "Túi trống Nike Academy 40L - Đen - Chi tiết",
+      "sha256": "96832c681768459ad441bfda823bd451273afa08d0d61ba67df22cdec9d75c3e"
+    },
+    {
+      "product": "real-ao-tap-nike-dri-fit-strike",
+      "url": "/media/catalog-db/bcc1ea1d-c9c5-4379-9d67-1066d2e3c5e4",
+      "color": "Xanh navy",
+      "alt": "Áo tập Nike Dri-FIT Strike - Xanh navy - Chi tiết logo",
+      "sha256": "38d9f005c6f4f9dcd0e66b1d47c1e125135f53441f615f8ba3dd2ece572b17a3"
+    },
+    {
+      "product": "puma-future-7-match",
+      "url": "/media/catalog-db/79c0d523-6c8e-4909-a341-4cf63171a391",
+      "color": "Cam",
+      "alt": "Puma Future 7 Match - Cam - Gót",
+      "sha256": "e4af11899005c929d3689e72ba237b5b3fa2d2ec3eef44919503b467ac1939e6"
+    },
+    {
+      "product": "real-adidas-f50-pro-tf",
+      "url": "/media/catalog-db/9a1bf242-1637-4299-973e-acc3cd39e745",
+      "color": "Trắng",
+      "alt": "Adidas F50 Pro TF - Trắng - Gót",
+      "sha256": "2aed2f0fdd1b0efbaba3ad5e5e0b8773ea9806cecd8a61603a61823da4b923d9"
+    },
+    {
+      "product": "real-tui-trong-nike-academy-40l",
+      "url": "/media/catalog-db/1c7387de-290f-4657-b640-28e4069bdd0b",
+      "color": "Xanh navy",
+      "alt": "Túi trống Nike Academy 40L - Xanh navy - Mặt trước",
+      "sha256": "eae4bfca555e8f57de743023df081d28f4b67d89c321fd70ede53a0544097212"
+    },
+    {
+      "product": "real-ao-tap-nike-dri-fit-strike",
+      "url": "/media/catalog-db/7518ab3c-6e14-4b09-869b-64bc3294c57c",
+      "color": "Đen",
+      "alt": "Áo tập Nike Dri-FIT Strike - Đen - Mặt trước",
+      "sha256": "caf28337806b6680b686c5dc5a915a8d31c4a96cd384a0dced7e71d7659e1e0c"
+    },
+    {
+      "product": "puma-future-7-match",
+      "url": "/media/catalog-db/cafe58cf-c069-44df-ab7c-fa17eea90afe",
+      "color": "Đen",
+      "alt": "Puma Future 7 Match - Đen - Má ngoài",
+      "sha256": "1dcbfeabc699442f109ac69a9a04af8f51f4292d9ba67abadb5bd956d83f0881"
+    },
+    {
+      "product": "real-adidas-f50-pro-tf",
+      "url": "/media/catalog-db/503d440f-67fc-46ae-90c7-68719373c568",
+      "color": "Hồng",
+      "alt": "Adidas F50 Pro TF - Hồng - Má ngoài",
+      "sha256": "90e6c6d2302abc9f1cc5b6b1db88c18610c50ed854c7885015a3d0647035f2ee"
+    },
+    {
+      "product": "mizuno-morelia-neo-iv",
+      "url": "/media/catalog-db/97aec20f-fa9b-46c6-81a7-d17b68a15552",
+      "color": "Đen",
+      "alt": "Mizuno Morelia Neo IV - Đen - Mặt trên",
+      "sha256": "a5620b324a53d845054108996105d4007e7d9b133ac2c00a5869ef6500dc50d6"
+    },
+    {
+      "product": "real-mizuno-morelia-neo-iv-beta-elite",
+      "url": "/media/catalog-db/bfc164e7-74e7-46d8-b159-8729e6040cc7",
+      "color": "Trắng/Hồng",
+      "alt": "Mizuno Morelia Neo IV Beta Elite - Trắng/Hồng - Mặt trên",
+      "sha256": "11bcde2b8a61a6a0f649f8b42b0e259ed7f97dc3485e24f6091a039c255d34b1"
+    },
+    {
+      "product": "real-mizuno-morelia-neo-v-beta-japan",
+      "url": "/media/catalog-db/0c3aa9a6-ed97-4bff-af93-e25f5b83f29e",
+      "color": "Đen/Cam",
+      "alt": "Mizuno Morelia Neo V Beta Japan - Đen/Cam - Mặt trên",
+      "sha256": "7e4db3bf44da864ce0be81fc277ce430d7e8d7e6aa28e87ab91e925d51dfc266"
+    },
+    {
+      "product": "real-mizuno-morelia-ii-japan",
+      "url": "/media/catalog-db/ccc88146-387f-4644-b8f0-37c7e722d0b0",
+      "color": "Trắng/Vàng kim",
+      "alt": "Mizuno Morelia II Japan - Trắng/Vàng kim - Mặt trên",
+      "sha256": "0e4e38ab2de473c21a737076f2ddb125547859d9d44b304d66c338e92a5e12bc"
+    },
+    {
+      "product": "real-mizuno-morelia-neo-v-pro-as",
+      "url": "/media/catalog-db/b1813c89-4456-48be-a153-09c6dfc8c15a",
+      "color": "Đen/Cam",
+      "alt": "Mizuno Morelia Neo V Pro AS - Đen/Cam - Mặt trên",
+      "sha256": "7333c38e7570d54aa8f71854c0b423aa6b6371342ae29d83cd7f51f0203baf0a"
+    },
+    {
+      "product": "real-mizuno-morelia-neo-iv-pro",
+      "url": "/media/catalog-db/3727fff1-5987-4610-bd1d-2df8b7f2c809",
+      "color": "Xanh dương",
+      "alt": "Mizuno Morelia Neo IV Pro - Xanh dương - Mặt trên",
+      "sha256": "68a4e06308ce09d9777180d8240c13537b1aaad008dccfc4e1ba9f598ffecbb7"
+    },
+    {
+      "product": "real-mizuno-alpha-iii-select",
+      "url": "/media/catalog-db/add32374-4d7c-418b-970f-9daf85b074b7",
+      "color": "Xanh dương",
+      "alt": "Mizuno Alpha III Select - Xanh dương - Mặt trên",
+      "sha256": "d3598cbba07e72581f5d9f2d5efb65cbbd3548b721e9095d62d46165741aa754"
+    },
+    {
+      "product": "real-tui-trong-nike-academy-40l",
+      "url": "/media/catalog-db/0339c5f4-ae55-436b-af50-3b37e4122d6c",
+      "color": "Xanh navy",
+      "alt": "Túi trống Nike Academy 40L - Xanh navy - Mặt bên",
+      "sha256": "3dd3907912de79fa184d3168dc601ea5357c969585eadedc8971a9c1d8db1424"
+    },
+    {
+      "product": "real-mizuno-alpha-iii-pro-as",
+      "url": "/media/catalog-db/3f43fafd-8853-4350-ac55-e8cce6178103",
+      "color": "Trắng/Đỏ cam",
+      "alt": "Mizuno Alpha III Pro AS - Trắng/Đỏ cam - Mặt trên",
+      "sha256": "43daf2dc92a03381164a0e39c6fffb6ae3b45258d2af522c76514d79b99b9548"
+    },
+    {
+      "product": "real-ao-tap-nike-dri-fit-strike",
+      "url": "/media/catalog-db/ebabeb80-986f-422b-8b33-da45b15f1dd3",
+      "color": "Đen",
+      "alt": "Áo tập Nike Dri-FIT Strike - Đen - Mặt sau",
+      "sha256": "04414a62b5f614b7d4eb385f21a861e27b561601365df59dda5af684143e7368"
+    },
+    {
+      "product": "real-mizuno-a-ii-pro",
+      "url": "/media/catalog-db/ca09777d-b31c-43e0-878c-bba77346c6c9",
+      "color": "Trắng",
+      "alt": "Mizuno A II Pro - Trắng - Mặt trên",
+      "sha256": "d4de5c10649599a9fbdfae2edc333a7b1e15660756d40aaa457de949ae3ad578"
+    },
+    {
+      "product": "real-mizuno-monarcida-neo-iii-select",
+      "url": "/media/catalog-db/9363e2fb-6d29-4518-82bf-a33ef9fc1f1e",
+      "color": "Đen/Trắng",
+      "alt": "Mizuno Monarcida Neo III Select - Đen/Trắng - Mặt trên",
+      "sha256": "63820ad57c4f8b2c8b82a4509c8bb22b5a433e1d148509493b8105c236d13fa3"
+    },
+    {
+      "product": "puma-future-7-match",
+      "url": "/media/catalog-db/5ad27a06-b82b-44cc-88ff-e01a6a7dd7b9",
+      "color": "Đen",
+      "alt": "Puma Future 7 Match - Đen - Mặt trên",
+      "sha256": "6602e58a6a1a534c087ffad6a8cb3092f9fbbaa42e351b1deb185fbc16f1f083"
+    },
+    {
+      "product": "real-adidas-f50-pro-tf",
+      "url": "/media/catalog-db/3aaf55d1-7183-4613-8a07-72e624f364c7",
+      "color": "Hồng",
+      "alt": "Adidas F50 Pro TF - Hồng - Má trong",
+      "sha256": "78180a652c62fe482114f45e4bba95731b9ba240e2d80633ee3747fe65c6263b"
+    },
+    {
+      "product": "mizuno-morelia-neo-iv",
+      "url": "/media/catalog-db/1123d852-a5d9-41b1-b9f5-5b8622e1d16b",
+      "color": "Đen",
+      "alt": "Mizuno Morelia Neo IV - Đen - Gót",
+      "sha256": "66ca1d04e05e25839b05678e7148187dec3e1ba86dc02b7da20ec8356fcafc2d"
+    },
+    {
+      "product": "real-mizuno-morelia-neo-iv-beta-elite",
+      "url": "/media/catalog-db/a617092e-0717-48e3-afd0-8de2723218fb",
+      "color": "Trắng/Hồng",
+      "alt": "Mizuno Morelia Neo IV Beta Elite - Trắng/Hồng - Gót",
+      "sha256": "fde36d12acae3ad8fe2fed7e6b0d2479c4ae6ed23eeca2550740c55e1c105e9d"
+    },
+    {
+      "product": "real-mizuno-morelia-neo-v-beta-japan",
+      "url": "/media/catalog-db/48f6aa44-b44e-438b-a51d-c66cbb518748",
+      "color": "Đen/Cam",
+      "alt": "Mizuno Morelia Neo V Beta Japan - Đen/Cam - Gót",
+      "sha256": "5b162f346f10196de278376075326b6108658e17202355da50ebcb34ecaf0a82"
+    },
+    {
+      "product": "real-mizuno-morelia-ii-japan",
+      "url": "/media/catalog-db/334d6d93-ac00-48d4-80d1-596ec42d82fa",
+      "color": "Trắng/Vàng kim",
+      "alt": "Mizuno Morelia II Japan - Trắng/Vàng kim - Gót",
+      "sha256": "c0e91f54741625ea1365dd9912edf5b17a5c0fa520d2bad186af3b71b7fd455a"
+    },
+    {
+      "product": "real-mizuno-morelia-neo-v-pro-as",
+      "url": "/media/catalog-db/926c2ccb-aced-4158-8b00-af823ac8cab4",
+      "color": "Đen/Cam",
+      "alt": "Mizuno Morelia Neo V Pro AS - Đen/Cam - Gót",
+      "sha256": "47e06b3dc0caa32d4762c113e5a1237e9a3dea2ae6b3d063f78c0209b942e47b"
+    },
+    {
+      "product": "real-mizuno-morelia-neo-iv-pro",
+      "url": "/media/catalog-db/d2c36c6f-8c06-464f-9fa1-1d346d6f5414",
+      "color": "Xanh dương",
+      "alt": "Mizuno Morelia Neo IV Pro - Xanh dương - Gót",
+      "sha256": "bd34c708cd7658cc4d536fd29ecd4c19072fb35e12aaae2381ce7f371ebe0111"
+    },
+    {
+      "product": "real-mizuno-alpha-iii-select",
+      "url": "/media/catalog-db/e491f6ae-2ddf-4f65-8828-955cfd283f5e",
+      "color": "Xanh dương",
+      "alt": "Mizuno Alpha III Select - Xanh dương - Gót",
+      "sha256": "d22483e216259817f60ef0f1b737e8dbaad409eec475a2913b9c91b8b482b9c8"
+    },
+    {
+      "product": "real-tui-trong-nike-academy-40l",
+      "url": "/media/catalog-db/fe57adba-0450-4943-a09b-0b1eaf5007ee",
+      "color": "Xanh navy",
+      "alt": "Túi trống Nike Academy 40L - Xanh navy - Mặt trên",
+      "sha256": "d9d07615ab4f2f5f47e768080b8c2e138748d2517d202c29855ecc9ae1aadc0a"
+    },
+    {
+      "product": "real-mizuno-alpha-iii-pro-as",
+      "url": "/media/catalog-db/05e26617-1dfe-4b2b-926f-bb29ca37d6e2",
+      "color": "Trắng/Đỏ cam",
+      "alt": "Mizuno Alpha III Pro AS - Trắng/Đỏ cam - Gót",
+      "sha256": "8e458cd71e424276de2a12e0b22c2e55ce545f4827e38db036a237237b1f6119"
+    },
+    {
+      "product": "real-ao-tap-nike-dri-fit-strike",
+      "url": "/media/catalog-db/e43e87c4-af91-4335-964b-3fdaaad0d174",
+      "color": "Đen",
+      "alt": "Áo tập Nike Dri-FIT Strike - Đen - Chi tiết",
+      "sha256": "942e9edd4060e7a43d55b485bf5317d050686bfb8ffc0bcaa7ed97bf4fab96ba"
+    },
+    {
+      "product": "real-mizuno-a-ii-pro",
+      "url": "/media/catalog-db/aa608b65-cfdb-4c3a-86b7-794c2fba7d39",
+      "color": "Trắng",
+      "alt": "Mizuno A II Pro - Trắng - Gót",
+      "sha256": "8e826865ac529d33eb02dd3a80b679393c1824da4a31b1691e1f127ec690c144"
+    },
+    {
+      "product": "real-mizuno-monarcida-neo-iii-select",
+      "url": "/media/catalog-db/e1242d74-a177-4bc7-bbbf-0c4a7e573f9a",
+      "color": "Đen/Trắng",
+      "alt": "Mizuno Monarcida Neo III Select - Đen/Trắng - Gót",
+      "sha256": "d5b4ed37c71f7de2cfef9ca3f37775d6ecb04e3e777a0d3508422c02a3b059ae"
+    },
+    {
+      "product": "puma-future-7-match",
+      "url": "/media/catalog-db/26803f9f-61ac-4dad-a6a0-222123d4ce14",
+      "color": "Đen",
+      "alt": "Puma Future 7 Match - Đen - Gót",
+      "sha256": "6a549e87aac3955a8146e6138335308495811a40ea908510f890f2b0a5250248"
+    },
+    {
+      "product": "real-adidas-f50-pro-tf",
+      "url": "/media/catalog-db/1176d822-bf89-423c-bbb3-124f57fd5654",
+      "color": "Hồng",
+      "alt": "Adidas F50 Pro TF - Hồng - Mặt đế",
+      "sha256": "1b1354aba544ed9e45d418a3882c1f223fd1e7e83fea2a15b5c59920531abea2"
+    }
+  ],
+  "replaced_image_rows": 24,
+  "browser": {
+    "desktop": {
+      "routes": {
+        "/": 4,
+        "/category/giay-bong-da": 17,
+        "/category/quan-ao-the-thao": 2,
+        "/category/phu-kien-bong-da": 3,
+        "/search?brand=nike": 7,
+        "/search?brand=adidas": 4,
+        "/search?brand=puma": 1,
+        "/search?brand=mizuno": 10,
+        "/search?page=2": 2
+      },
+      "gallery": {
+        "mizuno-morelia-neo-iv": {
+          "default": 5,
+          "second": 3,
+          "variant_status": "SKU REAL-EEA4A160B2207F4827693FDF · Còn 11 sản phẩm"
+        },
+        "real-ao-tap-nike-dri-fit-strike": {
+          "default": 5,
+          "second": 3,
+          "variant_status": "SKU REAL-9F1ABCF32307138AD4E97FB5 · Còn 6 sản phẩm"
+        },
+        "real-tui-trong-nike-academy-40l": {
+          "default": 5,
+          "second": 3,
+          "variant_status": "SKU REAL-B737329EE160FB1EB02FCC9E · Còn 18 sản phẩm"
+        }
+      }
+    },
+    "mobile": {
+      "routes": {
+        "/": 4,
+        "/category/giay-bong-da": 17,
+        "/category/quan-ao-the-thao": 2,
+        "/category/phu-kien-bong-da": 3,
+        "/search?brand=nike": 7,
+        "/search?brand=adidas": 4,
+        "/search?brand=puma": 1,
+        "/search?brand=mizuno": 10,
+        "/search?page=2": 2
+      },
+      "gallery": {
+        "mizuno-morelia-neo-iv": {
+          "default": 5,
+          "second": 3,
+          "variant_status": "SKU REAL-EEA4A160B2207F4827693FDF · Còn 11 sản phẩm"
+        },
+        "real-ao-tap-nike-dri-fit-strike": {
+          "default": 5,
+          "second": 3,
+          "variant_status": "SKU REAL-9F1ABCF32307138AD4E97FB5 · Còn 6 sản phẩm"
+        },
+        "real-tui-trong-nike-academy-40l": {
+          "default": 5,
+          "second": 3,
+          "variant_status": "SKU REAL-B737329EE160FB1EB02FCC9E · Còn 18 sản phẩm"
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 # Kiến trúc kỹ thuật V1 — QuangHuy_Sport
 
-Ngày 16/11/2026. **Thiết kế kỹ thuật hoàn chỉnh để review; chưa triển khai, chưa chứng nhận production.** Tên FINAL không thay thế phê duyệt nghiệp vụ. SRS/BR/UC và UIUX QHS-UX-001 vẫn Draft; [decision log](../OPEN_DECISIONS.md) chưa có approval mới.
+Cập nhật 23/11/2026 theo [DEC đã duyệt](../OPEN_DECISIONS.md). Hành vi triển khai và phần đề xuất được đối chiếu tại [API contracts](API_CONTRACTS.md).
 
 ## 1. Baseline và trạng thái quyết định
 
@@ -9,12 +9,12 @@ Nguồn: [SRS](../02_Requirements/01_SRS.md), [BR](../02_Requirements/03_Busines
 | Mã thiết kế | Lựa chọn | Trạng thái/phạm vi |
 |---|---|---|
 | TD-01 | React + TypeScript + Tailwind; DRF + PostgreSQL; backend modular monolith | Theo chỉ dẫn hiện tại; không cần microservice V1 |
-| TD-02 | Django DB sessions, cookie HttpOnly/Secure, cùng origin; CSRF cho unsafe requests | Chốt kỹ thuật theo nhiệm vụ giao Architect; DEC-004 không tự được đổi thành toàn bộ nghiệp vụ đã approved |
+| TD-02 | JWT access/refresh, bcrypt, CUSTOMER và ADMIN | DEC-004 đã duyệt; xem security design về vòng đời token |
 | TD-03 | PostgreSQL transaction/row locks + unique key; server là authority cho tiền/kho/quyền | Chốt kỹ thuật để thực hiện BR-001/003/009/010 |
-| TD-04 | Một kho, trừ lượng bán được lúc tạo đơn, hoàn đúng một lần khi hủy | Thiết kế tham chiếu **chờ DEC-003**; nếu chọn reservation phải sửa schema/sequence trước code |
-| TD-05 | COD đầu tiên; state/cancel, currency/ship/discount và revenue metric | Chờ DEC-002/008/009/010/012; không có số tiền/thuế/phí mặc định được duyệt |
+| TD-04 | Một kho, trừ khi tạo đơn, hoàn một lần khi hủy | DEC-003 đã duyệt |
+| TD-05 | COD và mô phỏng online; DEC-008 state, DEC-009 VND/ship, DEC-015 voucher | Đã duyệt MVP. DEC-012 còn OPEN |
 | TD-06 | AI disabled cho tới khi một pipeline có go evidence; DB job durable; worker riêng process khi bật | Chưa chọn model/GPU/provider; DEC-001/005/013 chặn nhận ảnh thật |
-| TD-07 | API routes giữ root catalog; Django admin UI tại /backoffice/, REST admin tại /admin/* | Chốt routing kỹ thuật tránh collision; chọn Django admin hay React admin chờ DEC-011 |
+| TD-07 | React admin và REST admin route hiện hữu | DEC-011 đã duyệt; giữ đường dẫn API có consumer |
 
 Không sửa hồi tố các proposal cũ thành approved. Khi duyệt ghi người/ngày/lựa chọn, đồng bộ source và backlog; contract mới ở năm file này là bản thiết kế chi tiết kế tiếp hai spec sơ bộ, không phải code đang chạy.
 
@@ -31,9 +31,9 @@ Browser React/TS/Tailwind → HTTPS reverse proxy (static SPA + API cùng origin
 | orders | CheckoutRequest, Order/OrderItem/OrderStatusEvent; orchestration tiền/tồn/snapshot/cancel | FR-CHK-001, FR-ORD-001; C20…22/C34…36/A10…12 |
 | analytics | Read queries có permission, không sở hữu bản sao doanh thu | FR-DASH-001; A02/A18/19 theo scope |
 | audit | AuditEvent append-only cho staff/role/config/stock/order | FR-ADM-001, NFR-OBS-001; A26 view riêng chờ scope |
-| ai_tryon (P1) | TryOnJob, private objects, consent, inference adapter, cleanup | FR-TRY-001/002; C24…28/A24/25 |
+| ai_tryon (P2) | TryOnJob, private objects, consent, inference adapter, cleanup | FR-TRY-001/002; C24…28/A24/25 |
 | payments (P2) | PaymentAttempt/Event, provider signature/reconciliation | FR-PAY-001; C23 |
-| promotions (P2) | Voucher/Redemption, eligibility và usage atomic | FR-VOU-001; C41/A20/21 |
+| vouchers | Voucher cơ bản trong MVP; mở rộng theo DEC-015 | FR-VOU-001; C18/A20/21 |
 | reviews (P2) | Review/order-item eligibility, moderation | FR-REV-001; C37/38/A22/23 |
 | notifications (P2) | Outbox/email/retry; không quyết định order status | FR-BG-001; C42/A30 nếu scope được duyệt |
 
@@ -45,9 +45,9 @@ Mỗi app có models/serializers/permissions/views/urls/tests và service nghi�
 
 Thiết kế tham chiếu TD-04: `stock_qty` là **lượng còn bán được**, không phải kiểm kê vật lý. Cart không giữ tồn; đơn pending đã trừ, confirm/pack/ship không trừ lần nữa. Không có auto-expiry P0: pending giữ hàng đến hủy, giới hạn phải công bố khi DEC-003 duyệt.
 
-HTTP checkout có key ngẫu nhiên do client giữ theo intent; client retry cùng key và payload. Payload chứa signed quote, không chứa tổng tiền tự khai có quyền quyết định. Quote do backend ký, gồm user, cart revision, items/qty/giá hiện hành, địa chỉ snapshot, currency/tổng, policy version và expiry; không reserve stock. Không đặt PII trong URL; quote gửi body. Signature không thay revalidate DB.
+Web lấy báo giá có chữ ký qua /checkout/quote, gửi lại quote_token cùng snapshot địa chỉ, phương thức thanh toán và voucher. Checkout lấy khóa trong PostgreSQL và so sánh quote với giá và giỏ hiện hành. API duy trì payload cũ cho caller không gửi quote, server vẫn tính toàn bộ tổng tiền.
 
-Sequence đồng bộ, trong `transaction.atomic()`:
+Sequence mục tiêu cho phần mở rộng quote trong `transaction.atomic()`:
 
 1. Xác thực, giới hạn payload/key, chuẩn hóa payload/hash. Khóa User của buyer; mọi mutation cart/address và checkout cùng user cũng phải khóa User trước để serialize revision/snapshot. Không gọi provider trong transaction.
 2. Tìm CheckoutRequest theo `(user_id,key)`. Nếu thành công trước đó: cùng request hash trả đơn đã commit (kể cả quote đã hết hạn), khác hash trả 409. Không tính lại giá và không trừ kho lần nữa. Unique DB vẫn bắt buộc; không chỉ kiểm exists.
@@ -62,11 +62,11 @@ PostgreSQL READ COMMITTED với row locks đủ cho invariant nếu mọi writer
 
 ## 4. Cancel, điều chỉnh và thanh toán
 
-State tham chiếu chờ DEC-008: pending→confirmed→packing→shipping→delivered; pending/confirmed/packing→canceled do staff có quyền, customer chỉ pending. BR-005 cần ghi ngoại lệ customer cancel sau phê duyệt. Không nhận status PATCH tùy ý. Backend khóa order, kiểm `expected_version`, actor/state; nếu đã canceled thì no-op cho retry cancel. Chỉ khi eligible chuyển canceled mới hoàn từng balance và ghi `cancel_return` một lần; terminal khác trả conflict. Cancel đua ship khóa cùng Order nên chỉ transition hợp lệ thắng. Khóa products/variants/balances theo thứ tự chung nếu cần.
+DEC-008 đã duyệt PENDING → CONFIRMED → SHIPPING → COMPLETED. Customer chỉ hủy PENDING của mình; admin hủy PENDING hoặc CONFIRMED. Cancel khóa Order, cập nhật trạng thái, hoàn từng balance một lần và ghi lịch sử trong cùng transaction. Gửi hủy lần hai trả 409 trên API hiện tại.
 
 Adjust stock có key và payload hash, delta/reason bắt buộc, khóa balance, chặn kết quả âm, ledger và balance commit cùng nhau; replay không ghi đôi. ProductVariant API không writable stock. Nếu balance/ledger lệch: cảnh báo và đối soát, không tự reset tồn.
 
-Payment là state độc lập fulfillment. Đơn COD mới không paid; `cod_collected` chỉ hành động staff có quyền theo policy chốt. Online P2: verified webhook khóa PaymentAttempt và Order theo protocol đã review, kiểm expected amount/currency/reference, unique event, không tin redirect. Khi triển khai phải thống nhất thứ tự Order→PaymentAttempt giữa webhook/expiry để không deadlock. Paid-late sau cancel/expiry vào reconciliation, không tự mở đơn/hút tồn trở lại; refund policy chờ DEC-015.
+COD tạo đơn UNPAID. Xác nhận online chỉ mô phỏng theo DEC-002. Chỉ số COD thực thu chờ DEC-012. Gateway/webhook P2 yêu cầu chữ ký, amount/currency/reference, idempotency và đối soát riêng.
 
 ## 5. Hạ tầng và gate kiểm chứng
 

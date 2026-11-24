@@ -1,0 +1,1067 @@
+[
+  {
+    "kind": "accessory",
+    "name": "Nike Mercurial Lite",
+    "brand": "Nike",
+    "price": "450000",
+    "colors": [
+      {
+        "color": "Đen",
+        "style_code": "DN3611-010",
+        "product_url": "https://www.nike.com/pt/en/t/mercurial-lite-football-shinguards-wGprtX/DN3611-010",
+        "image_url": "https://static.nike.com/a/images/c_limit,w_1200/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/8bd809e7-a1f8-4443-9d62-5e1de94ecd3a/NK+MERC+LITE+-+FA22.png",
+        "rights": "Nguồn công khai; Nguyễn Quang Huy duyệt dùng demo học thuật local ngày 23/11/2026 (DEC-006/014)."
+      },
+      {
+        "color": "Trắng",
+        "style_code": "DN3611-100",
+        "product_url": "https://www.nike.com/gb/t/football-shinguards-mercurial-lite-lZcTLV/DN3611-100",
+        "image_url": "https://static.nike.com/a/images/c_limit,w_1200/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/65fe7634-6429-44c8-8377-e786680ba4e0/NK+MERC+LITE+-+FA22.png",
+        "rights": "Nguồn công khai; Nguyễn Quang Huy duyệt dùng demo học thuật local ngày 23/11/2026 (DEC-006/014)."
+      }
+    ],
+    "description": "Bảo vệ ống đồng dùng khi đá bóng.\nBộ gồm tấm chắn và ống giữ; màu hiển thị theo biến thể."
+  },
+  {
+    "kind": "boots",
+    "name": "Puma Future 7 Match",
+    "existing_slug": "puma-future-7-match",
+    "brand": "Puma",
+    "price": "2790000",
+    "colors": [
+      {
+        "color": "Cam",
+        "style_code": "107720-03",
+        "product_url": "https://www.unisportstore.com/football-boots/puma-future-7-match-tt-forever-faster-sunset-glowpuma-blacksun-stream/338129/",
+        "image_url": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_1200/global/107720/03/sv01/fnd/IDN/fmt/png/",
+        "rights": "Nguồn ảnh công khai, Nguyễn Quang Huy duyệt dùng cho demo học thuật local theo DEC-006/014 (23/11/2026).",
+        "gallery": [
+          {
+            "angle": "lateral",
+            "image_url": "https://thumblr.uniid.it/product/338129/6ac4afcd1230.jpg"
+          },
+          {
+            "angle": "medial",
+            "image_url": "https://thumblr.uniid.it/product/338129/4063e2ec936c.jpg"
+          },
+          {
+            "angle": "top",
+            "image_url": "https://thumblr.uniid.it/product/338129/b77f1da8eeda.jpg"
+          },
+          {
+            "angle": "outsole",
+            "image_url": "https://thumblr.uniid.it/product/338129/1b2e1bb5c9e9.jpg"
+          },
+          {
+            "angle": "heel",
+            "image_url": "https://thumblr.uniid.it/product/338129/54a9dbbbc3fd.jpg"
+          }
+        ]
+      },
+      {
+        "color": "Đen",
+        "style_code": "107720-02",
+        "product_url": "https://www.unisportstore.com/football-boots/future-7-match-tt-puma-black-puma-white/335921/",
+        "image_url": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_1200/global/107720/02/sv01/fnd/IDN/fmt/png/",
+        "rights": "Nguồn ảnh công khai, Nguyễn Quang Huy duyệt dùng cho demo học thuật local theo DEC-006/014 (23/11/2026).",
+        "gallery": [
+          {
+            "angle": "lateral",
+            "image_url": "https://thumblr.uniid.it/product/335921/68894f04bd09.jpg"
+          },
+          {
+            "angle": "top",
+            "image_url": "https://thumblr.uniid.it/product/335921/a57f90631a5c.jpg"
+          },
+          {
+            "angle": "heel",
+            "image_url": "https://thumblr.uniid.it/product/335921/5c90a27f7b04.jpg"
+          }
+        ]
+      }
+    ],
+    "description": "Giày bóng đá Puma Future 7 Match TT.\nĐế turf nhiều gờ nhỏ dùng cho mặt sân cỏ nhân tạo."
+  },
+  {
+    "kind": "boots",
+    "name": "Mizuno Morelia Neo IV",
+    "existing_slug": "mizuno-morelia-neo-iv",
+    "brand": "Mizuno",
+    "price": "5290000",
+    "colors": [
+      {
+        "color": "Trắng",
+        "style_code": "540372-0090",
+        "product_url": "https://mex.mizuno.com/products/morelia-neo-iv-pro-as-unisex-calzado-mizuno",
+        "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/f9e76008acd5254d077a96daaefdb322.jpg?v=1777166779",
+        "rights": "Nguồn ảnh công khai, Nguyễn Quang Huy duyệt dùng cho demo học thuật local theo DEC-006/014 (23/11/2026).",
+        "gallery": [
+          {
+            "angle": "lateral",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/f9e76008acd5254d077a96daaefdb322.jpg?v=1777166779"
+          },
+          {
+            "angle": "medial",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/84a223626cfb9cfaca4255f5cabbfb6b.jpg?v=1777166782"
+          },
+          {
+            "angle": "top",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/f20644bbc2f722ed61f33e500b703cc5.jpg?v=1777166784"
+          },
+          {
+            "angle": "outsole",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/6e6a9ee69dabb36c31b74346a7074f9b.jpg?v=1777166790"
+          },
+          {
+            "angle": "heel",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/16f7cccf62109a0d345c79e9a9b08fb3.jpg?v=1777166787"
+          }
+        ]
+      },
+      {
+        "color": "Đen",
+        "style_code": "540372 Negro",
+        "product_url": "https://mex.mizuno.com/products/morelia-neo-iv-pro-as-unisex-calzado-mizuno",
+        "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/3474704aa175263865a2785a72525177.jpg?v=1777166801",
+        "rights": "Nguồn ảnh công khai, Nguyễn Quang Huy duyệt dùng cho demo học thuật local theo DEC-006/014 (23/11/2026).",
+        "gallery": [
+          {
+            "angle": "lateral",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/3474704aa175263865a2785a72525177.jpg?v=1777166801"
+          },
+          {
+            "angle": "top",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/9fa4162f7d12b0ef4dec71c0b70781eb.jpg?v=1777166807"
+          },
+          {
+            "angle": "heel",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/d456c64519eeb26341dd7e890c49be39.jpg?v=1777166809"
+          }
+        ]
+      }
+    ],
+    "description": "Giày đá bóng Mizuno Morelia Neo IV Pro AS.\nBản AS dùng đế cao su có nhiều gờ nhỏ cho sân cỏ nhân tạo."
+  },
+  {
+    "kind": "boots",
+    "name": "Nike Mercurial Vapor 16 Elite",
+    "existing_slug": "nike-mercurial-vapor-16-elite",
+    "brand": "Nike",
+    "price": "3890000",
+    "colors": [
+      {
+        "color": "Đen",
+        "style_code": "FQ1457-001",
+        "product_url": "https://www.nike.com/gb/t/mercurial-vapor-16-elite-firm-ground-low-top-football-boot-cj8ALkRK/FQ1457-001",
+        "image_url": "https://static.nike.com/a/images/c_limit,w_1200/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/4360ee05-0d4d-4cc7-acf3-9194c9745773/ZM+VAPOR+16+ELITE+FG.png",
+        "rights": "Nguồn ảnh công khai, Nguyễn Quang Huy duyệt dùng cho demo học thuật local theo DEC-006/014 (23/11/2026)."
+      },
+      {
+        "color": "Cam",
+        "style_code": "FQ1457-800",
+        "product_url": "https://www.goat.com/product/zoom-mercurial-vapor-16-elite-fg-mad-energy-pack-fq1457-800",
+        "image_url": "https://image.goat.com/transform/v1/attachments/product_template_pictures/images/107/037/877/original/FQ1457_800.png.png",
+        "rights": "Nguồn ảnh công khai, Nguyễn Quang Huy duyệt dùng cho demo học thuật local theo DEC-006/014 (23/11/2026)."
+      }
+    ],
+    "description": "Giày cổ thấp Nike Mercurial Vapor 16 Elite FG.\nĐế đinh FG dành cho sân cỏ tự nhiên nền cứng."
+  },
+  {
+    "kind": "accessory",
+    "name": "Balo Nike Academy Team",
+    "brand": "Nike",
+    "price": "1290000",
+    "colors": [
+      {
+        "color": "Đen",
+        "style_code": "DV0761-011",
+        "product_url": "https://www.nike.com/de/t/academy-team-rucksack-30-l-Pk4bC7/DV0761-011",
+        "image_url": "https://static.nike.com/a/images/c_limit,w_1200/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/bfefb643-16f9-45c9-a84b-10332b965532/NK+ACDMY+TEAM+BKPK+2.3.png",
+        "rights": "Nguồn ảnh công khai, Nguyễn Quang Huy duyệt dùng cho demo học thuật local theo DEC-006/014 (23/11/2026).",
+        "gallery": [
+          {
+            "angle": "front",
+            "image_url": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco,u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/573eb2ca-7823-4aeb-b464-11f6c7565e04/NK+ACDMY+TEAM+BKPK+2.3.png",
+            "fallback_urls": [
+              "https://static.nike.com/a/images/c_limit,w_1000/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/573eb2ca-7823-4aeb-b464-11f6c7565e04/NK+ACDMY+TEAM+BKPK+2.3.png"
+            ]
+          },
+          {
+            "angle": "side",
+            "image_url": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco,u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/92bf8b39-7eb1-41d1-b110-878ed00c26ea/NK+ACDMY+TEAM+BKPK+2.3.png",
+            "fallback_urls": [
+              "https://static.nike.com/a/images/c_limit,w_1000/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/92bf8b39-7eb1-41d1-b110-878ed00c26ea/NK+ACDMY+TEAM+BKPK+2.3.png"
+            ]
+          },
+          {
+            "angle": "back",
+            "image_url": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco,u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/baaaa4a6-7deb-48ab-a61b-5eadb513e9cd/NK+ACDMY+TEAM+BKPK+2.3.png",
+            "fallback_urls": [
+              "https://static.nike.com/a/images/c_limit,w_1000/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/baaaa4a6-7deb-48ab-a61b-5eadb513e9cd/NK+ACDMY+TEAM+BKPK+2.3.png"
+            ]
+          },
+          {
+            "angle": "detail",
+            "image_url": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco,u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/78c5f7a3-fcba-4a6c-8e12-dc67aa728aa5/NK+ACDMY+TEAM+BKPK+2.3.png",
+            "fallback_urls": [
+              "https://static.nike.com/a/images/c_limit,w_1000/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/78c5f7a3-fcba-4a6c-8e12-dc67aa728aa5/NK+ACDMY+TEAM+BKPK+2.3.png"
+            ]
+          },
+          {
+            "angle": "top",
+            "image_url": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco,u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/a70fbcd9-b150-4a4c-8c10-4ac6cea01c6a/NK+ACDMY+TEAM+BKPK+2.3.png",
+            "fallback_urls": [
+              "https://static.nike.com/a/images/c_limit,w_1000/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/a70fbcd9-b150-4a4c-8c10-4ac6cea01c6a/NK+ACDMY+TEAM+BKPK+2.3.png"
+            ]
+          }
+        ]
+      },
+      {
+        "color": "Xanh navy",
+        "style_code": "DV0761-410",
+        "product_url": "https://www.nike.com/de/t/academy-team-rucksack-30-l-Pk4bC7/DV0761-410",
+        "image_url": "https://static.nike.com/a/images/c_limit,w_1200/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/4e867631-265e-4b7f-8494-987f388d8eca/NK+ACDMY+TEAM+BKPK+2.3.png",
+        "rights": "Nguồn ảnh công khai, Nguyễn Quang Huy duyệt dùng cho demo học thuật local theo DEC-006/014 (23/11/2026).",
+        "gallery": [
+          {
+            "angle": "front",
+            "image_url": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco,u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/6d4f6e6d-6a5e-4972-a5e2-c9d9e4fcacb9/NK+ACDMY+TEAM+BKPK+2.3.png",
+            "fallback_urls": [
+              "https://static.nike.com/a/images/c_limit,w_1000/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/6d4f6e6d-6a5e-4972-a5e2-c9d9e4fcacb9/NK+ACDMY+TEAM+BKPK+2.3.png"
+            ]
+          },
+          {
+            "angle": "side",
+            "image_url": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco,u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/9b154051-b027-4cc6-8c3d-d43b82e46d20/NK+ACDMY+TEAM+BKPK+2.3.png",
+            "fallback_urls": [
+              "https://static.nike.com/a/images/c_limit,w_1000/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/9b154051-b027-4cc6-8c3d-d43b82e46d20/NK+ACDMY+TEAM+BKPK+2.3.png"
+            ]
+          },
+          {
+            "angle": "back",
+            "image_url": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco,u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/aa32f4d9-97d9-4465-80ee-d37dd5905cc3/NK+ACDMY+TEAM+BKPK+2.3.png",
+            "fallback_urls": [
+              "https://static.nike.com/a/images/c_limit,w_1000/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/aa32f4d9-97d9-4465-80ee-d37dd5905cc3/NK+ACDMY+TEAM+BKPK+2.3.png"
+            ]
+          }
+        ]
+      }
+    ],
+    "description": "Balo bóng đá Nike Academy Team 30 lít.\nCó ngăn trước để đựng bóng và ngăn riêng cho đồ tập."
+  },
+  {
+    "kind": "boots",
+    "name": "Adidas Predator 24 League",
+    "existing_slug": "adidas-predator-24-league",
+    "brand": "Adidas",
+    "price": "2190000",
+    "colors": [
+      {
+        "color": "Đen",
+        "style_code": "IG7718",
+        "product_url": "https://www.goat.com/sneakers/predator-24-league-tf-solar-energy-pack-ig7718",
+        "image_url": "https://image.goat.com/transform/v1/attachments/product_template_pictures/images/097/400/191/original/IG7718.png.png",
+        "rights": "Nguồn ảnh công khai, Nguyễn Quang Huy duyệt dùng cho demo học thuật local theo DEC-006/014 (23/11/2026).",
+        "fallback_urls": [
+          "https://www.crownsports.com.sg/image/catalog/PRODUCTS/adidas%20SoccerBoots%202024/IG7718%201.jpg"
+        ]
+      },
+      {
+        "color": "Trắng",
+        "style_code": "IE2613",
+        "product_url": "https://www.goat.com/sneakers/adidas-predator-24-league-low-turf-cloud-white-silver-metallic-grey-ie2613",
+        "image_url": "https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/120/817/826/original/1947629_01.jpg.jpeg?width=750",
+        "rights": "Nguồn ảnh công khai, Nguyễn Quang Huy duyệt dùng cho demo học thuật local theo DEC-006/014 (23/11/2026)."
+      }
+    ],
+    "description": "Giày bóng đá Adidas Predator 24 League TF.\nĐế cao su nhiều gờ bám cho sân cỏ nhân tạo."
+  },
+  {
+    "kind": "boots",
+    "name": "Nike Mercurial Vapor 15 Pro TF",
+    "brand": "Nike",
+    "price": "2890000",
+    "colors": [
+      {
+        "color": "Hồng",
+        "style_code": "DJ5605-605",
+        "product_url": "https://www.goat.com/en-gb/sneakers/zoom-mercurial-vapor-15-pro-tf-luminous-pack-dj5605-605",
+        "image_url": "https://image.goat.com/transform/v1/attachments/product_template_pictures/images/087/385/480/original/DJ5605_605.png.png",
+        "rights": "Nguồn ảnh công khai, Nguyễn Quang Huy duyệt dùng cho demo học thuật local theo DEC-006/014 (23/11/2026)."
+      },
+      {
+        "color": "Vàng",
+        "style_code": "DJ5605-780",
+        "product_url": "https://www.goat.com/sneakers/zoom-mercurial-vapor-15-pro-tf-yellow-strike-sunset-glow-dj5605-780",
+        "image_url": "https://image.goat.com/transform/v1/attachments/product_template_pictures/images/077/894/123/original/DJ5605_780.png.png",
+        "rights": "Nguồn ảnh công khai, Nguyễn Quang Huy duyệt dùng cho demo học thuật local theo DEC-006/014 (23/11/2026)."
+      }
+    ],
+    "description": "Giày cổ thấp Nike Mercurial Vapor 15 Pro TF.\nBản TF có đế cao su dùng trên sân cỏ nhân tạo."
+  },
+  {
+    "kind": "boots",
+    "name": "Nike Phantom GX 2 Pro TF",
+    "brand": "Nike",
+    "price": "2990000",
+    "colors": [
+      {
+        "color": "Đen",
+        "style_code": "FJ2583-001",
+        "product_url": "https://www.goat.com/sneakers/phantom-gx-2-pro-tf-shadow-pack-fj2583-001",
+        "image_url": "https://image.goat.com/transform/v1/attachments/product_template_pictures/images/097/546/766/original/FJ2583_001.png.png",
+        "rights": "Nguồn ảnh công khai, Nguyễn Quang Huy duyệt dùng cho demo học thuật local theo DEC-006/014 (23/11/2026)."
+      },
+      {
+        "color": "Trắng",
+        "style_code": "FJ2583-100",
+        "product_url": "https://www.goat.com/sneakers/phantom-gx-2-pro-tf-mad-ready-pack-fj2583-100",
+        "image_url": "https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/115/824/465/original/1363584_01.jpg.jpeg",
+        "rights": "Nguồn ảnh công khai, Nguyễn Quang Huy duyệt dùng cho demo học thuật local theo DEC-006/014 (23/11/2026)."
+      },
+      {
+        "color": "Cam",
+        "style_code": "FJ2583-800",
+        "product_url": "https://www.goat.com/sneakers/phantom-gx-2-pro-tf-prism-pack-fj2583-800",
+        "image_url": "https://image.goat.com/transform/v1/attachments/product_template_pictures/images/111/207/806/original/FJ2583_800.png.png",
+        "rights": "Nguồn ảnh công khai, Nguyễn Quang Huy duyệt dùng cho demo học thuật local theo DEC-006/014 (23/11/2026)."
+      }
+    ],
+    "description": "Giày đá bóng Nike Phantom GX 2 Pro TF.\nĐế cao su turf có nhiều gờ thấp phù hợp mặt sân cỏ nhân tạo."
+  },
+  {
+    "kind": "apparel",
+    "name": "Áo khoác Adidas Tiro 24 Training",
+    "brand": "Adidas",
+    "price": "1050000",
+    "colors": [
+      {
+        "color": "Đen",
+        "style_code": "IJ9959",
+        "product_url": "https://www.unisportstore.nl/trainingsshirts/adidas-trainingsshirt-tiro-24-full-zip-zwartwit/341569/",
+        "image_url": "https://thumblr.uniid.it/product/341569/214890cccc21.jpg",
+        "rights": "Nguồn ảnh công khai, Nguyễn Quang Huy duyệt dùng cho demo học thuật local theo DEC-006/014 (23/11/2026)."
+      },
+      {
+        "color": "Xanh dương",
+        "style_code": "IR9492",
+        "product_url": "https://excell-sports.com/products/adidas-mens-tiro-24-training-jacket-p51417?variant=58239941083519",
+        "image_url": "https://excell-sports.com/cdn/shop/files/IR9492_1_APPAREL_Photography_FrontView_white.jpg?v=1795007651",
+        "rights": "Nguồn ảnh công khai, Nguyễn Quang Huy duyệt dùng cho demo học thuật local theo DEC-006/014 (23/11/2026)."
+      }
+    ],
+    "description": "Áo khoác tập bóng đá Adidas Tiro 24 Training.\nÁo cổ đứng, khóa kéo toàn thân và tay dài."
+  },
+  {
+    "kind": "boots",
+    "name": "Adidas F50 Pro TF",
+    "brand": "Adidas",
+    "price": "2890000",
+    "colors": [
+      {
+        "color": "Trắng",
+        "style_code": "IF1323",
+        "product_url": "https://www.unisportstore.com/football-boots/adidas-f50-pro-tf-advancement-footwear-whitesolar-redlucid-blue/358789/",
+        "image_url": "https://image.goat.com/transform/v1/attachments/product_template_pictures/images/101/588/284/original/IF1323.png.png",
+        "rights": "Nguồn ảnh công khai, Nguyễn Quang Huy duyệt dùng cho demo học thuật local theo DEC-006/014 (23/11/2026).",
+        "gallery": [
+          {
+            "angle": "lateral",
+            "image_url": "https://thumblr.uniid.it/product/358789/862e65ea15ab.jpg"
+          },
+          {
+            "angle": "medial",
+            "image_url": "https://thumblr.uniid.it/product/358789/e69e394d75ff.jpg"
+          },
+          {
+            "angle": "top",
+            "image_url": "https://thumblr.uniid.it/product/358789/0cc635cccfb2.jpg"
+          },
+          {
+            "angle": "outsole",
+            "image_url": "https://thumblr.uniid.it/product/358789/c1eb0b3d2217.jpg"
+          },
+          {
+            "angle": "heel",
+            "image_url": "https://thumblr.uniid.it/product/358789/4fa67afc157e.jpg"
+          }
+        ]
+      },
+      {
+        "color": "Hồng",
+        "style_code": "IF1324",
+        "product_url": "https://www.unisportstore.com/football-boots/adidas-f50-pro-tf-vivid-horizon-turboaurora-blackplatin-metallic/359631/",
+        "image_url": "https://images.laced.com/products/og/37769/catalogue/if1324/img01-bffbbb68.jpg",
+        "rights": "Nguồn ảnh công khai, Nguyễn Quang Huy duyệt dùng cho demo học thuật local theo DEC-006/014 (23/11/2026).",
+        "gallery": [
+          {
+            "angle": "lateral",
+            "image_url": "https://thumblr.uniid.it/product/359631/35d783b44fb0.jpg"
+          },
+          {
+            "angle": "medial",
+            "image_url": "https://thumblr.uniid.it/product/359631/afd99b6b25c9.jpg"
+          },
+          {
+            "angle": "outsole",
+            "image_url": "https://thumblr.uniid.it/product/359631/6ff5cb3c46d0.jpg"
+          }
+        ]
+      }
+    ],
+    "description": "Giày đá bóng Adidas F50 Pro TF.\nBản TF dùng đế cao su nhiều gờ nhỏ cho sân cỏ nhân tạo."
+  },
+  {
+    "kind": "boots",
+    "name": "Adidas Predator Accuracy.1 TF",
+    "brand": "Adidas",
+    "price": "2490000",
+    "colors": [
+      {
+        "color": "Đen/Hồng",
+        "style_code": "GW4633",
+        "product_url": "https://www.unisportstore.com/football-boots/adidas-predator-accuracy-1-tf-own-your-football-core-blackfootwear-whiteshock-pink/261788/",
+        "image_url": "https://thumblr.uniid.it/product/261788/d032a8945949.jpg",
+        "rights": "Nguồn ảnh công khai, Nguyễn Quang Huy duyệt dùng cho demo học thuật local theo DEC-006/014 (23/11/2026)."
+      },
+      {
+        "color": "Trắng/Vàng chanh",
+        "style_code": "GZ0009",
+        "product_url": "https://tursissoccer.com/products/predator-accuracy-1-tf-white-black-lucid-lemon-1",
+        "image_url": "https://cdn.shopify.com/s/files/1/1540/3043/files/GZ0009b.jpg?v=1700271596",
+        "rights": "Nguồn ảnh công khai, Nguyễn Quang Huy duyệt dùng cho demo học thuật local theo DEC-006/014 (23/11/2026).",
+        "fallback_urls": [
+          "https://cdn.shopify.com/s/files/1/1540/3043/files/GZ0009e.jpg?v=1700271596"
+        ]
+      }
+    ],
+    "description": "Giày bóng đá Adidas Predator Accuracy.1 TF.\nĐế cao su turf dùng trên sân cỏ nhân tạo."
+  },
+  {
+    "kind": "boots",
+    "name": "Mizuno Morelia Neo IV Beta Elite",
+    "brand": "Mizuno",
+    "price": "3290000",
+    "colors": [
+      {
+        "color": "Trắng/Vàng kim",
+        "style_code": "Morelia Neo IV Beta Elite / Blanco Dorado",
+        "product_url": "https://mex.mizuno.com/products/morelia-neo-iv-beta-elite-unisex-calzado-mizuno",
+        "rights": "Nguồn công khai; Nguyễn Quang Huy duyệt dùng demo học thuật local ngày 23/11/2026 (DEC-006/014).",
+        "gallery": [
+          {
+            "angle": "lateral",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/131d9de8deebf04b366f85dabfe7bc0f.jpg?v=1780259313"
+          },
+          {
+            "angle": "medial",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/838fcd86ed5a1ac7d67366cf99a780dd.jpg?v=1780259315"
+          },
+          {
+            "angle": "top",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/db443eafeaa1bec986c582063323d418.jpg?v=1780259317"
+          },
+          {
+            "angle": "outsole",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/0505bf4a2e7a3702e6687b5f738e7085.jpg?v=1780259321"
+          },
+          {
+            "angle": "heel",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/cb0eaea51f4ba02f6b1036b78b41dfbd.jpg?v=1780259319"
+          }
+        ]
+      },
+      {
+        "color": "Trắng/Hồng",
+        "style_code": "Morelia Neo IV Beta Elite / Blanco Rosa Tetra",
+        "product_url": "https://mex.mizuno.com/products/morelia-neo-iv-beta-elite-unisex-calzado-mizuno",
+        "rights": "Nguồn công khai; Nguyễn Quang Huy duyệt dùng demo học thuật local ngày 23/11/2026 (DEC-006/014).",
+        "gallery": [
+          {
+            "angle": "lateral",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/3b5f461597b1d93a2acb4eafe8476311.jpg?v=1780259345"
+          },
+          {
+            "angle": "top",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/11259cc725ba7b54ece9f229424bab75.jpg?v=1780259349"
+          },
+          {
+            "angle": "heel",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/d2d847e85a156422f09cb36f5f7b1c24.jpg?v=1780259351"
+          }
+        ]
+      }
+    ],
+    "description": "Giày bóng đá Mizuno Morelia Neo IV Beta Elite.\nPhiên bản có đinh theo ảnh mặt đế. Xem gallery từng phối màu để kiểm tra kiểu đinh và màu thực tế."
+  },
+  {
+    "kind": "boots",
+    "name": "Mizuno Morelia Neo V Beta Japan",
+    "brand": "Mizuno",
+    "price": "3290000",
+    "colors": [
+      {
+        "color": "Trắng/Đen",
+        "style_code": "Morelia Neo V Beta Japan / White-Black",
+        "product_url": "https://mex.mizuno.com/products/morelia-neo-v-beta-japan",
+        "rights": "Nguồn công khai; Nguyễn Quang Huy duyệt dùng demo học thuật local ngày 23/11/2026 (DEC-006/014).",
+        "gallery": [
+          {
+            "angle": "lateral",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/2889dd8938c71714e74d5a9e1125f90c_1520ba07-351d-4219-908f-75e223e5d429.jpg?v=1794067827"
+          },
+          {
+            "angle": "medial",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/8af6670d635fe10ffac76240be38e455_dda16043-ab54-4fb0-9084-84e7827386c5.jpg?v=1794067831"
+          },
+          {
+            "angle": "top",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/785b8db550c3d87fbdfcac0e492e599d_a7b5635c-80ab-42ee-9233-51f7956ca2fb.jpg?v=1794067833"
+          },
+          {
+            "angle": "outsole",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/02f7abfb6d62049cf830565d1b2d3663_1c643ffc-f7b0-4f22-9db4-1548076b2acd.jpg?v=1794067829"
+          },
+          {
+            "angle": "heel",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/aaccf45ab71a648b99b05115c7adf360_59da39f1-47bc-40a7-9848-2eea3b9366f2.jpg?v=1794067835"
+          }
+        ]
+      },
+      {
+        "color": "Đen/Cam",
+        "style_code": "Morelia Neo V Beta Japan / Black-Lava Orange",
+        "product_url": "https://mex.mizuno.com/products/morelia-neo-v-beta-japan",
+        "rights": "Nguồn công khai; Nguyễn Quang Huy duyệt dùng demo học thuật local ngày 23/11/2026 (DEC-006/014).",
+        "gallery": [
+          {
+            "angle": "lateral",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/27c4cc6dd8048fc3c1e5e8e348bb7d80.jpg?v=1794067841"
+          },
+          {
+            "angle": "top",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/87c56b8e58fad9c3598fe45ae3564e52.jpg?v=1794067847"
+          },
+          {
+            "angle": "heel",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/b19f7cf2551385073dffbfef2040632d.jpg?v=1794067849"
+          }
+        ]
+      }
+    ],
+    "description": "Giày bóng đá Mizuno Morelia Neo V Beta Japan.\nPhiên bản có đinh theo ảnh mặt đế. Xem gallery từng phối màu để kiểm tra kiểu đinh và màu thực tế."
+  },
+  {
+    "kind": "boots",
+    "name": "Mizuno Morelia II Japan",
+    "brand": "Mizuno",
+    "price": "3290000",
+    "colors": [
+      {
+        "color": "Đen/Trắng",
+        "style_code": "Morelia II Japan / Negro-Blanco",
+        "product_url": "https://mex.mizuno.com/products/morelia-ii-japan-unisex-calzado-mizuno",
+        "rights": "Nguồn công khai; Nguyễn Quang Huy duyệt dùng demo học thuật local ngày 23/11/2026 (DEC-006/014).",
+        "gallery": [
+          {
+            "angle": "lateral",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/9a2836bcfa830aac4f04aa3e78d005a6.jpg?v=1777053822"
+          },
+          {
+            "angle": "medial",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/98efbebfd5987b55e88ddb8d41173d24.jpg?v=1777053823"
+          },
+          {
+            "angle": "top",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/d3f3be298e88412a238a9f7fc3ef5fab.jpg?v=1777053825"
+          },
+          {
+            "angle": "outsole",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/e62819ea9b026b45ee56690765c2d877.jpg?v=1777053829"
+          },
+          {
+            "angle": "heel",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/fcd0f516af30acccf38bce3e3047da99.jpg?v=1777053827"
+          }
+        ]
+      },
+      {
+        "color": "Trắng/Vàng kim",
+        "style_code": "Morelia II Japan / Blanco",
+        "product_url": "https://mex.mizuno.com/products/morelia-ii-japan-unisex-calzado-mizuno",
+        "rights": "Nguồn công khai; Nguyễn Quang Huy duyệt dùng demo học thuật local ngày 23/11/2026 (DEC-006/014).",
+        "gallery": [
+          {
+            "angle": "lateral",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/540369_0074_00.jpg?v=1789775188"
+          },
+          {
+            "angle": "top",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/540369_0074_04.jpg?v=1789775188"
+          },
+          {
+            "angle": "heel",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/540369_0074_05.jpg?v=1789775188"
+          }
+        ]
+      }
+    ],
+    "description": "Giày bóng đá Mizuno Morelia II Japan.\nPhiên bản có đinh theo ảnh mặt đế. Xem gallery từng phối màu để kiểm tra kiểu đinh và màu thực tế."
+  },
+  {
+    "kind": "boots",
+    "name": "Mizuno Morelia Neo V Pro AS",
+    "brand": "Mizuno",
+    "price": "3290000",
+    "colors": [
+      {
+        "color": "Trắng/Cam",
+        "style_code": "Morelia Neo V Pro AS / White-Lava Orange",
+        "product_url": "https://mex.mizuno.com/products/morelia-neo-v-pro-as",
+        "rights": "Nguồn công khai; Nguyễn Quang Huy duyệt dùng demo học thuật local ngày 23/11/2026 (DEC-006/014).",
+        "gallery": [
+          {
+            "angle": "lateral",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/951417adb278bcc2c15226cb8377f0ec.jpg?v=1794010751"
+          },
+          {
+            "angle": "medial",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/34b523c6d6caf4a0b5ffee593826aeee.jpg?v=1794010759"
+          },
+          {
+            "angle": "top",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/997263dd3c318e64763139367a50af12.jpg?v=1794010764"
+          },
+          {
+            "angle": "outsole",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/b10688d8820299ff408fb5c7e4bfb156.jpg?v=1794010755"
+          },
+          {
+            "angle": "heel",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/d29894d8720251fa3e98bb7745695b21.jpg?v=1794010766"
+          }
+        ]
+      },
+      {
+        "color": "Đen/Cam",
+        "style_code": "Morelia Neo V Pro AS / Black-Lava Orange",
+        "product_url": "https://mex.mizuno.com/products/morelia-neo-v-pro-as",
+        "rights": "Nguồn công khai; Nguyễn Quang Huy duyệt dùng demo học thuật local ngày 23/11/2026 (DEC-006/014).",
+        "gallery": [
+          {
+            "angle": "lateral",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/163b1911d5b017aa4b78948cc12b1026.jpg?v=1794010773"
+          },
+          {
+            "angle": "top",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/58214c2b06fd2d1eaadb9cf4a9d09389.jpg?v=1794010778"
+          },
+          {
+            "angle": "heel",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/5c889c1efbfc8799d06143935b4d9bbe.jpg?v=1794010780"
+          }
+        ]
+      }
+    ],
+    "description": "Giày bóng đá Mizuno Morelia Neo V Pro AS.\nBản AS sử dụng đế cao su nhiều gờ cho sân cỏ nhân tạo."
+  },
+  {
+    "kind": "boots",
+    "name": "Mizuno Morelia Neo IV Pro",
+    "brand": "Mizuno",
+    "price": "3290000",
+    "colors": [
+      {
+        "color": "Trắng/Vàng kim",
+        "style_code": "Morelia Neo IV Pro / Blanco Dorado",
+        "product_url": "https://mex.mizuno.com/products/morelia-neo-iv-pro-unisex-calzado-mizuno",
+        "rights": "Nguồn công khai; Nguyễn Quang Huy duyệt dùng demo học thuật local ngày 23/11/2026 (DEC-006/014).",
+        "gallery": [
+          {
+            "angle": "lateral",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/8029b78bb98a1d939e55a276cca3037c.jpg?v=1780259456"
+          },
+          {
+            "angle": "medial",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/9c3316afb187833c52a4d1e5e5424eab.jpg?v=1780259458"
+          },
+          {
+            "angle": "top",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/827d285baff799ec5fe7ed81f3bd9d38.jpg?v=1780259460"
+          },
+          {
+            "angle": "outsole",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/ea5cebb7170ded196c86a30e63b841df.jpg?v=1780259465"
+          },
+          {
+            "angle": "heel",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/87415c527e7c8a87dbe4958ab01d59ee.jpg?v=1780259462"
+          }
+        ]
+      },
+      {
+        "color": "Xanh dương",
+        "style_code": "Morelia Neo IV Pro / Azul",
+        "product_url": "https://mex.mizuno.com/products/morelia-neo-iv-pro-unisex-calzado-mizuno",
+        "rights": "Nguồn công khai; Nguyễn Quang Huy duyệt dùng demo học thuật local ngày 23/11/2026 (DEC-006/014).",
+        "gallery": [
+          {
+            "angle": "lateral",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/337197a1b08af8309c9664b70fd9ca48.jpg?v=1780259507"
+          },
+          {
+            "angle": "top",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/1d54192ef132809021e1048779d2c072.jpg?v=1780259512"
+          },
+          {
+            "angle": "heel",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/7eea280894b9bc7b881254f588f05a66.jpg?v=1780259514"
+          }
+        ]
+      }
+    ],
+    "description": "Giày bóng đá Mizuno Morelia Neo IV Pro.\nPhiên bản có đinh theo ảnh mặt đế. Xem gallery từng phối màu để kiểm tra kiểu đinh và màu thực tế."
+  },
+  {
+    "kind": "boots",
+    "name": "Mizuno Alpha III Select",
+    "brand": "Mizuno",
+    "price": "3290000",
+    "colors": [
+      {
+        "color": "Hồng",
+        "style_code": "Alpha III Select / Blanco",
+        "product_url": "https://mex.mizuno.com/products/alpha-iii-select-unisex-calzado-mizuno",
+        "rights": "Nguồn công khai; Nguyễn Quang Huy duyệt dùng demo học thuật local ngày 23/11/2026 (DEC-006/014).",
+        "gallery": [
+          {
+            "angle": "lateral",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/e3e199fc928e1b94c1d4466dd6e00937.jpg?v=1780259622"
+          },
+          {
+            "angle": "medial",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/e357f8ac843fa9d7af7fbfdf398b59d4.jpg?v=1780259624"
+          },
+          {
+            "angle": "top",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/b1bd70047ce1a48f14c23f4554726ffe.jpg?v=1780259626"
+          },
+          {
+            "angle": "outsole",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/bbdc877b1bfe78ab040134a8625c70df.jpg?v=1780259630"
+          },
+          {
+            "angle": "heel",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/379bde87ccf9eb91154840eb1e04c7f4.jpg?v=1780259628"
+          }
+        ]
+      },
+      {
+        "color": "Xanh dương",
+        "style_code": "Alpha III Select / Azul",
+        "product_url": "https://mex.mizuno.com/products/alpha-iii-select-unisex-calzado-mizuno",
+        "rights": "Nguồn công khai; Nguyễn Quang Huy duyệt dùng demo học thuật local ngày 23/11/2026 (DEC-006/014).",
+        "gallery": [
+          {
+            "angle": "lateral",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/675f853689eec86b58681648e8617de2_bed4d540-7720-4e51-8565-4ef5b4c3a75d.jpg?v=1780259635"
+          },
+          {
+            "angle": "top",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/d61b3f0bc949bc981eb3af3f90a1202a_3704c880-5a94-47f7-94b2-b663e5b8ed03.jpg?v=1780259640"
+          },
+          {
+            "angle": "heel",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/b58e4a39d1d3fdbfc2eed9b15b477501_441acf44-a26d-4e24-9235-c84706f4dd89.jpg?v=1780259642"
+          }
+        ]
+      }
+    ],
+    "description": "Giày bóng đá Mizuno Alpha III Select.\nPhiên bản có đinh theo ảnh mặt đế. Xem gallery từng phối màu để kiểm tra kiểu đinh và màu thực tế."
+  },
+  {
+    "kind": "boots",
+    "name": "Mizuno Alpha III Pro AS",
+    "brand": "Mizuno",
+    "price": "3290000",
+    "colors": [
+      {
+        "color": "Xanh dương",
+        "style_code": "Mizuno Alpha III Pro AS / Azul",
+        "product_url": "https://mex.mizuno.com/products/alpha-iii-pro-unisex-calzado-mizuno",
+        "rights": "Nguồn công khai; Nguyễn Quang Huy duyệt dùng demo học thuật local ngày 23/11/2026 (DEC-006/014).",
+        "gallery": [
+          {
+            "angle": "lateral",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/1def5d76666dab983b92da38739e01fa.jpg?v=1780259552"
+          },
+          {
+            "angle": "medial",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/0919720c00d90033827854d532030c9c.jpg?v=1780259556"
+          },
+          {
+            "angle": "top",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/ff03d8ba4a9b65cc85e85315d097533c.jpg?v=1780259558"
+          },
+          {
+            "angle": "outsole",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/23daf5201eb6db371dfd1768e76edd40.jpg?v=1780259554"
+          },
+          {
+            "angle": "heel",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/4c1f359243551b3e264ffc17adb136db.jpg?v=1780259560"
+          }
+        ]
+      },
+      {
+        "color": "Trắng/Đỏ cam",
+        "style_code": "Mizuno Alpha III Pro AS / Blanco",
+        "product_url": "https://mex.mizuno.com/products/alpha-iii-pro-unisex-calzado-mizuno",
+        "rights": "Nguồn công khai; Nguyễn Quang Huy duyệt dùng demo học thuật local ngày 23/11/2026 (DEC-006/014).",
+        "gallery": [
+          {
+            "angle": "lateral",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/f058ff8d5a0c4442de02a9b7ffc30082.jpg?v=1780259535"
+          },
+          {
+            "angle": "top",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/966c592b01886ddec4305e1e51a38d2d.jpg?v=1780259545"
+          },
+          {
+            "angle": "heel",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/cae53e73e6c73e1c9d5432b80951efb8.jpg?v=1780259547"
+          }
+        ]
+      }
+    ],
+    "description": "Giày bóng đá Mizuno Alpha III Pro AS.\nBản AS sử dụng đế cao su nhiều gờ cho sân cỏ nhân tạo."
+  },
+  {
+    "kind": "boots",
+    "name": "Mizuno A II Pro",
+    "brand": "Mizuno",
+    "price": "2890000",
+    "colors": [
+      {
+        "color": "Đỏ",
+        "style_code": "A II Pro / Rojo",
+        "product_url": "https://mex.mizuno.com/products/a-ii-pro-unisex-calzado-mizuno",
+        "rights": "Nguồn công khai; Nguyễn Quang Huy duyệt dùng demo học thuật local ngày 23/11/2026 (DEC-006/014).",
+        "gallery": [
+          {
+            "angle": "lateral",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/5890d7a470f69d725b7dcf4ebc52f175.jpg?v=1776392793"
+          },
+          {
+            "angle": "medial",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/e1066f63746491b56a703fc95f57ab84.jpg?v=1776392657"
+          },
+          {
+            "angle": "top",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/d6241b9921314d1c53a240ddbd05eee5.jpg?v=1776392659"
+          },
+          {
+            "angle": "outsole",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/9fb90f26460d6e8a344af484e22e7394_96963f15-4b0d-44e8-b229-41ec6bda080a.jpg?v=1776392663"
+          },
+          {
+            "angle": "heel",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/4a1d7d7aebe6c89dd13e5b152bbcdadf.jpg?v=1776392661"
+          }
+        ]
+      },
+      {
+        "color": "Trắng",
+        "style_code": "A II Pro / Blanco",
+        "product_url": "https://mex.mizuno.com/products/a-ii-pro-unisex-calzado-mizuno",
+        "rights": "Nguồn công khai; Nguyễn Quang Huy duyệt dùng demo học thuật local ngày 23/11/2026 (DEC-006/014).",
+        "gallery": [
+          {
+            "angle": "lateral",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/0ecc6de27fb1b2d97ef1da860f4136cc.jpg?v=1776392665"
+          },
+          {
+            "angle": "top",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/18d5e7d9098c442af2e6837b6a25a804.jpg?v=1776392669"
+          },
+          {
+            "angle": "heel",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/a1967b7de908db1621709a38f97e399e.jpg?v=1776392671"
+          }
+        ]
+      }
+    ],
+    "description": "Giày bóng đá Mizuno A II Pro.\nPhiên bản có đinh theo ảnh mặt đế. Xem gallery từng phối màu để kiểm tra kiểu đinh và màu thực tế."
+  },
+  {
+    "kind": "boots",
+    "name": "Mizuno Monarcida Neo III Select",
+    "brand": "Mizuno",
+    "price": "2890000",
+    "colors": [
+      {
+        "color": "Trắng/Hồng",
+        "style_code": "Monarcida Neo III Select / Blanco Rosa Tetra",
+        "product_url": "https://mex.mizuno.com/products/monarcida-neo-iii-select-unisex-calzado-mizuno",
+        "rights": "Nguồn công khai; Nguyễn Quang Huy duyệt dùng demo học thuật local ngày 23/11/2026 (DEC-006/014).",
+        "gallery": [
+          {
+            "angle": "lateral",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/8a06ce9b74d6ab8b99966c8214ddd954_d52c153c-dd02-4f98-b7ab-0f62b99e4bd2.jpg?v=1794067687"
+          },
+          {
+            "angle": "medial",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/f57fa8c11887bbfc3b087e3170060b6c_bd3ebb12-a24b-4bad-8fbb-575dc162e676.jpg?v=1794067689"
+          },
+          {
+            "angle": "top",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/d7b087e650ba96afe2de18362297c960_b5f0886c-3364-4a91-82b0-3df324a4b471.jpg?v=1794067691"
+          },
+          {
+            "angle": "outsole",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/71149443ce0fad9caea786497c1bea12_b3fa449e-1689-418a-8094-c94809bdd3f3.jpg?v=1794067695"
+          },
+          {
+            "angle": "heel",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/cf86dfa7d0356a6d7909b5ac971f0430_de110321-0830-40a7-9b6d-1f1cb18751c6.jpg?v=1794067693"
+          }
+        ]
+      },
+      {
+        "color": "Đen/Trắng",
+        "style_code": "Monarcida Neo III Select / Negro-Blanco",
+        "product_url": "https://mex.mizuno.com/products/monarcida-neo-iii-select-unisex-calzado-mizuno",
+        "rights": "Nguồn công khai; Nguyễn Quang Huy duyệt dùng demo học thuật local ngày 23/11/2026 (DEC-006/014).",
+        "gallery": [
+          {
+            "angle": "lateral",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/2b6b0204b6b5fc5e4ad6342fc516a390.jpg?v=1794067729"
+          },
+          {
+            "angle": "top",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/01a5b882998d23f9b010eeccab6d0a85.jpg?v=1794067737"
+          },
+          {
+            "angle": "heel",
+            "image_url": "https://cdn.shopify.com/s/files/1/0705/8263/2634/files/e2583332b1e5fff4d7d82a020e6e2bab.jpg?v=1794067739"
+          }
+        ]
+      }
+    ],
+    "description": "Giày bóng đá Mizuno Monarcida Neo III Select.\nPhiên bản có đinh theo ảnh mặt đế. Xem gallery từng phối màu để kiểm tra kiểu đinh và màu thực tế."
+  },
+  {
+    "kind": "accessory",
+    "name": "Túi trống Nike Academy 40L",
+    "brand": "Nike",
+    "price": "990000",
+    "description": "Túi trống Nike Academy dung tích 40 lít.\nCó quai xách và dây đeo vai. Ngăn chính mở bằng khóa kéo, phù hợp đựng đồ tập bóng đá.",
+    "colors": [
+      {
+        "color": "Đen",
+        "style_code": "IO0919-010",
+        "product_url": "https://www.nike.com/gb/t/academy-football-duffel-bag-small-40l-rlSdz9sx/IO0919-010",
+        "rights": "Nguồn công khai; Nguyễn Quang Huy duyệt dùng demo học thuật local ngày 23/11/2026 (DEC-006/014).",
+        "gallery": [
+          {
+            "angle": "front",
+            "image_url": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco,u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/17ba04d9-83e7-4b8b-ad60-4f1ddaa3e34e/NK+ACDMY+TEAM+DUFF+S+F26.png"
+          },
+          {
+            "angle": "side",
+            "image_url": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco,u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/510dec85-0fe6-4f90-9707-a0a787413bed/NK+ACDMY+TEAM+DUFF+S+F26.png"
+          },
+          {
+            "angle": "back",
+            "image_url": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco,u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/2e577e17-904e-43c5-bfe9-678a37dbc38a/NK+ACDMY+TEAM+DUFF+S+F26.png"
+          },
+          {
+            "angle": "top",
+            "image_url": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco,u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/eea2e3ec-cb17-477f-98a0-bbbb20458be2/NK+ACDMY+TEAM+DUFF+S+F26.png"
+          },
+          {
+            "angle": "detail",
+            "image_url": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco,u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/a1e0a623-6886-46f5-999f-1aa20d814b45/NK+ACDMY+TEAM+DUFF+S+F26.png"
+          }
+        ]
+      },
+      {
+        "color": "Xanh navy",
+        "style_code": "IO0919-410",
+        "product_url": "https://www.nike.com/gb/t/academy-football-duffel-bag-small-40l-rlSdz9sx/IO0919-410",
+        "rights": "Nguồn công khai; Nguyễn Quang Huy duyệt dùng demo học thuật local ngày 23/11/2026 (DEC-006/014).",
+        "gallery": [
+          {
+            "angle": "front",
+            "image_url": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco,u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/5bbc25cc-8dd9-4bc8-ab39-f1813d6b7ce8/NK+ACDMY+TEAM+DUFF+S+F26.png"
+          },
+          {
+            "angle": "side",
+            "image_url": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco,u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/a360d074-2752-4684-800d-fbdba7cf6271/NK+ACDMY+TEAM+DUFF+S+F26.png"
+          },
+          {
+            "angle": "top",
+            "image_url": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco,u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/468225c3-87ec-4872-9714-012868a110cc/NK+ACDMY+TEAM+DUFF+S+F26.png"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "apparel",
+    "name": "Áo tập Nike Dri-FIT Strike",
+    "brand": "Nike",
+    "price": "749000",
+    "description": "Áo tay ngắn Nike Dri-FIT Strike cho buổi tập bóng đá.\nCác ảnh cận cảnh thể hiện cổ áo, vai và logo trước ngực.",
+    "colors": [
+      {
+        "color": "Xanh navy",
+        "style_code": "FN2399-451",
+        "product_url": "https://www.nike.com/t/strike-mens-dri-fit-short-sleeve-soccer-top-jLS4TEI9/FN2399-451",
+        "rights": "Nguồn công khai; Nguyễn Quang Huy duyệt dùng demo học thuật local ngày 23/11/2026 (DEC-006/014).",
+        "gallery": [
+          {
+            "angle": "front",
+            "image_url": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/8a074e9e-0277-4521-9335-a4b524114d2b/M+NK+DF+STRK+TOP+SS.png"
+          },
+          {
+            "angle": "back",
+            "image_url": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/47e75136-f590-407a-bc01-7ea880266565/M+NK+DF+STRK+TOP+SS.png"
+          },
+          {
+            "angle": "side",
+            "image_url": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/8755df0e-d855-439a-ab70-a5dcc59c4dc9/M+NK+DF+STRK+TOP+SS.png"
+          },
+          {
+            "angle": "detail",
+            "image_url": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/64c465b8-1c44-42d8-a4b4-ebbfc1690915/M+NK+DF+STRK+TOP+SS.png"
+          },
+          {
+            "angle": "logo",
+            "image_url": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/979d2a3c-5b73-4f96-ab83-1bb9857c7bc6/M+NK+DF+STRK+TOP+SS.png"
+          }
+        ]
+      },
+      {
+        "color": "Đen",
+        "style_code": "FN2399-010",
+        "product_url": "https://www.nike.com/gb/t/strike-dri-fit-short-sleeve-football-top-7Q06HD/FN2399-010",
+        "rights": "Nguồn công khai; Nguyễn Quang Huy duyệt dùng demo học thuật local ngày 23/11/2026 (DEC-006/014).",
+        "gallery": [
+          {
+            "angle": "front",
+            "image_url": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/d462c22a-e8e3-443e-8ab0-dc48e73d1257/M+NK+DF+STRK+TOP+SS.png"
+          },
+          {
+            "angle": "back",
+            "image_url": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/80324891-35f4-46cf-9457-84d115861996/M+NK+DF+STRK+TOP+SS.png"
+          },
+          {
+            "angle": "detail",
+            "image_url": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/b7c69a2a-c571-422b-a372-81a3b9342247/M+NK+DF+STRK+TOP+SS.png"
+          }
+        ]
+      }
+    ]
+  }
+]

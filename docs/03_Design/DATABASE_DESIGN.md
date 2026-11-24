@@ -2,6 +2,10 @@
 
 Ngày 16/11/2026. Thiết kế cho review/QHS-002, QHS-014, không phải migration đã chạy. Theo [architecture](ARCHITECTURE_FINAL.md); stock timing/state/money/voucher/review/retention còn chịu gate DEC-003/008/009/010/015/005. Không mặc định các gate này đã approved.
 
+## Đối chiếu schema MVP 23/11/2026
+
+PostgreSQL migrations là schema thực tế. Các bảng thiết kế bên dưới gồm trường đề xuất chưa triển khai. DEC-004 dùng role CUSTOMER/ADMIN và bcrypt. DEC-003 dùng một kho, deduct tại checkout; DEC-008 chỉ dùng PENDING, CONFIRMED, SHIPPING, COMPLETED, CANCELLED. DEC-009 dùng VND và snapshot đơn; DEC-015 duyệt voucher cơ bản. `InventoryMovement.actor_id` nullable để giữ các row lịch sử. Migration 0004 thêm cột/FK/index, không backfill. Current movement giữ reference trong operation_key; FK cứng order_item và các CHECK cross-row chưa có. Dashboard tài chính chờ DEC-012.
+
 ## 1. Quy ước
 
 PK UUID cho business entities, Django auth/group/permission/session giữ loại framework quy định. FK cùng loại PK đích, NOT NULL trừ khi ghi `?`. Tất cả entity có created_at, entity mutable có updated_at, dùng timestamptz UTC. Text enum có CHECK, Django choices và API enum đồng bộ. Tên bảng theo `<app>_<model>` chuẩn ORM; tên domain trong bảng dưới ánh xạ trực tiếp model, không tạo DB riêng cho mỗi app.
@@ -52,11 +56,11 @@ Các quan hệ Cart, balance và OrderItem tối thiểu một là invariant t�
 |---|---|---|
 | User | id, email, password (hash framework), display_name, phone?, is_active, is_staff, is_superuser | Custom user trước migration đầu; email lower/trim tại boundary, unique lower(email) DB; không tự lower password. Groups/permissions Django, không role string client-controlled |
 | Address | id, user_id, receiver, phone, street, area JSON có schema/version, is_default | user CASCADE khi được phép xóa user; partial unique(user) WHERE is_default. Lock user trước set default/checkout. Địa giới chọn DEC-014; không FK đơn tới địa chỉ live |
-| Category | id, name, slug, parent_id?, is_active | slug unique; parent PROTECT; check parent!=self; cycle nhiều cấp kiểm dưới khóa serialize chỉnh cây (khóa root quản trị chung), không chỉ check SQL self |
+| Category | id, name, slug, parent_id?, is_active | slug unique; parent PROTECT; API kiểm parent khác chính nó và cycle nhiều cấp; không có CHECK self-FK riêng |
 | Brand | id, name, slug, is_active | slug unique; logo nếu được duyệt đi qua public media validation |
-| Product | id, category_id, brand_id, name, slug, description, status | category/brand PROTECT, slug unique, status draft/published/archived; publish cần variant active + ảnh hợp lệ do service |
-| ProductVariant | id, product_id, sku, size, color, unit_price, is_active, revision | product PROTECT, SKU canonical uppercase trim unique; size/color normalized nonempty, unique(product,size,color); unit_price>=0; revision tăng khi thay giá/visibility |
-| ProductImage | id, product_id, variant_id?, storage_key, alt_text, sort_order | product CASCADE chỉ khi product chưa dùng và được phép xóa; variant PROTECT; sort>=0. Variant phải thuộc product: service validation trong transaction, không CHECK cross-table |
+| Product | id, category_id, brand_id, name, slug, description, status | category/brand PROTECT, slug unique, status draft/published/archived; API đọc lọc published; list yêu cầu có variant đủ filter, ảnh có thể null |
+| ProductVariant | id, product_id, sku, size, color, unit_price, is_active, revision | product PROTECT, SKU unique; unique(product,size,color); unit_price>=0; revision>=1, chỉ đọc qua admin API |
+| ProductImage | id, product_id, variant_id?, storage_key, alt_text, sort_order | product và variant PROTECT; sort_order là số nguyên không âm. Upload MVP có thể gắn product, chưa nhận variant_id |
 | Cart | id, user_id, revision | user OneToOne CASCADE; tạo lazy nếu chưa có; revision>=0, mutation khóa user rồi cart |
 | CartItem | id, cart_id, variant_id, qty | cart CASCADE, variant PROTECT; unique(cart,variant), qty>0; không lưu đơn giá như authority; thêm cùng variant là tăng qty theo API |
 
@@ -77,9 +81,9 @@ Movement operation_key server sinh từ item/kind với order; admin adjustment 
 
 `stock_qty = sum(delta)` kể từ opening trong cùng transaction history. Quantity vật lý, hàng hỏng, reservation riêng và nhiều kho chưa nằm V1. Nếu DEC-003 chọn reserve thay deduct: phải thêm reservation/available semantics và sửa movement types, không chỉ đổi tên field.
 
-State enums tham chiếu architecture, còn chờ business approval. Order.payment_method là cod/sandbox; payment_status là unpaid/pending/paid/failed/refund_pending/refunded/reconcile_required (P0 COD chỉ unpaid/paid khi policy cho phép). paid_at chỉ do hành động thu tiền hoặc verified payment, không suy từ delivered_at. Address snapshot có receiver/phone/street/area lúc đặt, không là reference động; OrderItem luôn lưu hiển thị dù archive variant. Hạn lưu PII đơn cần quyết định riêng trước khách thật; không dùng TTL ảnh xóa hóa đơn.
+State hợp lệ đã chốt tại DEC-008; bảng này còn các trường mở rộng của thiết kế. Order.payment_method là cod/sandbox; payment_status là unpaid/pending/paid/failed/refund_pending/refunded/reconcile_required (P0 COD chỉ unpaid/paid khi policy cho phép). paid_at chỉ do hành động thu tiền hoặc verified payment, không suy từ delivered_at. Address snapshot có receiver/phone/street/area lúc đặt, không là reference động; OrderItem luôn lưu hiển thị dù archive variant. Hạn lưu PII đơn cần quyết định riêng trước khách thật; không dùng TTL ảnh xóa hóa đơn.
 
-## 5. Voucher, review — P2 chưa bật
+## 5. Voucher MVP, mở rộng voucher và review P2
 
 | Model | Cột/quan hệ | Constraints và transaction |
 |---|---|---|
