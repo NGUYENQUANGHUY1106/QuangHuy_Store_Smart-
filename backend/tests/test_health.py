@@ -45,8 +45,12 @@ def test_cors_allows_only_configured_origin(client: Client) -> None:
     origin = "http://localhost:5173"
     with override_settings(CORS_ALLOWED_ORIGINS=[origin], CORS_ALLOW_CREDENTIALS=True):
         response = client.options(
-            "/health", HTTP_ORIGIN=origin, HTTP_ACCESS_CONTROL_REQUEST_METHOD="GET"
+            "/checkout/orders",
+            HTTP_ORIGIN=origin,
+            HTTP_ACCESS_CONTROL_REQUEST_METHOD="POST",
+            HTTP_ACCESS_CONTROL_REQUEST_HEADERS="authorization,content-type,idempotency-key",
         )
     assert response.status_code == 200
     assert response["Access-Control-Allow-Origin"] == origin
     assert response["Access-Control-Allow-Credentials"] == "true"
+    assert "idempotency-key" in response["Access-Control-Allow-Headers"]
