@@ -2,10 +2,8 @@ import { render, screen } from '@testing-library/react'
 import { expect, test } from 'vitest'
 import App from './App'
 
-test('foundation shell links to the backend readiness check', () => {
+test('foundation shell renders the QuangHuy Sport home page', () => {
   render(<App />)
-  expect(
-    screen.getByRole('heading', { name: 'QuangHuy_Sport' }),
-  ).toBeInTheDocument()
-  expect(screen.getByRole('link')).toHaveAttribute('href', '/health')
+  expect(screen.getByRole('heading', { name: /Bứt tốc/i })).toBeInTheDocument()
+  expect(screen.getByRole('link', { name: 'Trang chủ' })).toBeInTheDocument()
 })

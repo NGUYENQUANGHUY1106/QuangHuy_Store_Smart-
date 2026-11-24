@@ -1,0 +1,118 @@
+export type AppRoute = {
+  code: string
+  title: string
+  path: string
+  nodeId: string
+  area: 'customer' | 'admin' | 'system'
+}
+
+export const customerRoutes: AppRoute[] = [
+  ['C01', 'Trang chủ', '/', '4-2'],
+  ['C02', 'Danh mục sản phẩm', '/categories', '4-171'],
+  ['C03', 'Danh sách sản phẩm theo danh mục', '/category/:slug', '4-251'],
+  ['C04', 'Tìm kiếm gợi ý', '/search/suggestions', '4-436'],
+  ['C05', 'Kết quả tìm kiếm', '/search', '4-529'],
+  ['C06', 'Chi tiết sản phẩm', '/products/:slug', '4-713'],
+  ['C07', 'Phóng to thư viện ảnh', '/products/:slug/gallery', '6-5975'],
+  ['C08', 'Bảng hướng dẫn chọn size', '/size-guide', '6-6002'],
+  ['C09', 'Quick view sản phẩm', '/quick-view', '6-6051'],
+  ['C10', 'Giới thiệu thương hiệu', '/brands', '4-1075'],
+  ['C11', 'Liên hệ / hỗ trợ', '/support', '4-1135'],
+  ['C12', 'FAQ / chính sách hỗ trợ', '/faq', '4-1198'],
+  ['C13', 'Đăng nhập', '/login', '4-1250'],
+  ['C14', 'Đăng ký', '/register', '4-1333'],
+  ['C15', 'Quên mật khẩu', '/forgot-password', '4-1415'],
+  ['C16', 'Xác minh email', '/verify-email', '4-1482'],
+  ['C17', 'Đặt lại mật khẩu', '/reset-password', '4-1545'],
+  ['C18', 'Giỏ hàng', '/cart', '4-1611'],
+  ['C19', 'Xác nhận xóa giỏ hàng', '/cart/remove-confirm', '6-6094'],
+  ['C20', 'Checkout — địa chỉ và vận chuyển', '/checkout', '4-1737'],
+  ['C21', 'Checkout — phương thức và xác nhận', '/checkout/review', '4-1829'],
+  ['C22', 'Đặt hàng thành công', '/order-success', '4-1924'],
+  ['C23', 'Thanh toán online sandbox', '/payment/sandbox', '4-1983'],
+  ['C24', 'AI Try-On — giới thiệu', '/ai-try-on', '4-2078'],
+  ['C25', 'AI Try-On — tải ảnh', '/ai-try-on/upload', '4-2146'],
+  ['C26', 'AI Try-On — xử lý', '/ai-try-on/process', '4-2208'],
+  ['C27', 'AI Try-On — kết quả', '/ai-try-on/result', '4-2259'],
+  ['C28', 'Chính sách ảnh và chấp thuận AI', '/ai-try-on/privacy', '4-2347'],
+  ['C29', 'Tài khoản — tổng quan', '/account', '4-2398'],
+  ['C30', 'Chỉnh sửa hồ sơ cá nhân', '/account/profile', '4-2476'],
+  ['C31', 'Sổ địa chỉ', '/account/addresses', '4-2539'],
+  ['C32', 'Thêm / sửa địa chỉ', '/account/addresses/edit', '4-2601'],
+  [
+    'C33',
+    'Xác nhận xóa địa chỉ',
+    '/account/addresses/remove-confirm',
+    '6-6115',
+  ],
+  ['C34', 'Đơn hàng của tôi', '/account/orders', '4-2712'],
+  ['C35', 'Chi tiết đơn hàng', '/account/orders/:id', '4-2853'],
+  ['C36', 'Hủy đơn — xác nhận', '/account/orders/:id/cancel', '6-6136'],
+  ['C37', 'Viết đánh giá sản phẩm', '/account/reviews/new', '4-2998'],
+  ['C38', 'Lịch sử đánh giá', '/account/reviews', '4-3068'],
+  ['C39', 'Đổi mật khẩu / phiên đăng nhập', '/account/security', '4-3132'],
+  ['C40', 'Wishlist / yêu thích', '/wishlist', '4-3195'],
+  ['C41', 'Voucher của tôi', '/account/vouchers', '4-3360'],
+  ['C42', 'Lịch sử thông báo', '/account/notifications', '4-3403'],
+].map(([code, title, path, nodeId]) => ({
+  code,
+  title,
+  path,
+  nodeId,
+  area: 'customer',
+}))
+
+export const adminRoutes: AppRoute[] = [
+  ['A01', 'Admin — Đăng nhập', '/admin/login', '6-160'],
+  ['A02', 'Admin — Dashboard', '/admin', '6-189'],
+  ['A03', 'Danh sách sản phẩm', '/admin/products', '6-337'],
+  ['A04', 'Tạo sản phẩm', '/admin/products/new', '6-445'],
+  ['A05', 'Chỉnh sửa sản phẩm', '/admin/products/:id/edit', '6-557'],
+  ['A06', 'Quản lý biến thể SKU', '/admin/variants', '6-672'],
+  ['A07', 'Thư viện ảnh sản phẩm', '/admin/media', '6-782'],
+  ['A08', 'Nhập / điều chỉnh kho', '/admin/inventory', '6-899'],
+  ['A09', 'Lịch sử kho', '/admin/inventory/history', '6-992'],
+  ['A10', 'Danh sách đơn hàng', '/admin/orders', '6-1099'],
+  ['A11', 'Chi tiết / xử lý đơn', '/admin/orders/:id', '6-1200'],
+  ['A12', 'Xác nhận thay đổi trạng thái', '/admin/orders/:id/status', '8-1833'],
+  ['A13', 'Danh mục sản phẩm', '/admin/categories', '6-1404'],
+  ['A14', 'Tạo / sửa danh mục', '/admin/categories/edit', '6-1505'],
+  ['A15', 'Thương hiệu', '/admin/brands', '6-1588'],
+  ['A16', 'Quản lý người dùng', '/admin/users', '6-1677'],
+  ['A17', 'Chi tiết người dùng', '/admin/users/:id', '6-1765'],
+  ['A18', 'Báo cáo doanh thu', '/admin/reports/revenue', '6-1854'],
+  ['A19', 'Sản phẩm bán chạy', '/admin/reports/top-products', '6-1982'],
+  ['A20', 'Voucher / khuyến mãi', '/admin/vouchers', '6-2104'],
+  ['A21', 'Tạo / sửa voucher', '/admin/vouchers/edit', '6-2180'],
+  ['A22', 'Quản lý đánh giá', '/admin/reviews', '6-2272'],
+  ['A23', 'Chi tiết review', '/admin/reviews/:id', '6-2348'],
+  ['A24', 'AI Try-On job monitor', '/admin/ai-try-on/jobs', '6-2424'],
+  ['A25', 'Cài đặt AI Try-On', '/admin/ai-try-on/settings', '6-2509'],
+  ['A26', 'Audit log', '/admin/audit', '6-2602'],
+  ['A27', 'Cài đặt cửa hàng', '/admin/settings', '6-2697'],
+  ['A28', 'Banner trang chủ', '/admin/banners', '6-2785'],
+  ['A29', 'Thêm / sửa banner', '/admin/banners/edit', '6-2875'],
+  ['A30', 'Notifications / background jobs', '/admin/jobs', '6-2981'],
+].map(([code, title, path, nodeId]) => ({
+  code,
+  title,
+  path,
+  nodeId,
+  area: 'admin',
+}))
+
+export const systemRoutes: AppRoute[] = [
+  ['S01', 'Không tìm thấy trang', '*', '7-2'],
+  ['S02', 'Không có quyền truy cập', '/forbidden', '7-23'],
+  ['S03', 'Hệ thống đang gián đoạn', '/system-error', '7-38'],
+  ['S04', 'Bạn đang ngoại tuyến', '/offline', '7-53'],
+  ['S05', 'Xác nhận & thông báo', '/notifications/modal', '7-68'],
+].map(([code, title, path, nodeId]) => ({
+  code,
+  title,
+  path,
+  nodeId,
+  area: 'system',
+}))
+
+export const allRoutes = [...customerRoutes, ...adminRoutes, ...systemRoutes]

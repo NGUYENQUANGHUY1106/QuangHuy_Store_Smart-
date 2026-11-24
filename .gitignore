@@ -20,3 +20,7 @@ backend/.foundation-pg-path
 .DS_Store
 Thumbs.db
 ~$*
+
+# Banner images supplied for the local demo
+/frontend/src/assets/home-football-boots.jpg
+/frontend/src/assets/registration-football-boots.jpg
