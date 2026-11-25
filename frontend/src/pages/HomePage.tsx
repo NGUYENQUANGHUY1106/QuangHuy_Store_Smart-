@@ -1,10 +1,24 @@
 import { ArrowRight } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import equipmentPhoto from '../assets/home-categories/bong-dung-cu.webp'
+import bootsPhoto from '../assets/home-categories/giay-bong-da.webp'
+import footballAccessoriesPhoto from '../assets/home-categories/phu-kien-bong-da.webp'
+import accessoriesPhoto from '../assets/home-categories/phu-kien.webp'
+import apparelPhoto from '../assets/home-categories/quan-ao-the-thao.webp'
 import { mockApi } from '../services/mockApi.js'
 import { Badge } from '../components/Badge'
 import { Button } from '../components/Button'
 import { ProductCard, type Product } from '../components/ProductCard'
+
+const categoryPhotos: Partial<Record<string, string>> = {
+  'bong-dung-cu': equipmentPhoto,
+  'giay-bong-da': bootsPhoto,
+  'phu-kien': accessoriesPhoto,
+  'phu-kien-bong-da': footballAccessoriesPhoto,
+  'quan-ao-the-thao': apparelPhoto,
+}
+
 const homeFootballBoots = import.meta.glob<string>('../assets/*', {
   eager: true,
   import: 'default',
@@ -88,36 +102,30 @@ export function HomePage() {
           </div>
         </div>
         <div className="category-grid">
-          {categories.map((category, index) => (
-            <Link
-              className={`category-card category-card-${index + 1}`}
-              key={category.id}
-              to={`/category/${category.slug}`}
-            >
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <h3>{category.name}</h3>
-              <ArrowRight size={20} />
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="section-block brand-section">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">Thương hiệu đối tác</p>
-            <h2>Đồng hành cùng đội bóng</h2>
-          </div>
-          <Link className="text-link" to="/brands">
-            Xem thương hiệu <ArrowRight size={17} />
-          </Link>
-        </div>
-        <div className="brand-grid">
-          {brands.map((brand) => (
-            <Link key={brand.id} to={`/search?brand=${brand.slug}`}>
-              <strong>{brand.name}</strong>
-            </Link>
-          ))}
+          {categories.map((category) => {
+            const photo = categoryPhotos[category.slug]
+            return (
+              <Link
+                className="category-card"
+                key={category.id}
+                to={`/category/${category.slug}`}
+              >
+                {photo && (
+                  <img
+                    className="category-card-photo"
+                    src={photo}
+                    alt=""
+                    width={627}
+                    height={418}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                )}
+                <h3>{category.name}</h3>
+                <ArrowRight size={18} aria-hidden="true" />
+              </Link>
+            )
+          })}
         </div>
       </section>
 
@@ -183,6 +191,24 @@ export function HomePage() {
             <h3>Góc nhìn bóng đá phong cách</h3>
             <p>Phối trang phục tập luyện năng động cho mọi buổi ra sân.</p>
           </article>
+        </div>
+      </section>
+      <section className="section-block brand-section">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">Thương hiệu đối tác</p>
+            <h2>Đồng hành cùng đội bóng</h2>
+          </div>
+          <Link className="text-link" to="/brands">
+            Xem thương hiệu <ArrowRight size={17} />
+          </Link>
+        </div>
+        <div className="brand-grid">
+          {brands.map((brand) => (
+            <Link key={brand.id} to={`/search?brand=${brand.slug}`}>
+              <strong>{brand.name}</strong>
+            </Link>
+          ))}
         </div>
       </section>
     </>

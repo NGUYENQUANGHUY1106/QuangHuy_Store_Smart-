@@ -806,39 +806,63 @@ input:focus-visible {
 }
 
 .category-grid {
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
 }
 
 .category-card {
-  min-height: 180px;
-  padding: 24px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 192px;
+  padding: 20px;
   display: grid;
-  grid-template-columns: 1fr auto;
-  align-content: space-between;
-  background: #ecece6;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-content: end;
+  align-items: end;
+  gap: 8px;
+  background: #252721;
+  color: #fff;
   border: 1px solid var(--color-border);
 }
 
-.category-card span {
-  grid-column: 1 / -1;
-  color: var(--color-accent-ink);
-  font-size: var(--type-caption);
-  font-weight: var(--weight-semibold);
+.category-card-photo,
+.category-card::before {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.category-card-photo {
+  z-index: -2;
+  object-fit: cover;
+  object-position: 65% center;
+}
+
+.category-card::before {
+  content: '';
+  z-index: -1;
+  background: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 8%) 18%,
+    rgb(0 0 0 / 68%) 64%,
+    #000 100%
+  );
+}
+
+.category-card:hover,
+.category-card:focus-visible {
+  border-color: var(--color-primary);
+  outline: 2px solid var(--color-accent-ink);
+  outline-offset: 2px;
 }
 
 .category-card h3 {
   margin: 0;
-  font-size: var(--type-h3);
-}
-
-.category-card-2 {
-  background: #d9e3f5;
-}
-.category-card-3 {
-  background: #efe0d8;
-}
-.category-card-4 {
-  background: #e4ead9;
+  font-size: clamp(1rem, 1.5vw, 1.375rem);
+  line-height: var(--leading-tight);
+  overflow-wrap: anywhere;
 }
 
 .brand-grid {
@@ -3448,13 +3472,17 @@ input:focus-visible {
     padding: 24px 16px;
   }
 
-  .category-grid,
   .brand-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .category-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .category-card {
-    min-height: 150px;
+    min-height: 152px;
+    padding: 12px;
   }
 
   .promotion-banner {
