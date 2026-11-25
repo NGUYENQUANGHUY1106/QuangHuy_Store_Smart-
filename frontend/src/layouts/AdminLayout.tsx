@@ -1,5 +1,7 @@
 import {
   LayoutDashboard,
+  MessageSquare,
+  MessagesSquare,
   Package,
   ShoppingCart,
   Users,
@@ -12,6 +14,8 @@ import {
 import { Link, Navigate, NavLink, Outlet } from 'react-router-dom'
 import { useState } from 'react'
 import { useAuth } from '../context/AuthContext'
+import { useProductChat } from '../context/useProductChat'
+import { ProfileAvatar } from '../components/ReviewDetails'
 
 const adminNavigation = [
   { label: 'Dashboard', href: '/admin', icon: LayoutDashboard },
@@ -20,12 +24,19 @@ const adminNavigation = [
   { label: 'Đơn hàng', href: '/admin/orders', icon: ShoppingCart },
   { label: 'Người dùng', href: '/admin/users', icon: Users },
   { label: 'Voucher', href: '/admin/vouchers', icon: Package },
+  { label: 'Đánh giá', href: '/admin/reviews', icon: MessageSquare },
+  { label: 'Tin nhắn', href: '/admin/messages', icon: MessagesSquare },
   { label: 'Cài đặt', href: '/admin/settings', icon: Warehouse },
 ]
 
 export function AdminLayout() {
   const [menuOpen, setMenuOpen] = useState(false)
   const { user, logout } = useAuth()
+  const chat = useProductChat(
+    user?.role === 'ADMIN' ? user.id : undefined,
+    true,
+  )
+  const unread = chat.snapshot.inbox.reduce((sum, row) => sum + row.unread, 0)
   if (user?.role !== 'ADMIN') return <Navigate to="/admin/login" replace />
   return (
     <div className="admin-layout">
@@ -47,6 +58,14 @@ export function AdminLayout() {
             <NavLink key={href} to={href} end={href === '/admin'}>
               <Icon size={18} />
               <span>{label}</span>
+              {href === '/admin/messages' && unread > 0 && (
+                <span
+                  className="chat-badge"
+                  aria-label={`${unread} tin nhắn chưa đọc`}
+                >
+                  {unread}
+                </span>
+              )}
             </NavLink>
           ))}
         </nav>
@@ -79,15 +98,15 @@ export function AdminLayout() {
               Cửa hàng
             </Link>
             <div className="admin-profile">
-              <span>A</span>
+              <ProfileAvatar name={user.name} url={user.avatarUrl} />
               <div>
-                <strong>Admin</strong>
+                <strong>{user.name}</strong>
                 <small>Quản trị viên</small>
               </div>
             </div>
           </div>
         </header>
-        <Outlet />
+        <Outlet context={chat} />
       </main>
     </div>
   )

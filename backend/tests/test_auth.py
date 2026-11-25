@@ -3,6 +3,7 @@ from django.contrib.auth.hashers import identify_hasher
 from django.test import Client
 
 from apps.identity.models import User
+from tests.auth_headers import auth_headers
 
 
 @pytest.mark.django_db
@@ -19,6 +20,7 @@ def test_register_login_profile_logout(client: Client) -> None:
     assert register.status_code == 201
     body = register.json()
     assert body["user"]["role"] == "CUSTOMER"
+    assert body["user"]["full_name"] == "Khách Hàng"
     assert "access" in body
     assert "refresh" in body
 
@@ -40,6 +42,7 @@ def test_register_login_profile_logout(client: Client) -> None:
     )
     assert me.status_code == 200
     assert me.json()["email"] == "customer@example.com"
+    assert me.json()["display_name"] == "Khách Hàng"
 
     rotated = client.post(
         "/auth/refresh", {"refresh": refresh}, content_type="application/json"
@@ -68,6 +71,37 @@ def test_register_login_profile_logout(client: Client) -> None:
         ).status_code
         == 401
     )
+
+
+@pytest.mark.django_db
+def test_profile_uses_full_name_and_handles_legacy_email_names(client: Client) -> None:
+    user = User.objects.create_user(
+        username="legacy-huy@example.com",
+        email="legacy-huy@example.com",
+        first_name="legacy-huy@example.com",
+    )
+    headers = auth_headers(user)
+    profile = client.get("/auth/me", **headers).json()
+    assert profile["display_name"] == "legacy-huy"
+    assert profile["full_name"] == ""
+    invalid = client.patch(
+        "/auth/me",
+        {"display_name": user.email},
+        content_type="application/json",
+        **headers,
+    )
+    assert invalid.status_code == 400
+    updated = client.patch(
+        "/auth/me",
+        {"display_name": "  Nguyễn   Quang Huy "},
+        content_type="application/json",
+        **headers,
+    )
+    assert updated.status_code == 200
+    assert updated.json()["display_name"] == "Nguyễn Quang Huy"
+    assert updated.json()["full_name"] == "Nguyễn Quang Huy"
+    assert updated.json()["email"] == user.email
+    assert client.get("/auth/me", **headers).json()["full_name"] == "Nguyễn Quang Huy"
 
 
 @pytest.mark.django_db

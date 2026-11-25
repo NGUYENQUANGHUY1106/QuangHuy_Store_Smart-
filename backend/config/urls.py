@@ -13,6 +13,7 @@ urlpatterns = [
     path("", include("apps.catalog.urls")),
     path("", include("apps.inventory.urls")),
     path("", include("apps.analytics.urls")),
+    path("", include("apps.reviews.urls")),
 ]
 
 if settings.DEBUG:

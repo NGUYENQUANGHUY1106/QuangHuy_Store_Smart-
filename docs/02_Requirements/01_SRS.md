@@ -52,6 +52,7 @@ DEC-010 giữ 20 mã FR để truy vết. MVP triển khai auth, catalog, cart, 
 - FR-OAUTH-001 — M08 — P2 — Đăng nhập OAuth Google/Facebook — Liên kết tài khoản an toàn, xử lý email trùng
 - FR-VOU-001 — M09 — P0 (voucher cơ bản theo DEC-015) — Áp voucher theo điều kiện — Không áp nhiều lần trái quy tắc, backend kiểm chứng
 - FR-REV-001 — M09 — P2 — Đánh giá sản phẩm sau mua thành công — Chỉ đơn đủ điều kiện được đánh giá
+- FR-CHAT-001 — Sau P0 — Khách đã đăng nhập chat với cửa hàng qua WebSocket trong một hội thoại chung, có thẻ sản phẩm/biến thể và xác nhận gửi/nhận/xem. Admin quản lý hộp thư theo quyền. Nội dung chỉ lưu tạm trong RAM với TTL, kể cả khi shop ngoại tuyến. Phạm vi do chủ dự án giao ngày 25/11/2026.
 - FR-BG-001 — M10 — P2 — Gửi email đơn hàng bằng background job — Job có idempotency/retry và không gửi sai trạng thái
 - FR-BG-002 — M10 — P2 — Tự hủy đơn quá hạn thanh toán — Không hủy đơn đã thanh toán; hoàn tồn đúng một lần
 - FR-AI-001 — M10 — P2 — Chatbot tư vấn hoặc tóm tắt đánh giá — Không tự bịa tồn kho/giá, có thông báo nội dung AI

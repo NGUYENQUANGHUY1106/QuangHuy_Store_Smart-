@@ -7,11 +7,19 @@ from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from .models import Address, User
+from .presentation import avatar_url, profile_full_name, public_name
+
+
+def validate_profile_name(value: str) -> str:
+    if "@" in value:
+        raise serializers.ValidationError("Vui lòng nhập họ và tên.")
+    return " ".join(value.split())
 
 
 class UserPublicSerializer(serializers.ModelSerializer[User]):
     capabilities = serializers.SerializerMethodField()
     display_name = serializers.CharField(max_length=150, required=False)
+    full_name = serializers.SerializerMethodField()
 
     class Meta:
         model = User
@@ -19,6 +27,7 @@ class UserPublicSerializer(serializers.ModelSerializer[User]):
             "id",
             "email",
             "display_name",
+            "full_name",
             "phone",
             "birthday",
             "gender",
@@ -40,8 +49,15 @@ class UserPublicSerializer(serializers.ModelSerializer[User]):
     def to_representation(self, instance: User) -> dict[str, Any]:
         return {
             **super().to_representation(instance),
-            "display_name": instance.get_full_name() or instance.email,
+            "display_name": public_name(instance),
+            "avatar_url": avatar_url(instance),
         }
+
+    def get_full_name(self, obj: User) -> str:
+        return profile_full_name(obj)
+
+    def validate_display_name(self, value: str) -> str:
+        return validate_profile_name(value)
 
     def update(self, instance: User, validated_data: dict[str, Any]) -> User:
         if "display_name" in validated_data:
@@ -57,6 +73,9 @@ class RegisterSerializer(serializers.Serializer[User]):
     display_name = serializers.CharField(
         max_length=150, required=False, allow_blank=True
     )
+
+    def validate_display_name(self, value: str) -> str:
+        return validate_profile_name(value)
 
     def validate_email(self, value: str) -> str:
         email = value.strip().lower()

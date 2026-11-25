@@ -1209,6 +1209,418 @@ input:focus-visible {
   gap: 12px;
 }
 
+.product-purchase-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.product-purchase-actions .button {
+  flex: 1 0 auto;
+}
+
+.product-reviews {
+  display: grid;
+  gap: 16px;
+  overflow-wrap: anywhere;
+}
+
+.product-review-form,
+.product-review,
+.review-replies {
+  display: grid;
+  gap: 12px;
+}
+
+.review-author,
+.review-product {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.review-author .user-avatar {
+  flex: 0 0 auto;
+  text-transform: uppercase;
+}
+
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-avatar-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-block: 12px 24px;
+}
+
+.profile-avatar-form label {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.profile-avatar-form input {
+  max-width: 100%;
+}
+
+.shop-author {
+  color: var(--color-accent-ink);
+}
+
+.product-chat-action {
+  margin-top: 12px;
+}
+
+.product-chat-action .button {
+  border-color: var(--color-accent-ink);
+  color: var(--color-accent-ink);
+}
+
+.product-chat-action .button:hover,
+.product-chat-action .button:active {
+  background: #fff1e9;
+}
+
+.chat-popup,
+.chat-minimized {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 60;
+}
+
+.chat-popup {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  width: min(408px, calc(100vw - 48px));
+  height: min(580px, calc(100dvh - 48px));
+  border: 1px solid var(--color-border);
+  background: white;
+  box-shadow: 0 8px 32px #0002;
+}
+
+.chat-popup[hidden] {
+  display: none;
+}
+
+.chat-header,
+.chat-product {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chat-header {
+  padding: 12px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.chat-header > :first-child {
+  margin-right: auto;
+}
+
+.chat-thread {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-wrap: anywhere;
+}
+
+.chat-messages {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+}
+
+.chat-bubble {
+  align-self: flex-start;
+  display: grid;
+  gap: 6px;
+  width: fit-content;
+  max-width: 92%;
+  padding: 8px 12px;
+  border: 1px solid var(--color-border);
+  background: #f7f7f4;
+}
+
+.chat-bubble.own {
+  align-self: flex-end;
+  background: #fff1e9;
+}
+
+.chat-bubble p {
+  white-space: pre-wrap;
+}
+
+.chat-product {
+  padding: 6px;
+  background: white;
+  border: 1px solid var(--color-border);
+  overflow-wrap: anywhere;
+}
+
+.chat-product img {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.chat-product small {
+  display: block;
+}
+
+.chat-composer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 8px;
+  border-top: 1px solid var(--color-border);
+  padding: 12px;
+}
+
+.chat-composer label,
+.chat-composer-product {
+  display: grid;
+  gap: 4px;
+}
+
+.chat-composer textarea,
+.admin-chat-inbox input,
+.admin-chat-inbox select {
+  border: 1px solid var(--color-border);
+  padding: 6px 8px;
+  width: 100%;
+}
+
+.chat-composer textarea {
+  resize: vertical;
+}
+
+.chat-composer-product {
+  grid-column: 1 / -1;
+}
+
+.chat-composer-product button {
+  justify-self: start;
+}
+
+.chat-notice {
+  padding: 8px 12px;
+}
+
+.chat-typing-dots {
+  color: var(--color-accent-ink);
+  letter-spacing: 2px;
+}
+
+.admin-chat-layout {
+  display: grid;
+  grid-template-columns: minmax(200px, 1fr) minmax(260px, 2fr) minmax(
+      165px,
+      1fr
+    );
+  gap: 12px;
+  margin-top: 16px;
+  overflow-wrap: anywhere;
+}
+
+.admin-messages {
+  padding: clamp(16px, 2.25vw, 32px);
+}
+
+.admin-messages h1 {
+  font-size: var(--type-admin-title);
+}
+
+.admin-chat-customer h2 {
+  font-size: var(--type-admin-section);
+}
+
+.admin-chat-inbox,
+.admin-chat-main,
+.admin-chat-customer {
+  border: 1px solid var(--color-border);
+  background: white;
+  min-width: 0;
+}
+
+.admin-chat-inbox,
+.admin-chat-customer {
+  padding: 12px;
+}
+
+.admin-chat-inbox label,
+.admin-chat-list button {
+  display: grid;
+  gap: 4px;
+}
+
+.admin-chat-inbox label + label {
+  margin-top: 8px;
+}
+
+.admin-chat-list {
+  margin-top: 12px;
+  max-height: 58dvh;
+  overflow: auto;
+}
+
+.admin-chat-list button {
+  width: 100%;
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.admin-chat-list button:is(.unread, [aria-pressed='true']) {
+  background: #fff1e9;
+}
+
+.chat-list-preview {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chat-badge {
+  width: fit-content;
+  padding: 1px 6px;
+  background: var(--color-primary);
+  border-radius: 6px;
+}
+
+.admin-chat-main {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  height: clamp(440px, 72dvh, 740px);
+}
+
+.admin-chat-customer > * + * {
+  margin-top: 8px;
+}
+
+@media (max-width: 1180px) {
+  .admin-chat-layout {
+    grid-template-columns: minmax(180px, 1fr) minmax(240px, 2fr);
+  }
+
+  .admin-chat-customer {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 680px) {
+  .chat-popup {
+    inset: 0;
+    width: 100%;
+    height: 100dvh;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .chat-minimized {
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .admin-chat-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .admin-chat-list {
+    max-height: 28dvh;
+  }
+
+  .admin-sidebar nav a .chat-badge {
+    display: inline;
+  }
+}
+
+.review-product img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  background: #efeeea;
+  flex: 0 0 auto;
+}
+
+.review-product small {
+  display: block;
+}
+
+.admin-review-page,
+.admin-review {
+  display: grid;
+  gap: 16px;
+  overflow-wrap: anywhere;
+}
+
+.admin-review-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px 24px;
+}
+
+.product-review {
+  padding-block: 16px;
+  border-top: 1px solid var(--color-border);
+}
+
+.product-review-form label:has(textarea) {
+  display: grid;
+  gap: 6px;
+}
+
+.product-review-form textarea {
+  width: 100%;
+  max-width: 640px;
+  padding: 8px 12px;
+  border: 1px solid var(--color-border);
+  background: white;
+}
+
+.product-review-form > .button,
+.product-review > .button,
+.product-review > .text-link {
+  justify-self: start;
+}
+
+.review-rating-options,
+.product-review-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+}
+
+.review-rating-options label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+}
+
+.product-review-stars {
+  color: var(--color-accent-ink);
+}
+
+.review-replies {
+  padding-inline-start: 12px;
+  border-inline-start: 2px solid var(--color-border);
+}
+
 .quantity-control {
   height: 44px;
   border: 1px solid var(--color-border);
@@ -3122,7 +3534,11 @@ input:focus-visible {
   }
 
   .add-cart-row {
-    grid-template-columns: 112px 1fr;
+    grid-template-columns: 1fr;
+  }
+
+  .add-cart-row .quantity-control {
+    width: 112px;
   }
 
   .review-list {

@@ -10,6 +10,8 @@ Các bảng thiết kế ở phần dưới ghi cả endpoint mục tiêu. Dùng
 |---|---|---|
 | Auth | POST /auth/register, /auth/login, /auth/refresh, /auth/logout | Email/password và display_name tùy chọn khi tạo, hoặc refresh token khi rotate/logout. Register 201, login/refresh 200, logout 204; invalid credential/token 400/401 tùy endpoint. Role chỉ đọc. |
 | Hồ sơ và địa chỉ | GET/PATCH /auth/me; GET/POST /addresses; GET/PATCH/DELETE /addresses/{id} | U owner, address `receiver,phone,street,area,is_default`. Address list phân trang DRF, frontend lấy mọi trang từ API cùng origin. Owner khác nhận 404. MVP nhập địa chỉ tay theo DEC-014. |
+
+Đăng nhập, đăng ký và `/auth/me` trả `full_name` chỉ đọc từ hồ sơ, có thể rỗng cho tài khoản cũ, cùng `display_name` dùng để trình bày và `avatar_url`. Khi chưa có họ tên, tên hiển thị dùng username, bỏ phần miền nếu username là email. Ghi họ tên qua `display_name`, kiểm giá trị chứa email và chuẩn hóa khoảng trắng.
 | Catalog | GET /categories, /brands, /products, /products/{slug}, /search/suggestions | G. Danh sách theo DRF page; filter q/category/brand/size/color/min_price/max_price/in_stock/sort; chi tiết chỉ published và variants active. |
 | Cart | GET /cart; POST /cart/items; PATCH/DELETE /cart/items/{id}; POST /cart/merge | U owner. Add `variant_id,qty`, PATCH `qty`, merge `items:[{variant_id,qty}]`. GET/add/merge trả cart_revision và items; PATCH trả item; DELETE 204. Tồn thiếu 409. Merge có thể gửi Idempotency-Key dạng UUID. Cùng key và payload trả giỏ hiện tại, không cộng lại; cùng key khác payload trả 409. |
 | Voucher | POST /vouchers/validate | U. `code` → eligible/voucher/discount khi hợp lệ, dùng giỏ người gọi. Checkout kiểm lại thời gian, min, cap và quota. |
@@ -94,6 +96,12 @@ Quote bổ sung để xử lý giá thay đổi trong UC-CHK-01, không service 
 OrderSummary `{id,number,status,payment_status,payment_method,total,currency,created_at,version}`. OrderDetail thêm address_snapshot, items `{id,variant_id,sku_snapshot,product_name_snapshot,size_snapshot,color_snapshot,qty,unit_price,line_subtotal,allocated_discount}`, subtotal/discount/shipping, status_history `{from_status,to_status,at}`, `allowed_actions`. History customer không lộ thông tin nhân viên không cần thiết. `allowed_actions` tính server, không chỉ ẩn nút UI. Không ghi paid khi COD order success.
 
 CartLine, OrderItem và admin product có trường chỉ đọc `thumbnail` (URL hoặc `null`). Giỏ và đơn chọn ảnh catalog theo màu biến thể hoặc màu snapshot tương ứng, có thể dùng ảnh chung của mẫu. Ảnh chỉ có khi sản phẩm đang được công khai.
+
+Mua ngay (QHS-018.1) dùng hai endpoint checkout hiện tại với `direct_item: {variant_id, qty}`. Mua ngay bắt buộc gửi lại `quote_token` được ký riêng cho cùng khách và lựa chọn. Server kiểm tra lại giá/tồn và trừ tồn của đúng một SKU. Tạo đơn và replay giữ nguyên giỏ. OrderItem có thêm `product_slug` khi sản phẩm được công khai và `reviewed` chỉ đọc.
+
+Đánh giá sau mua (QHS-035.1) gồm `GET /products/{slug}/reviews?page=&order_item=` (công khai, 10 lượt đánh giá/trang, `eligible_order_item_id` chỉ của phiên hiện tại), `POST /reviews` với `{order_item_id,rating,body}` và `POST /reviews/{id}/replies` với `{body}`. POST thành công trả 201. Chủ sở hữu dòng đơn `COMPLETED` của sản phẩm công khai được chấm 1–5 sao, một lượt mỗi dòng đơn. Dòng đơn người khác trả 404, chưa đủ điều kiện 403, trùng 409. Phản hồi yêu cầu đăng nhập. Nội dung là văn bản thuần tối đa 2.000 ký tự.
+
+QHS-035.2 bổ sung tên hiển thị, ảnh theo màu, tên sản phẩm, màu và size mua trong danh sách công khai. Email, mã đơn và SKU chỉ có trong `GET /admin/reviews?page=` (ADMIN, 10 đánh giá/trang). `POST /admin/reviews/{id}/replies` (ADMIN, `{body}`, 201) gắn phản hồi với chính đánh giá đó. Server đặt `from_shop=true` cho endpoint Admin. `DELETE /admin/reviews/{id}` (ADMIN, 204) ghi người gỡ và thời điểm, ẩn đánh giá cùng phản hồi. Gỡ lại cùng ID trả 204. Đánh giá đã gỡ trả 404 khi phản hồi, vẫn giữ ràng buộc một đánh giá mỗi dòng đơn.
 
 DEC-003/008/009/010 quyết định chính sách trong endpoints này; nếu policy chưa chốt thì không nhận checkout thật, trả 503 `checkout_not_configured`, không chọn phí/stock/cancel ngầm. Nếu voucher chưa bật mà client gửi voucher_code trả 400 `feature_not_enabled`.
 

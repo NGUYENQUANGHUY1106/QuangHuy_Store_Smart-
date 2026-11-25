@@ -38,3 +38,11 @@ class Address(models.Model):
 
     class Meta:
         ordering = ["-is_default", "-created_at"]
+
+
+class ProfileAvatar(models.Model):
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, primary_key=True, related_name="avatar"
+    )
+    key = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
+    webp = models.BinaryField()

@@ -17,13 +17,14 @@ describe('Orders UI', () => {
       orders: [
         {
           id: 'QHS-TEST-001',
-          status: 'pending',
-          statusLabel: 'Chờ xác nhận',
+          status: 'completed',
+          statusLabel: 'Hoàn thành',
           createdAt: '2026-11-21',
           total: 630000,
           items: [
             {
               id: 'it-1',
+              productSlug: 'giay-da-bong-test',
               name: 'Giày Đá Bóng Test',
               sku: 'TEST-SKU-1',
               size: '41',
@@ -46,7 +47,12 @@ describe('Orders UI', () => {
     )
 
     expect(await screen.findByText('QHS-TEST-001')).toBeInTheDocument()
-    expect(screen.getAllByText('Chờ xác nhận').length).toBeGreaterThanOrEqual(1)
+    expect(
+      screen.getByRole('link', { name: 'Đánh giá sản phẩm' }),
+    ).toHaveAttribute(
+      'href',
+      '/products/giay-da-bong-test?reviewItem=it-1#reviews',
+    )
     expect(screen.getByText(/630\.000/)).toBeInTheDocument()
   })
 

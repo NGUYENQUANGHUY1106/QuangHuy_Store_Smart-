@@ -5,13 +5,14 @@ import json
 from collections.abc import Mapping
 from decimal import Decimal
 from typing import TypedDict
+from uuid import UUID
 
 from django.core import signing
 from django.db import transaction
 from django.db.models import Prefetch, QuerySet
 from django.utils import timezone
 from rest_framework import status
-from rest_framework.exceptions import APIException
+from rest_framework.exceptions import APIException, ValidationError
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
@@ -19,6 +20,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from apps.cart.models import Cart, CartItem
+from apps.cart.serializers import CartItemWriteSerializer
 from apps.catalog.images import prefetch_thumbnails
 from apps.catalog.models import (
     InventoryBalance,
@@ -41,9 +43,9 @@ from .serializers import (
 def prefetch_order_items() -> Prefetch[str, QuerySet[OrderItem], str]:
     return Prefetch(
         "items",
-        queryset=OrderItem.objects.select_related("variant__product").prefetch_related(
-            prefetch_thumbnails("variant__product")
-        ),
+        queryset=OrderItem.objects.select_related(
+            "variant__product", "review"
+        ).prefetch_related(prefetch_thumbnails("variant__product")),
     )
 
 
@@ -71,7 +73,7 @@ class CheckoutAmounts(TypedDict):
 
 def checkout_pricing(
     user: User,
-    lines: list[tuple[CartItem, ProductVariant, InventoryBalance | None]],
+    lines: list[tuple[int, ProductVariant, InventoryBalance | None]],
     voucher_code: str,
     *,
     lock_voucher: bool = False,
@@ -79,18 +81,17 @@ def checkout_pricing(
     if not lines:
         raise CheckoutConflict("cart_empty", "Giỏ hàng trống.")
     amounts = [
-        (str(item.variant_id), item.qty, str(variant.unit_price))
-        for item, variant, balance in lines
+        (str(variant.pk), qty, str(variant.unit_price)) for qty, variant, _ in lines
     ]
     subtotal = Decimal("0")
-    for item, variant, balance in lines:
+    for qty, variant, balance in lines:
         if not variant.is_active or variant.product.status != Product.Status.PUBLISHED:
             raise CheckoutConflict(
                 "variant_inactive", "Có sản phẩm không còn hoạt động."
             )
-        if balance is None or balance.stock_qty < item.qty:
+        if balance is None or balance.stock_qty < qty:
             raise CheckoutConflict("insufficient_stock", "Sản phẩm không đủ tồn kho.")
-        subtotal += variant.unit_price * item.qty
+        subtotal += variant.unit_price * qty
 
     discount = Decimal("0")
     voucher = None
@@ -136,21 +137,42 @@ def normalize_voucher_code(data: Mapping[str, object]) -> str:
     return str(data.get("voucher_code", "")).strip().upper()
 
 
+def direct_selection(data: Mapping[str, object]) -> tuple[UUID, int] | None:
+    if "direct_item" not in data:
+        return None
+    item = CartItemWriteSerializer(data=data["direct_item"])
+    item.is_valid(raise_exception=True)
+    return item.validated_data["variant_id"], item.validated_data["qty"]
+
+
 class CheckoutQuoteView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request: Request) -> Response:
         user = request.user
         assert isinstance(user, User)
-        items = (
-            CartItem.objects.filter(cart__user=user)
-            .select_related("variant__product", "variant__inventory")
-            .order_by("variant_id")
-        )
-        lines = [
-            (item, item.variant, getattr(item.variant, "inventory", None))
-            for item in items
-        ]
+        direct = direct_selection(request.data)
+        if direct is None:
+            items = (
+                CartItem.objects.filter(cart__user=user)
+                .select_related("variant__product", "variant__inventory")
+                .order_by("variant_id")
+            )
+            lines = [
+                (item.qty, item.variant, getattr(item.variant, "inventory", None))
+                for item in items
+            ]
+        else:
+            variant = (
+                ProductVariant.objects.select_related("product", "inventory")
+                .filter(pk=direct[0])
+                .first()
+            )
+            if variant is None:
+                raise CheckoutConflict(
+                    "variant_inactive", "Sản phẩm không còn hoạt động."
+                )
+            lines = [(direct[1], variant, getattr(variant, "inventory", None))]
         quote, _ = checkout_pricing(user, lines, normalize_voucher_code(request.data))
         return Response(
             {
@@ -159,7 +181,9 @@ class CheckoutQuoteView(APIView):
                 "shipping": quote["shipping"],
                 "total": quote["total"],
                 "currency": "VND",
-                "quote_token": signing.dumps(quote, salt="checkout-preview"),
+                "quote_token": signing.dumps(
+                    quote, salt="checkout-direct" if direct else "checkout-preview"
+                ),
             }
         )
 
@@ -232,25 +256,30 @@ class CheckoutView(APIView):
                     )
 
             address.is_valid(raise_exception=True)
-            cart = Cart.objects.select_for_update().filter(user=user).first()
-            if cart is None:
-                return Response(
-                    {"error": {"code": "cart_empty", "message": "Giỏ hàng trống."}},
-                    status=409,
+            direct = direct_selection(request.data)
+            cart = None
+            if direct is None:
+                cart = Cart.objects.select_for_update().filter(user=user).first()
+                if cart is None:
+                    raise CheckoutConflict("cart_empty", "Giỏ hàng trống.")
+                cart_items = (
+                    CartItem.objects.select_for_update(of=("self",))
+                    .filter(cart=cart)
+                    .select_related("variant")
+                    .order_by("variant_id")
                 )
-            cart_items = list(
-                CartItem.objects.select_for_update(of=("self",))
-                .filter(cart=cart)
-                .select_related("variant", "variant__product")
-                .order_by("variant_id")
-            )
-            if not cart_items:
-                return Response(
-                    {"error": {"code": "cart_empty", "message": "Giỏ hàng trống."}},
-                    status=409,
-                )
-
-            product_ids = {item.variant.product_id for item in cart_items}
+                quantities = [(item.variant_id, item.qty) for item in cart_items]
+                product_ids = {item.variant.product_id for item in cart_items}
+            else:
+                if "quote_token" not in request.data:
+                    raise ValidationError({"detail": "Cần báo giá trước khi mua ngay."})
+                variant = ProductVariant.objects.filter(pk=direct[0]).first()
+                if variant is None:
+                    raise CheckoutConflict(
+                        "variant_inactive", "Sản phẩm không còn hoạt động."
+                    )
+                quantities = [direct]
+                product_ids = {variant.product_id}
             list(
                 Product.objects.select_for_update()
                 .filter(pk__in=product_ids)
@@ -258,18 +287,23 @@ class CheckoutView(APIView):
                 .values_list("pk", flat=True)
             )
             locked_inventory = []
-            for item in cart_items:
+            for variant_id, qty in quantities:
                 variant = (
                     ProductVariant.objects.select_for_update(of=("self",))
                     .select_related("product")
-                    .get(id=item.variant_id)
+                    .filter(id=variant_id)
+                    .first()
                 )
+                if variant is None:
+                    raise CheckoutConflict(
+                        "variant_inactive", "Sản phẩm không còn hoạt động."
+                    )
                 balance = (
                     InventoryBalance.objects.select_for_update()
                     .filter(variant=variant)
                     .first()
                 )
-                locked_inventory.append((item, variant, balance))
+                locked_inventory.append((qty, variant, balance))
 
             quote, voucher = checkout_pricing(
                 user,
@@ -281,7 +315,10 @@ class CheckoutView(APIView):
                 token = request.data["quote_token"]
                 try:
                     expected = (
-                        signing.loads(token, salt="checkout-preview")
+                        signing.loads(
+                            token,
+                            salt="checkout-direct" if direct else "checkout-preview",
+                        )
                         if isinstance(token, str)
                         else None
                     )
@@ -332,12 +369,12 @@ class CheckoutView(APIView):
                 actor=user,
             )
 
-            for item, variant, balance in locked_inventory:
+            for qty, variant, balance in locked_inventory:
                 assert balance is not None
                 before = balance.stock_qty
-                balance.stock_qty -= item.qty
+                balance.stock_qty -= qty
                 balance.save(update_fields=["stock_qty", "updated_at"])
-                line_subtotal = variant.unit_price * item.qty
+                line_subtotal = variant.unit_price * qty
                 order_item = OrderItem.objects.create(
                     order=order,
                     variant=variant,
@@ -346,14 +383,14 @@ class CheckoutView(APIView):
                     size_snapshot=variant.size,
                     color_snapshot=variant.color,
                     unit_price=variant.unit_price,
-                    qty=item.qty,
+                    qty=qty,
                     line_subtotal=line_subtotal,
                 )
                 InventoryMovement.objects.create(
                     variant=variant,
                     kind=InventoryMovement.Kind.CHECKOUT,
                     actor=user,
-                    delta=-item.qty,
+                    delta=-qty,
                     before_qty=before,
                     after_qty=balance.stock_qty,
                     reason=f"Checkout order {order.number}",
@@ -366,10 +403,10 @@ class CheckoutView(APIView):
 
             claim.order = order
             claim.save(update_fields=["order"])
-            cart_items_to_delete = CartItem.objects.filter(cart=cart)
-            cart_items_to_delete.delete()
-            cart.revision += 1
-            cart.save(update_fields=["revision", "updated_at"])
+            if cart is not None:
+                CartItem.objects.filter(cart=cart).delete()
+                cart.revision += 1
+                cart.save(update_fields=["revision", "updated_at"])
 
         return Response(OrderSerializer(order).data, status=201)
 

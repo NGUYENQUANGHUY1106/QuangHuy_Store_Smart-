@@ -9,6 +9,7 @@ import {
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { Button } from './Button'
+import { ProfileAvatar } from './ReviewDetails'
 import { useCart } from '../context/CartContext'
 import { useAuth } from '../context/AuthContext'
 import { mockApi } from '../services/mockApi'
@@ -89,7 +90,7 @@ export function Header() {
                 onClick={() => setAccountMenuOpen((open) => !open)}
                 aria-expanded={accountMenuOpen}
               >
-                <span className="user-avatar">{user.name.charAt(0)}</span>
+                <ProfileAvatar name={user.name} url={user.avatarUrl} />
                 <span className="account-name">{user.name}</span>
                 <ChevronDown size={15} />
               </button>

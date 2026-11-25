@@ -1,6 +1,9 @@
 asgiref==3.13.0
 colorama==0.4.6
 Django==5.2.19
+channels==4.3.2
+daphne==4.2.3
+types-channels==4.3.0.20250822
 django-cors-headers==4.9.0
 django-stubs==5.2.9
 django-stubs-ext==6.1.2

@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthContext'
 import { Breadcrumb } from '../components/Breadcrumb'
 import { Button } from '../components/Button'
 import { Modal } from '../components/Modal'
+import { ProfileAvatar } from '../components/ReviewDetails'
 import { mockApi } from '../services/mockApi'
 
 export function AccountLayoutPage() {
@@ -19,7 +20,7 @@ export function AccountLayoutPage() {
         items={[{ label: 'Trang chủ', href: '/' }, { label: 'Tài khoản' }]}
       />
       <header className="account-header">
-        <div className="user-avatar large">{user?.name.charAt(0) ?? 'U'}</div>
+        <ProfileAvatar name={user.name} url={user.avatarUrl} large />
         <div>
           <h1>Tài khoản của tôi</h1>
           <p>{user.name}</p>
@@ -55,12 +56,19 @@ export function AccountLayoutPage() {
 }
 
 export function ProfilePage() {
-  const { user, updateProfile } = useAuth()
+  const { user, updateProfile, updateAvatar } = useAuth()
+  const [avatar, setAvatar] = useState<File>()
+  const [avatarBusy, setAvatarBusy] = useState(false)
+  const [avatarFeedback, setAvatarFeedback] = useState<{
+    success: boolean
+    text: string
+  }>()
   const [message, setMessage] = useState('')
   const [saveError, setSaveError] = useState('')
   const [saving, setSaving] = useState(false)
+  const [nameInput, setName] = useState<string | null>(null)
+  const fullName = nameInput ?? user?.fullName ?? ''
   const [form, setForm] = useState({
-    name: user?.name ?? '',
     phone: user?.phone ?? '',
     birthday: user?.birthday ?? '',
     gender: user?.gender ?? 'Nam',
@@ -72,7 +80,8 @@ export function ProfilePage() {
     setMessage('')
     setSaveError('')
     try {
-      await updateProfile(form)
+      await updateProfile({ ...form, name: fullName })
+      setName(null)
       setMessage('Đã lưu thông tin cá nhân.')
     } catch (error) {
       setSaveError(
@@ -85,15 +94,82 @@ export function ProfilePage() {
     }
   }
 
+  async function saveAvatar(file: File | null) {
+    setAvatarBusy(true)
+    setAvatarFeedback(undefined)
+    try {
+      await updateAvatar(file)
+      setAvatar(undefined)
+      setAvatarFeedback({
+        success: true,
+        text: file ? 'Đã cập nhật ảnh đại diện.' : 'Đã gỡ ảnh đại diện.',
+      })
+    } catch (error) {
+      setAvatarFeedback({
+        success: false,
+        text:
+          error instanceof Error
+            ? error.message
+            : 'Không thể cập nhật ảnh đại diện.',
+      })
+    } finally {
+      setAvatarBusy(false)
+    }
+  }
+
   return (
     <section className="account-panel">
       <h2>Thông tin cá nhân</h2>
+      <form
+        className="profile-avatar-form"
+        onSubmit={(event) => {
+          event.preventDefault()
+          if (avatar && !avatarBusy) void saveAvatar(avatar)
+        }}
+      >
+        <ProfileAvatar name={user?.name || 'U'} url={user?.avatarUrl} large />
+        <label>
+          Ảnh đại diện
+          <input
+            key={user?.avatarUrl ?? 'default'}
+            type="file"
+            accept="image/jpeg,image/png,image/webp"
+            disabled={avatarBusy}
+            onChange={(event) => setAvatar(event.target.files?.[0])}
+          />
+          <small>Ảnh xuất hiện cùng đánh giá và phản hồi của bạn.</small>
+        </label>
+        <div className="hero-actions">
+          <Button type="submit" disabled={!avatar || avatarBusy}>
+            Cập nhật ảnh
+          </Button>
+          {user?.avatarUrl && (
+            <Button
+              type="button"
+              variant="secondary"
+              disabled={avatarBusy}
+              onClick={() => void saveAvatar(null)}
+            >
+              Gỡ ảnh
+            </Button>
+          )}
+        </div>
+        {avatarFeedback && (
+          <p role={avatarFeedback.success ? 'status' : 'alert'}>
+            {avatarFeedback.text}
+          </p>
+        )}
+      </form>
       <form className="form-grid" onSubmit={submit}>
         <label>
           Họ và tên
           <input
-            value={form.name}
-            onChange={(event) => setForm({ ...form, name: event.target.value })}
+            value={fullName}
+            autoComplete="name"
+            placeholder="Nguyễn Văn A"
+            maxLength={150}
+            required
+            onChange={(event) => setName(event.target.value)}
           />
         </label>
         <label>

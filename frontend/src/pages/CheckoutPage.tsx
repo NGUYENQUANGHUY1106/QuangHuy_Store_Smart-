@@ -6,15 +6,59 @@ import { formatVnd } from '../utils/format'
 import { Breadcrumb } from '../components/Breadcrumb'
 import { Button } from '../components/Button'
 import { mockApi } from '../services/mockApi'
+import type { Product } from '../components/ProductCard'
 
 export function CheckoutPage() {
   const { items, clearCart, busy, error: cartError, getItemDetails } = useCart()
   const { user } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
+  const search = new URLSearchParams(location.search)
+  const direct =
+    search.has('product') || search.has('variant') || search.has('qty')
+  const productSlug = search.get('product') ?? ''
+  const variantId = search.get('variant') ?? ''
+  const qty = Number(search.get('qty'))
+  const validSelection =
+    !!productSlug && !!variantId && Number.isSafeInteger(qty) && qty > 0
+  const [directResult, setDirectResult] = useState<{
+    slug: string
+    product?: Product
+    error?: string
+  }>()
+  const currentResult =
+    directResult?.slug === productSlug ? directResult : undefined
+  const directProduct = currentResult?.product
+  const productError = currentResult?.error
+  const directVariant = directProduct?.variants.find(
+    (variant) => variant.id === variantId,
+  )
+  const directReady = validSelection && Boolean(directVariant)
+  const cartItems = direct ? null : items
+
+  useEffect(() => {
+    if (!direct || !validSelection) return
+    let active = true
+    mockApi
+      .getCatalogProduct(productSlug)
+      .then((result: Product) => {
+        if (active) setDirectResult({ slug: productSlug, product: result })
+      })
+      .catch(() => {
+        if (active) {
+          setDirectResult({
+            slug: productSlug,
+            error: 'Không thể tải sản phẩm để mua ngay.',
+          })
+        }
+      })
+    return () => {
+      active = false
+    }
+  }, [direct, validSelection, productSlug])
 
   const passedVoucher =
-    typeof location.state?.voucherCode === 'string'
+    !direct && typeof location.state?.voucherCode === 'string'
       ? location.state.voucherCode
       : ''
   const [pricing, setPricing] = useState<{
@@ -29,12 +73,15 @@ export function CheckoutPage() {
   const userId = user?.id
 
   useEffect(() => {
-    if (!userId || items.length === 0) return
+    if (!userId || (direct ? !directReady : !cartItems?.length)) return
     let active = true
     setPricing(undefined)
     setQuoteError('')
     mockApi
-      .quoteCheckout(passedVoucher)
+      .quoteCheckout(
+        passedVoucher,
+        direct ? { variant_id: variantId, qty } : undefined,
+      )
       .then((response) => {
         if (!active) return
         const { subtotal, discount, shipping, total, quote_token } = response
@@ -64,7 +111,16 @@ export function CheckoutPage() {
     return () => {
       active = false
     }
-  }, [userId, items, passedVoucher, refreshQuote])
+  }, [
+    userId,
+    cartItems,
+    direct,
+    directReady,
+    variantId,
+    qty,
+    passedVoucher,
+    refreshQuote,
+  ])
 
   const [payment, setPayment] = useState<
     'COD' | 'BANK_TRANSFER' | 'VNPAY_SANDBOX'
@@ -86,7 +142,8 @@ export function CheckoutPage() {
     user?.addresses.find((entry) => entry.id === selectedAddressId) ??
     user?.addresses.find((entry) => entry.isDefault) ??
     user?.addresses[0]
-  const name = nameInput ?? savedAddress?.receiver ?? user?.name ?? ''
+  const name =
+    nameInput ?? savedAddress?.receiver ?? user?.fullName ?? user?.name ?? ''
   const phone = phoneInput ?? savedAddress?.phone ?? user?.phone ?? ''
   const email = emailInput ?? user?.email ?? ''
   const address = addressInput ?? savedAddress?.address ?? ''
@@ -118,6 +175,7 @@ export function CheckoutPage() {
       quote_token: pricing.token,
       address_snapshot: addressSnapshot,
       ...(passedVoucher ? { voucher_code: passedVoucher } : {}),
+      ...(direct ? { direct_item: { variant_id: variantId, qty } } : {}),
     }
 
     try {
@@ -126,7 +184,7 @@ export function CheckoutPage() {
         intent.current = { body, key: crypto.randomUUID() }
       const res = await mockApi.checkout(payload, intent.current.key)
       if (typeof res?.id === 'string' && typeof res.number === 'string') {
-        clearCart()
+        if (!direct) clearCart()
         navigate(`/order-success?order=${encodeURIComponent(res.id)}`)
         return
       }
@@ -141,18 +199,40 @@ export function CheckoutPage() {
     }
   }
 
-  if (!user && items.length > 0) {
+  if (!user && (direct || items.length > 0)) {
     return (
       <section className="empty-state">
         <h1>Đăng nhập để thanh toán</h1>
-        <Link to="/login">Đăng nhập</Link>
+        <Link
+          to="/login"
+          state={
+            direct ? { returnTo: `/checkout${location.search}` } : undefined
+          }
+        >
+          Đăng nhập
+        </Link>
       </section>
     )
   }
-  if (busy && !items.length) return <p role="status">Đang tải giỏ hàng…</p>
-  if (cartError && !items.length) return <p role="alert">{cartError}</p>
+  if (
+    direct &&
+    (!validSelection ||
+      productError ||
+      (directProduct?.slug === productSlug && !directVariant))
+  ) {
+    return (
+      <p role="alert">
+        {productError || 'Sản phẩm hoặc biến thể mua ngay không hợp lệ.'}
+      </p>
+    )
+  }
+  if (direct && !directReady) return <p role="status">Đang tải sản phẩm…</p>
+  if (!direct && busy && !items.length)
+    return <p role="status">Đang tải giỏ hàng…</p>
+  if (!direct && cartError && !items.length)
+    return <p role="alert">{cartError}</p>
 
-  if (items.length === 0) {
+  if (!direct && items.length === 0) {
     return (
       <div className="checkout-page">
         <Breadcrumb
@@ -173,7 +253,12 @@ export function CheckoutPage() {
       <Breadcrumb
         items={[
           { label: 'Trang chủ', href: '/' },
-          { label: 'Giỏ hàng', href: '/cart' },
+          direct && directProduct
+            ? {
+                label: directProduct.name,
+                href: `/products/${directProduct.slug}`,
+              }
+            : { label: 'Giỏ hàng', href: '/cart' },
           { label: 'Thanh toán' },
         ]}
       />
@@ -353,7 +438,18 @@ export function CheckoutPage() {
 
         <aside className="order-summary checkout-summary">
           <h2>Đơn hàng</h2>
-          {items.map((item) => {
+          {direct && directProduct && directVariant && (
+            <div className="checkout-item">
+              <img src={directProduct.image} alt="" />
+              <div>
+                <strong>{directProduct.name}</strong>
+                <small>
+                  {directVariant.color} / {directVariant.size} × {qty}
+                </small>
+              </div>
+            </div>
+          )}
+          {cartItems?.map((item) => {
             const details = getItemDetails(item)
             if (!details) return null
             return (
@@ -416,7 +512,7 @@ export function CheckoutPage() {
           <Button
             size="lg"
             type="submit"
-            disabled={submitting || !pricing || busy}
+            disabled={submitting || !pricing || (!direct && busy)}
           >
             {submitting ? 'Đang tạo đơn hàng...' : 'Đặt hàng ngay'}
           </Button>

@@ -7,6 +7,8 @@ import { formatVnd } from '../utils/format'
 import { Breadcrumb } from '../components/Breadcrumb'
 import { Button } from '../components/Button'
 import { type Product } from '../components/ProductCard'
+import { ProductReviews } from './ProductReviews'
+import { ProductChatButton } from '../components/CustomerProductChat'
 
 export function ProductDetailPage() {
   const { slug } = useParams()
@@ -91,6 +93,9 @@ export function ProductDetailPage() {
     (image) => !image.color || image.color === selectedColor,
   )
   const currentImage = photos.find((image) => image.url === photo)
+  const colorPrices = product.variants
+    .filter((variant) => variant.color === selectedColor)
+    .map((variant) => variant.unitPrice ?? product.salePrice)
   const mainImage =
     currentImage?.url ||
     photos[0]?.url ||
@@ -111,6 +116,19 @@ export function ProductDetailPage() {
           : 'Không thể thêm sản phẩm vào giỏ hàng.',
       )
     }
+  }
+
+  const buyNow = () => {
+    if (!selectedVariant?.id || quantity > selectedVariant.stock) {
+      setMessage('Vui lòng chọn màu, size và số lượng còn hàng.')
+      return
+    }
+    const selection = new URLSearchParams({
+      product: product.slug,
+      variant: selectedVariant.id,
+      qty: String(quantity),
+    })
+    navigate(`/checkout?${selection}`)
   }
 
   return (
@@ -238,10 +256,44 @@ export function ProductDetailPage() {
                 <Plus size={16} />
               </button>
             </div>
-            <Button size="lg" type="button" disabled={busy} onClick={addToCart}>
-              Thêm vào giỏ
-            </Button>
+            <div className="product-purchase-actions">
+              <Button
+                size="lg"
+                type="button"
+                variant="secondary"
+                disabled={busy}
+                onClick={addToCart}
+              >
+                Thêm vào giỏ
+              </Button>
+              <Button size="lg" type="button" onClick={buyNow}>
+                Mua ngay
+              </Button>
+            </div>
           </div>
+          <ProductChatButton
+            attachment={{
+              selection: {
+                product_id: product.id,
+                variant_id: selectedVariant?.id,
+                color: selectedColor || undefined,
+              },
+              preview: {
+                id: product.id,
+                slug: product.slug,
+                name: product.name,
+                thumbnail: photos[0]?.url ?? mainImage ?? null,
+                price: String(
+                  selectedVariant?.unitPrice ??
+                    (colorPrices.length
+                      ? Math.min(...colorPrices)
+                      : product.salePrice),
+                ),
+                color: selectedColor,
+                size: selectedSize || null,
+              },
+            }}
+          />
           {message && (
             <p className="variant-message" role="status">
               {message}
@@ -257,6 +309,7 @@ export function ProductDetailPage() {
         </p>
         <p>Chưa có hướng dẫn size</p>
       </section>
+      <ProductReviews key={product.slug} slug={product.slug} />
     </div>
   )
 }
