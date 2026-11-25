@@ -142,7 +142,8 @@ export function CheckoutPage() {
     user?.addresses.find((entry) => entry.id === selectedAddressId) ??
     user?.addresses.find((entry) => entry.isDefault) ??
     user?.addresses[0]
-  const name = nameInput ?? savedAddress?.receiver ?? user?.name ?? ''
+  const name =
+    nameInput ?? savedAddress?.receiver ?? user?.fullName ?? user?.name ?? ''
   const phone = phoneInput ?? savedAddress?.phone ?? user?.phone ?? ''
   const email = emailInput ?? user?.email ?? ''
   const address = addressInput ?? savedAddress?.address ?? ''

@@ -15,6 +15,7 @@ import { Link, Navigate, NavLink, Outlet } from 'react-router-dom'
 import { useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { useProductChat } from '../context/useProductChat'
+import { ProfileAvatar } from '../components/ReviewDetails'
 
 const adminNavigation = [
   { label: 'Dashboard', href: '/admin', icon: LayoutDashboard },
@@ -97,9 +98,9 @@ export function AdminLayout() {
               Cửa hàng
             </Link>
             <div className="admin-profile">
-              <span>A</span>
+              <ProfileAvatar name={user.name} url={user.avatarUrl} />
               <div>
-                <strong>Admin</strong>
+                <strong>{user.name}</strong>
                 <small>Quản trị viên</small>
               </div>
             </div>

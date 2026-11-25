@@ -10,6 +10,8 @@ Các bảng thiết kế ở phần dưới ghi cả endpoint mục tiêu. Dùng
 |---|---|---|
 | Auth | POST /auth/register, /auth/login, /auth/refresh, /auth/logout | Email/password và display_name tùy chọn khi tạo, hoặc refresh token khi rotate/logout. Register 201, login/refresh 200, logout 204; invalid credential/token 400/401 tùy endpoint. Role chỉ đọc. |
 | Hồ sơ và địa chỉ | GET/PATCH /auth/me; GET/POST /addresses; GET/PATCH/DELETE /addresses/{id} | U owner, address `receiver,phone,street,area,is_default`. Address list phân trang DRF, frontend lấy mọi trang từ API cùng origin. Owner khác nhận 404. MVP nhập địa chỉ tay theo DEC-014. |
+
+Đăng nhập, đăng ký và `/auth/me` trả `full_name` chỉ đọc từ hồ sơ, có thể rỗng cho tài khoản cũ, cùng `display_name` dùng để trình bày và `avatar_url`. Khi chưa có họ tên, tên hiển thị dùng username, bỏ phần miền nếu username là email. Ghi họ tên qua `display_name`, kiểm giá trị chứa email và chuẩn hóa khoảng trắng.
 | Catalog | GET /categories, /brands, /products, /products/{slug}, /search/suggestions | G. Danh sách theo DRF page; filter q/category/brand/size/color/min_price/max_price/in_stock/sort; chi tiết chỉ published và variants active. |
 | Cart | GET /cart; POST /cart/items; PATCH/DELETE /cart/items/{id}; POST /cart/merge | U owner. Add `variant_id,qty`, PATCH `qty`, merge `items:[{variant_id,qty}]`. GET/add/merge trả cart_revision và items; PATCH trả item; DELETE 204. Tồn thiếu 409. Merge có thể gửi Idempotency-Key dạng UUID. Cùng key và payload trả giỏ hiện tại, không cộng lại; cùng key khác payload trả 409. |
 | Voucher | POST /vouchers/validate | U. `code` → eligible/voucher/discount khi hợp lệ, dùng giỏ người gọi. Checkout kiểm lại thời gian, min, cap và quota. |

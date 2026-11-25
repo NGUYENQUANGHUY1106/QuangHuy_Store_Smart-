@@ -203,6 +203,8 @@ export function RegisterPage() {
               value={name}
               onChange={(event) => setName(event.target.value)}
               placeholder="Nguyễn Văn A"
+              autoComplete="name"
+              maxLength={150}
             />
           </label>
           <label>

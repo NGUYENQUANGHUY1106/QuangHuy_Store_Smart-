@@ -94,6 +94,7 @@ async function fetchJson(path, init) {
     if (
       response.status === 400 &&
       (path === '/auth/register' ||
+        path === '/auth/me' ||
         /^\/admin\/(users|vouchers|media|products|variants)(\/|$)/.test(path))
     ) {
       const messages = Object.keys(body ?? {}).flatMap((field) =>

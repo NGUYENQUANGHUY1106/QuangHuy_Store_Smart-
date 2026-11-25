@@ -66,8 +66,9 @@ export function ProfilePage() {
   const [message, setMessage] = useState('')
   const [saveError, setSaveError] = useState('')
   const [saving, setSaving] = useState(false)
+  const [nameInput, setName] = useState<string | null>(null)
+  const fullName = nameInput ?? user?.fullName ?? ''
   const [form, setForm] = useState({
-    name: user?.name ?? '',
     phone: user?.phone ?? '',
     birthday: user?.birthday ?? '',
     gender: user?.gender ?? 'Nam',
@@ -79,7 +80,8 @@ export function ProfilePage() {
     setMessage('')
     setSaveError('')
     try {
-      await updateProfile(form)
+      await updateProfile({ ...form, name: fullName })
+      setName(null)
       setMessage('Đã lưu thông tin cá nhân.')
     } catch (error) {
       setSaveError(
@@ -162,8 +164,12 @@ export function ProfilePage() {
         <label>
           Họ và tên
           <input
-            value={form.name}
-            onChange={(event) => setForm({ ...form, name: event.target.value })}
+            value={fullName}
+            autoComplete="name"
+            placeholder="Nguyễn Văn A"
+            maxLength={150}
+            required
+            onChange={(event) => setName(event.target.value)}
           />
         </label>
         <label>

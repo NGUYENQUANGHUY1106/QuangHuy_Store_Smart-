@@ -1,8 +1,10 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { describe, expect, it, vi, beforeEach } from 'vitest'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
-import { AccountLayoutPage, AddressesPage } from './AccountPages'
+import { AccountLayoutPage, AddressesPage, ProfilePage } from './AccountPages'
 import { AuthProvider } from '../context/AuthContext'
+import { CartProvider } from '../context/CartContext'
+import { Header } from '../components/Header'
 import { mockApi } from '../services/mockApi'
 
 describe('AccountPages UI', () => {
@@ -25,6 +27,78 @@ describe('AccountPages UI', () => {
     )
 
     expect(screen.getByText('Trang đăng nhập')).toBeInTheDocument()
+  })
+
+  it('updates the name and avatar in both the account page and header', async () => {
+    sessionStorage.setItem(
+      'qhs-user',
+      JSON.stringify({
+        id: 'legacy-user',
+        name: 'legacy@example.com',
+        email: 'legacy@example.com',
+        phone: '',
+        addresses: [],
+      }),
+    )
+    vi.spyOn(mockApi, 'getCart').mockResolvedValue({ items: [] })
+    vi.spyOn(mockApi, 'updateAvatar').mockResolvedValue({
+      avatar_url: '/media/profile-avatars/test',
+    })
+    vi.spyOn(mockApi, 'updateProfile').mockResolvedValue({
+      id: 'legacy-user',
+      display_name: 'Nguyễn Quang Huy',
+      full_name: 'Nguyễn Quang Huy',
+    })
+    const { container } = render(
+      <MemoryRouter initialEntries={['/account']}>
+        <AuthProvider>
+          <CartProvider>
+            <Header />
+            <Routes>
+              <Route path="/account" element={<AccountLayoutPage />}>
+                <Route index element={<ProfilePage />} />
+              </Route>
+            </Routes>
+          </CartProvider>
+        </AuthProvider>
+      </MemoryRouter>,
+    )
+    const name = screen.getByRole('textbox', { name: 'Họ và tên' })
+    expect(name).toHaveValue('')
+    expect(container.querySelector('.account-name')).toHaveTextContent('legacy')
+    expect(screen.queryByText('legacy@example.com')).not.toBeInTheDocument()
+    fireEvent.change(name, { target: { value: 'Nguyễn Quang Huy' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Lưu thay đổi' }))
+    expect(
+      await screen.findByText('Đã lưu thông tin cá nhân.'),
+    ).toBeInTheDocument()
+    expect(container.querySelector('.account-name')).toHaveTextContent(
+      'Nguyễn Quang Huy',
+    )
+    expect(container.querySelector('.account-header p')).toHaveTextContent(
+      'Nguyễn Quang Huy',
+    )
+
+    const file = new File(['avatar'], 'avatar.webp', { type: 'image/webp' })
+    fireEvent.change(container.querySelector('input[type=file]')!, {
+      target: { files: [file] },
+    })
+    fireEvent.click(screen.getByRole('button', { name: 'Cập nhật ảnh' }))
+    expect(
+      await screen.findByText('Đã cập nhật ảnh đại diện.'),
+    ).toBeInTheDocument()
+    for (const selector of [
+      '.account-trigger',
+      '.account-header',
+      '.profile-avatar-form',
+    ]) {
+      expect(
+        container.querySelector(`${selector} .user-avatar img`),
+      ).toHaveAttribute(
+        'src',
+        expect.stringContaining('/media/profile-avatars/test'),
+      )
+    }
   })
 
   it('renders addresses page and shows empty state', () => {

@@ -19,6 +19,7 @@ export type UserAddress = {
 export type UserProfile = {
   id: string
   name: string
+  fullName?: string
   email: string
   phone: string
   avatarUrl?: string | null
@@ -46,11 +47,29 @@ type AuthContextValue = {
 
 const AuthContext = createContext<AuthContextValue | null>(null)
 
+function profileNames(profile: { display_name?: string; full_name?: string }) {
+  const displayName = profile.display_name?.trim() ?? ''
+  const fullName =
+    profile.full_name ?? (displayName.includes('@') ? '' : displayName)
+  return {
+    fullName,
+    name: fullName || displayName.split('@')[0] || 'Tài khoản',
+  }
+}
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<UserProfile | null>(() => {
     try {
       const saved = sessionStorage.getItem('qhs-user')
-      return saved ? (JSON.parse(saved) as UserProfile) : null
+      if (!saved) return null
+      const profile: UserProfile = JSON.parse(saved)
+      return {
+        ...profile,
+        ...profileNames({
+          display_name: profile.name,
+          full_name: profile.fullName,
+        }),
+      }
     } catch {
       return null
     }
@@ -98,7 +117,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             const addrs = await loadAddresses()
             setUser((current) => ({
               id: me.id,
-              name: me.display_name || me.email,
+              ...profileNames(me),
               avatarUrl: me.avatar_url,
               email: me.email,
               phone: me.phone || '',
@@ -123,7 +142,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const addrs = await loadAddresses()
       setUser({
         id: result.user.id,
-        name: result.user.display_name || result.user.email,
+        ...profileNames(result.user),
         avatarUrl: result.user.avatar_url,
         email: result.user.email,
         phone: result.user.phone || '',
@@ -152,7 +171,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     sessionStorage.setItem('qhs-refresh-token', result.refresh)
     setUser({
       id: result.user.id,
-      name: result.user.display_name || result.user.email,
+      ...profileNames(result.user),
       avatarUrl: result.user.avatar_url,
       email: result.user.email,
       phone: result.user.phone || '',
@@ -180,7 +199,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       current && current.id === saved.id
         ? {
             ...current,
-            name: saved.display_name,
+            ...profileNames(saved),
             phone: saved.phone,
             birthday: saved.birthday ?? '',
             gender: saved.gender,
