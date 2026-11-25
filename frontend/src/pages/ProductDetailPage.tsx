@@ -8,6 +8,7 @@ import { Breadcrumb } from '../components/Breadcrumb'
 import { Button } from '../components/Button'
 import { type Product } from '../components/ProductCard'
 import { ProductReviews } from './ProductReviews'
+import { ProductChatButton } from '../components/CustomerProductChat'
 
 export function ProductDetailPage() {
   const { slug } = useParams()
@@ -92,6 +93,9 @@ export function ProductDetailPage() {
     (image) => !image.color || image.color === selectedColor,
   )
   const currentImage = photos.find((image) => image.url === photo)
+  const colorPrices = product.variants
+    .filter((variant) => variant.color === selectedColor)
+    .map((variant) => variant.unitPrice ?? product.salePrice)
   const mainImage =
     currentImage?.url ||
     photos[0]?.url ||
@@ -267,6 +271,29 @@ export function ProductDetailPage() {
               </Button>
             </div>
           </div>
+          <ProductChatButton
+            attachment={{
+              selection: {
+                product_id: product.id,
+                variant_id: selectedVariant?.id,
+                color: selectedColor || undefined,
+              },
+              preview: {
+                id: product.id,
+                slug: product.slug,
+                name: product.name,
+                thumbnail: photos[0]?.url ?? mainImage ?? null,
+                price: String(
+                  selectedVariant?.unitPrice ??
+                    (colorPrices.length
+                      ? Math.min(...colorPrices)
+                      : product.salePrice),
+                ),
+                color: selectedColor,
+                size: selectedSize || null,
+              },
+            }}
+          />
           {message && (
             <p className="variant-message" role="status">
               {message}

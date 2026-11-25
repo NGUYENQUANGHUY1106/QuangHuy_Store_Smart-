@@ -35,10 +35,15 @@ export function LoginPage() {
         navigate(
           typeof returnTo === 'string' &&
             (returnTo.startsWith('/checkout?') ||
-              /^\/products\/[a-z0-9_-]+#reviews$/i.test(returnTo))
+              /^\/products\/[a-z0-9_-]+#(?:reviews|chat)$/i.test(returnTo))
             ? returnTo
             : '/account',
-          { replace: true },
+          {
+            replace: true,
+            state: location.state?.chatAttachment
+              ? { chatAttachment: location.state.chatAttachment }
+              : undefined,
+          },
         )
       } else {
         setError('Email hoặc mật khẩu không đúng.')

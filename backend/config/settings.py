@@ -30,6 +30,7 @@ if not DEBUG and (len(SECRET_KEY) < 50 or not ALLOWED_HOSTS or "*" in ALLOWED_HO
     )
 
 INSTALLED_APPS = [
+    "daphne",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
@@ -108,6 +109,11 @@ SIMPLE_JWT = {
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOW_HEADERS = (*default_headers, "idempotency-key")
 CORS_ALLOWED_ORIGINS = env_list("DJANGO_CORS_ALLOWED_ORIGINS")
+CHANNEL_LAYERS = {"default": {"BACKEND": "channels.layers.InMemoryChannelLayer"}}
+PRODUCT_CHAT_ORIGINS = env_list("PRODUCT_CHAT_ORIGINS") or CORS_ALLOWED_ORIGINS
+if "*" in PRODUCT_CHAT_ORIGINS:
+    raise ValueError("PRODUCT_CHAT_ORIGINS requires explicit allowed origins")
+PRODUCT_CHAT_TTL_SECONDS = max(1, int(os.getenv("PRODUCT_CHAT_TTL_SECONDS", "86400")))
 CORS_ALLOW_CREDENTIALS = bool(CORS_ALLOWED_ORIGINS)
 CSRF_TRUSTED_ORIGINS = env_list("DJANGO_CSRF_TRUSTED_ORIGINS")
 SESSION_ENGINE = "django.contrib.sessions.backends.db"
