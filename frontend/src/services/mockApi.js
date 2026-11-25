@@ -225,11 +225,15 @@ export const mockApi = {
       body: JSON.stringify({ code }),
     })
   },
-  async quoteCheckout(voucherCode) {
+  /** @param {{ variant_id: string, qty: number }} [directItem] */
+  async quoteCheckout(voucherCode, directItem) {
     return fetchJson('/checkout/quote', {
       method: 'POST',
       headers: authHeaders({ 'Content-Type': 'application/json' }),
-      body: JSON.stringify({ voucher_code: voucherCode }),
+      body: JSON.stringify({
+        voucher_code: voucherCode,
+        direct_item: directItem,
+      }),
     })
   },
   async checkout(payload, idempotencyKey) {
@@ -240,6 +244,43 @@ export const mockApi = {
         'Idempotency-Key': idempotencyKey,
       }),
       body: JSON.stringify(payload),
+    })
+  },
+  async getProductReviews(slug, page, orderItem) {
+    const query = new URLSearchParams({ page: String(page) })
+    if (orderItem) query.set('order_item', orderItem)
+    return fetchJson(`/products/${encodeURIComponent(slug)}/reviews?${query}`, {
+      headers: authHeaders(),
+    })
+  },
+  async createReview(orderItemId, rating, body) {
+    return fetchJson('/reviews', {
+      method: 'POST',
+      headers: authHeaders({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify({ order_item_id: orderItemId, rating, body }),
+    })
+  },
+  async replyToReview(reviewId, body) {
+    return fetchJson(`/reviews/${reviewId}/replies`, {
+      method: 'POST',
+      headers: authHeaders({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify({ body }),
+    })
+  },
+  async getAdminReviews(page) {
+    return fetchJson(`/admin/reviews?page=${page}`, { headers: authHeaders() })
+  },
+  async adminReplyToReview(reviewId, body) {
+    return fetchJson(`/admin/reviews/${reviewId}/replies`, {
+      method: 'POST',
+      headers: authHeaders({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify({ body }),
+    })
+  },
+  async removeAdminReview(reviewId) {
+    return fetchJson(`/admin/reviews/${reviewId}`, {
+      method: 'DELETE',
+      headers: authHeaders(),
     })
   },
   async getOrders(page = 1, status = 'all') {
@@ -280,6 +321,8 @@ export const mockApi = {
             : '',
           items: (order.items || []).map((it) => ({
             id: it.id,
+            productSlug: it.product_slug,
+            reviewed: it.reviewed,
             productId: it.variant,
             name: it.product_name_snapshot,
             image: productImageUrl(it.thumbnail),
@@ -378,6 +421,16 @@ export const mockApi = {
   },
   async getMe() {
     return fetchJson('/auth/me', { headers: authHeaders() })
+  },
+  /** @param {File | null} file */
+  async updateAvatar(file) {
+    const body = new FormData()
+    if (file) body.set('avatar', file)
+    return fetchJson('/auth/me/avatar', {
+      method: file ? 'PUT' : 'DELETE',
+      headers: authHeaders(),
+      body: file ? body : undefined,
+    })
   },
   async updateProfile(payload) {
     return fetchJson('/auth/me', {

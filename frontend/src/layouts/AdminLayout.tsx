@@ -1,5 +1,6 @@
 import {
   LayoutDashboard,
+  MessageSquare,
   Package,
   ShoppingCart,
   Users,
@@ -20,6 +21,7 @@ const adminNavigation = [
   { label: 'Đơn hàng', href: '/admin/orders', icon: ShoppingCart },
   { label: 'Người dùng', href: '/admin/users', icon: Users },
   { label: 'Voucher', href: '/admin/vouchers', icon: Package },
+  { label: 'Đánh giá', href: '/admin/reviews', icon: MessageSquare },
   { label: 'Cài đặt', href: '/admin/settings', icon: Warehouse },
 ]
 

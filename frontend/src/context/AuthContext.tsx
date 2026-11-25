@@ -21,6 +21,7 @@ export type UserProfile = {
   name: string
   email: string
   phone: string
+  avatarUrl?: string | null
   birthday?: string
   gender?: string
   role?: string
@@ -38,6 +39,7 @@ type AuthContextValue = {
   ) => Promise<void>
   logout: () => void
   updateProfile: (profile: Partial<UserProfile>) => Promise<void>
+  updateAvatar: (file: File | null) => Promise<void>
   updateAddresses: (addresses: UserProfile['addresses']) => void
   refreshAddresses: () => Promise<void>
 }
@@ -97,6 +99,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             setUser((current) => ({
               id: me.id,
               name: me.display_name || me.email,
+              avatarUrl: me.avatar_url,
               email: me.email,
               phone: me.phone || '',
               birthday: me.birthday || '',
@@ -121,6 +124,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setUser({
         id: result.user.id,
         name: result.user.display_name || result.user.email,
+        avatarUrl: result.user.avatar_url,
         email: result.user.email,
         phone: result.user.phone || '',
         birthday: result.user.birthday || '',
@@ -149,6 +153,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser({
       id: result.user.id,
       name: result.user.display_name || result.user.email,
+      avatarUrl: result.user.avatar_url,
       email: result.user.email,
       phone: result.user.phone || '',
       birthday: result.user.birthday || '',
@@ -194,6 +199,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     )
   }
 
+  const updateAvatar = async (file: File | null) => {
+    const saved = await mockApi.updateAvatar(file)
+    if (!(
+      saved?.avatar_url === null || typeof saved?.avatar_url === 'string'
+    )) {
+      throw new Error('Không thể cập nhật ảnh đại diện.')
+    }
+    setUser((current) =>
+      current?.id === user?.id && current
+        ? { ...current, avatarUrl: saved.avatar_url }
+        : current,
+    )
+  }
+
   const value = useMemo<AuthContextValue>(
     () => ({
       user,
@@ -201,6 +220,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       register,
       logout,
       updateProfile,
+      updateAvatar,
       updateAddresses: (addresses) =>
         setUser((current) => (current ? { ...current, addresses } : current)),
       refreshAddresses,

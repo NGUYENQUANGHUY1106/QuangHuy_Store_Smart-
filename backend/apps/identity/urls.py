@@ -2,6 +2,7 @@ from django.urls import path
 from rest_framework_simplejwt.views import TokenRefreshView
 
 from .admin_views import AdminUserDetail, AdminUserList
+from .avatar_views import ProfileAvatarImageView, ProfileAvatarView
 from .views import (
     AddressDetailView,
     AddressListCreateView,
@@ -19,6 +20,12 @@ urlpatterns = [
     path("auth/logout", LogoutView.as_view()),
     path("auth/refresh", TokenRefreshView.as_view()),
     path("auth/me", MeView.as_view()),
+    path("auth/me/avatar", ProfileAvatarView.as_view()),
+    path(
+        "media/profile-avatars/<uuid:key>",
+        ProfileAvatarImageView.as_view(),
+        name="profile-avatar-image",
+    ),
     path("addresses", AddressListCreateView.as_view()),
     path("addresses/<uuid:pk>", AddressDetailView.as_view()),
 ]

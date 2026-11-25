@@ -1,12 +1,13 @@
 import { Eye, EyeOff } from 'lucide-react'
 import { useRef, useState, type FormEvent } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { Button } from '../components/Button'
 
 export function LoginPage() {
   const { login } = useAuth()
   const navigate = useNavigate()
+  const location = useLocation()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -30,7 +31,15 @@ export function LoginPage() {
     setError('')
     try {
       if (await login(email, password)) {
-        navigate('/account')
+        const returnTo = location.state?.returnTo
+        navigate(
+          typeof returnTo === 'string' &&
+            (returnTo.startsWith('/checkout?') ||
+              /^\/products\/[a-z0-9_-]+#reviews$/i.test(returnTo))
+            ? returnTo
+            : '/account',
+          { replace: true },
+        )
       } else {
         setError('Email hoặc mật khẩu không đúng.')
       }

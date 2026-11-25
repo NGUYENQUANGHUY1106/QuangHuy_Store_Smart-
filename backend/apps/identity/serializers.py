@@ -7,6 +7,7 @@ from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from .models import Address, User
+from .presentation import avatar_url
 
 
 class UserPublicSerializer(serializers.ModelSerializer[User]):
@@ -41,6 +42,7 @@ class UserPublicSerializer(serializers.ModelSerializer[User]):
         return {
             **super().to_representation(instance),
             "display_name": instance.get_full_name() or instance.email,
+            "avatar_url": avatar_url(instance),
         }
 
     def update(self, instance: User, validated_data: dict[str, Any]) -> User:

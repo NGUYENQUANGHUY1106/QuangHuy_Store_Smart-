@@ -3,6 +3,7 @@ from typing import Any
 from rest_framework import serializers
 
 from apps.catalog.images import product_thumbnail
+from apps.catalog.models import Product
 
 from .models import Order, OrderItem, OrderStatusEvent
 
@@ -23,9 +24,18 @@ class CheckoutAddressSerializer(serializers.Serializer[dict[str, Any]]):
 
 class OrderItemSerializer(serializers.ModelSerializer[OrderItem]):
     thumbnail = serializers.SerializerMethodField()
+    product_slug = serializers.SerializerMethodField()
+    reviewed = serializers.SerializerMethodField()
 
     def get_thumbnail(self, obj: OrderItem) -> str | None:
         return product_thumbnail(obj.variant.product, obj.color_snapshot)
+
+    def get_product_slug(self, obj: OrderItem) -> str | None:
+        product = obj.variant.product
+        return product.slug if product.status == Product.Status.PUBLISHED else None
+
+    def get_reviewed(self, obj: OrderItem) -> bool:
+        return hasattr(obj, "review")
 
     class Meta:
         model = OrderItem
@@ -34,6 +44,8 @@ class OrderItemSerializer(serializers.ModelSerializer[OrderItem]):
             "variant_id",
             "product_name_snapshot",
             "thumbnail",
+            "product_slug",
+            "reviewed",
             "sku_snapshot",
             "size_snapshot",
             "color_snapshot",

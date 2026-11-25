@@ -214,4 +214,85 @@ describe('Checkout UI', () => {
       )
     })
   })
+
+  it('quotes and submits only the selected variant for Mua ngay', async () => {
+    sessionStorage.setItem(
+      'qhs-user',
+      JSON.stringify({
+        id: 'buyer',
+        name: 'Buyer',
+        email: 'buyer@example.com',
+        phone: '0900000000',
+        addresses: [
+          {
+            id: 'address',
+            receiver: 'Buyer',
+            phone: '0900000000',
+            address: '123 Test',
+            isDefault: true,
+          },
+        ],
+      }),
+    )
+    vi.spyOn(mockApi, 'getCatalogProduct').mockResolvedValue({
+      id: 'product-1',
+      slug: 'test-kit',
+      name: 'Áo tập',
+      brand: 'Test',
+      category: 'Quần áo',
+      description: '',
+      originalPrice: 500000,
+      salePrice: 500000,
+      rating: 0,
+      reviewCount: 0,
+      images: [],
+      badge: '',
+      image: '/test.webp',
+      variants: [{ id: 'direct-variant', color: 'Đen', size: 'L', stock: 4 }],
+    })
+    vi.spyOn(mockApi, 'getCart').mockResolvedValue({ items: [] })
+    const quote = vi.spyOn(mockApi, 'quoteCheckout').mockResolvedValue({
+      subtotal: '1000000',
+      discount: '0',
+      shipping: '0',
+      total: '1000000',
+      quote_token: 'signed-token',
+    })
+    const checkout = vi
+      .spyOn(mockApi, 'checkout')
+      .mockResolvedValue({ id: 'order-1', number: 'QHS-1' })
+    render(
+      <MemoryRouter
+        initialEntries={[
+          '/checkout?product=test-kit&variant=direct-variant&qty=2',
+        ]}
+      >
+        <AuthProvider>
+          <CartProvider>
+            <Routes>
+              <Route path="/checkout" element={<CheckoutPage />} />
+              <Route path="/order-success" element={<p>Đã đặt hàng</p>} />
+            </Routes>
+          </CartProvider>
+        </AuthProvider>
+      </MemoryRouter>,
+    )
+    expect(await screen.findByText('Đen / L × 2')).toBeInTheDocument()
+    const submit = screen.getByRole('button', { name: 'Đặt hàng ngay' })
+    await waitFor(() => expect(submit).toBeEnabled())
+    fireEvent.click(submit)
+    expect(await screen.findByText('Đã đặt hàng')).toBeInTheDocument()
+    expect(quote).toHaveBeenCalledWith('', {
+      variant_id: 'direct-variant',
+      qty: 2,
+    })
+    expect(checkout).toHaveBeenCalledWith(
+      expect.objectContaining({
+        payment_method: 'COD',
+        quote_token: 'signed-token',
+        direct_item: { variant_id: 'direct-variant', qty: 2 },
+      }),
+      expect.any(String),
+    )
+  })
 })

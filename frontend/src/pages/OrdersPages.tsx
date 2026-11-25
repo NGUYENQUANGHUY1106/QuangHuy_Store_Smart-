@@ -7,6 +7,9 @@ import { Button } from '../components/Button'
 import { Modal } from '../components/Modal'
 
 type OrderLine = {
+  id?: string
+  productSlug?: string | null
+  reviewed?: boolean
   sku: string
   name: string
   color: string
@@ -14,6 +17,22 @@ type OrderLine = {
   image: string
   lineSubtotal: number
   quantity: number
+}
+
+function OrderReviewLink({ item }: { item: OrderLine }) {
+  if (!item.productSlug) return null
+  const selection =
+    !item.reviewed && item.id
+      ? `?reviewItem=${encodeURIComponent(item.id)}`
+      : ''
+  return (
+    <Link
+      className="text-link"
+      to={`/products/${item.productSlug}${selection}#reviews`}
+    >
+      {item.reviewed ? 'Xem đánh giá' : 'Đánh giá sản phẩm'}
+    </Link>
+  )
 }
 type OrderSummary = {
   id: string
@@ -117,6 +136,9 @@ export function OrdersPage() {
                         <small>
                           {color} / {size} × {item.quantity}
                         </small>
+                        {order.status === 'completed' && (
+                          <OrderReviewLink item={item} />
+                        )}
                       </div>
                     </div>
                   )
@@ -222,7 +244,10 @@ export function OrderDetailPage() {
           ? `${apiOrder.address_snapshot.receiver || ''} - ${apiOrder.address_snapshot.phone || ''} - ${apiOrder.address_snapshot.street || ''}`
           : '',
         items: (apiOrder.items || []).map((it: any) => ({
+          id: it.id,
           productId: it.variant,
+          productSlug: it.product_slug,
+          reviewed: it.reviewed,
           name: it.product_name_snapshot,
           image: productImageUrl(it.thumbnail),
           sku: it.sku_snapshot,
@@ -355,6 +380,9 @@ export function OrderDetailPage() {
                 <small>
                   {color} / {size} × {item.quantity}
                 </small>
+                {order.status === 'completed' && (
+                  <OrderReviewLink item={item} />
+                )}
               </div>
               <strong>{formatVnd(price)}</strong>
             </article>

@@ -1209,6 +1209,145 @@ input:focus-visible {
   gap: 12px;
 }
 
+.product-purchase-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.product-purchase-actions .button {
+  flex: 1 0 auto;
+}
+
+.product-reviews {
+  display: grid;
+  gap: 16px;
+  overflow-wrap: anywhere;
+}
+
+.product-review-form,
+.product-review,
+.review-replies {
+  display: grid;
+  gap: 12px;
+}
+
+.review-author,
+.review-product {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.review-author .user-avatar {
+  flex: 0 0 auto;
+  text-transform: uppercase;
+}
+
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-avatar-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-block: 12px 24px;
+}
+
+.profile-avatar-form label {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.profile-avatar-form input {
+  max-width: 100%;
+}
+
+.shop-author {
+  color: var(--color-accent-ink);
+}
+
+.review-product img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  background: #efeeea;
+  flex: 0 0 auto;
+}
+
+.review-product small {
+  display: block;
+}
+
+.admin-review-page,
+.admin-review {
+  display: grid;
+  gap: 16px;
+  overflow-wrap: anywhere;
+}
+
+.admin-review-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px 24px;
+}
+
+.product-review {
+  padding-block: 16px;
+  border-top: 1px solid var(--color-border);
+}
+
+.product-review-form label:has(textarea) {
+  display: grid;
+  gap: 6px;
+}
+
+.product-review-form textarea {
+  width: 100%;
+  max-width: 640px;
+  padding: 8px 12px;
+  border: 1px solid var(--color-border);
+  background: white;
+}
+
+.product-review-form > .button,
+.product-review > .button,
+.product-review > .text-link {
+  justify-self: start;
+}
+
+.review-rating-options,
+.product-review-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+}
+
+.review-rating-options label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+}
+
+.product-review-stars {
+  color: var(--color-accent-ink);
+}
+
+.review-replies {
+  padding-inline-start: 12px;
+  border-inline-start: 2px solid var(--color-border);
+}
+
 .quantity-control {
   height: 44px;
   border: 1px solid var(--color-border);
@@ -3122,7 +3261,11 @@ input:focus-visible {
   }
 
   .add-cart-row {
-    grid-template-columns: 112px 1fr;
+    grid-template-columns: 1fr;
+  }
+
+  .add-cart-row .quantity-control {
+    width: 112px;
   }
 
   .review-list {

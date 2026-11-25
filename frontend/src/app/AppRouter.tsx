@@ -41,6 +41,7 @@ import {
   SystemStatePage,
 } from '../pages/InformationPages'
 import { NewReviewPage, ReviewHistoryPage } from '../pages/ReviewsPages'
+import { AdminReviewsPage } from '../pages/AdminReviewsPage'
 import {
   VerifyEmailPage,
   TrackOrderPage,
@@ -325,6 +326,7 @@ export function AppRouter() {
             .map((route) => {
               let element
               if (route.code === 'A02') element = <AdminDashboardPage />
+              else if (route.code === 'A22') element = <AdminReviewsPage />
               else if (route.code === 'A03') element = <AdminProductsPage />
               else if (route.code === 'A04' || route.code === 'A05')
                 element = <AdminProductFormPage />

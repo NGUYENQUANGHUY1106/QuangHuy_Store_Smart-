@@ -57,6 +57,11 @@ describe('Catalog & Detail UI', () => {
   })
 
   it('selects variant and displays stock on product detail page', async () => {
+    vi.spyOn(mockApi, 'getProductReviews').mockResolvedValue({
+      results: [],
+      eligible_order_item_id: null,
+      next: null,
+    })
     vi.spyOn(mockApi, 'getCatalogProduct').mockResolvedValue({
       id: 'p-detail',
       name: 'Giày Chi Tiết',
@@ -90,6 +95,7 @@ describe('Catalog & Detail UI', () => {
           <CartProvider>
             <Routes>
               <Route path="/products/:slug" element={<ProductDetailPage />} />
+              <Route path="/checkout" element={<p>Thanh toán trực tiếp</p>} />
             </Routes>
           </CartProvider>
         </AuthProvider>
@@ -118,5 +124,10 @@ describe('Catalog & Detail UI', () => {
     expect(
       await screen.findByText('Đã thêm 1 sản phẩm vào giỏ hàng.'),
     ).toBeInTheDocument()
+
+    const addItem = vi.spyOn(mockApi, 'addCartItem')
+    fireEvent.click(screen.getByRole('button', { name: 'Mua ngay' }))
+    expect(screen.getByText('Thanh toán trực tiếp')).toBeInTheDocument()
+    expect(addItem).not.toHaveBeenCalled()
   })
 })
