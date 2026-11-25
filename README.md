@@ -50,6 +50,8 @@ npm.cmd run dev
 
 Mở `http://127.0.0.1:5173`. Vite proxy `/health`. Các API ứng dụng dùng `VITE_API_ORIGIN` (mặc định `http://127.0.0.1:8000`). Trong `backend/.env` local, thêm đúng origin frontend vào `DJANGO_CORS_ALLOWED_ORIGINS`, ví dụ `http://127.0.0.1:5173`. Restart Django sau khi cập nhật biến. `VITE_API_ORIGIN` là public. Với React admin, tạo tài khoản local và gán role ADMIN qua quy trình quản trị database/shell được phép; server API kiểm role.
 
+Chạy lại `pip install -r requirements.txt` và `python manage.py migrate` khi cập nhật lên phiên bản chat và avatar. Lệnh `runserver` dùng Daphne/ASGI để hỗ trợ WebSocket. Xem [cấu hình và kiểm thử Product Chat](docs/06_Deployment/Product_Chat.md).
+
 ### Browser smoke với database test PostgreSQL
 
 1. Khởi động Vite ở `127.0.0.1:5173` bằng `npm.cmd run dev`. Giữ port 8000 trống cho Django fixture.

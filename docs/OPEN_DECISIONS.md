@@ -45,6 +45,12 @@ Có 13 quyết định APPROVED. DEC-001/005/013 còn OPEN cho AI ngoài phạm 
 | DEC-006/007 APPROVED | QHS-025 nghiệm thu trên máy local |
 | DEC-001/005/013 OPEN | AI còn ngoài nghiệm thu P0 theo DEC-010; chặn chọn pipeline, ảnh thật, quota và retention |
 
+## Phạm vi được giao sau P0
+
+- Ngày 25/11/2026, chủ dự án giao FR-CHAT-001 cho chat người thật giữa cửa hàng và khách hàng, có WebSocket và lịch sử tạm TTL 24 giờ mặc định. Avatar tải trong hồ sơ là ảnh người dùng chọn để hiển thị trên đánh giá và tin nhắn. Phạm vi dùng một tiến trình ASGI cho bản local.
+
+- Phạm vi bổ sung theo chỉ đạo trực tiếp của chủ dự án ngày 25/11/2026, sau P0. QHS-035.1 cho phép khách chấm sao và viết nhận xét cho sản phẩm đã mua trong đơn hoàn thành. Chủ shop và khách đăng nhập được phản hồi đánh giá hiện có, gồm khách chưa có đơn hoàn thành. QHS-018.1 bổ sung Mua ngay vào luồng thanh toán hiện tại.
+
 ## Cách ghi nhận phê duyệt
 
 Mỗi mục ghi lựa chọn cụ thể, người duyệt, ngày duyệt, phạm vi và evidence liên quan. Chủ dự án có thể trả lời theo ID. Ví dụ “DEC-003: chọn giảm tồn khi tạo đơn, một kho” mới là đầu vào phê duyệt; việc báo cáo khuyến nghị phương án đó không phải approval.

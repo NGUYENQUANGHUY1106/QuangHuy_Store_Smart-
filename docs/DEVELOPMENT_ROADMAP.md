@@ -41,7 +41,9 @@ Không đồng nghĩa các nhánh độc lập phải được làm bởi nhiề
 | Dashboard | DEC-012 đã duyệt ngày 23/11/2026 | Không gọi tổng đơn tạo mới là doanh thu đã thu |
 | AI spike/integration | DEC-001/005/013, scope/timebox từ DEC-007 | Chỉ nghiên cứu bằng nguồn công khai/ảnh có quyền; không mở upload thật, không cam kết giày và áo cùng model |
 | Demo release | DEC-006/007 đã duyệt local; QHS-024 | Không tự deploy giao dịch production; không giả SLA miễn phí |
-| P2 | Provider/budget/policy mở rộng | DEC-015 duyệt voucher cơ bản cho MVP. Review, gateway thật và mở rộng voucher theo gate riêng. |
+| P2 | Provider/budget/policy mở rộng | DEC-015 duyệt voucher cơ bản cho MVP. QHS-035.1 đánh giá và phản hồi được chủ dự án giao ngày 25/11/2026. Moderation, gateway thật và mở rộng voucher theo gate riêng. |
+
+Sau P0, chủ dự án giao QHS-035.3 cập nhật danh tính đánh giá, QHS-008.1 avatar hồ sơ và QHS-039 chat giữa khách với cửa hàng. QHS-039 phụ thuộc xác thực, danh mục công khai và avatar hồ sơ; phạm vi nghiệm thu hiện tại là một tiến trình ASGI local. [Cấu hình và giới hạn](06_Deployment/Product_Chat.md).
 
 ## Kiểm chứng và quản lý lỗi
 
