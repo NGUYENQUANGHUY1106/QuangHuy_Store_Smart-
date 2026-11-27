@@ -154,3 +154,34 @@ def test_dashboard_uses_saigon_completion_day_and_excludes_shipping(
     assert data["inventory"]["low_stock_count"] == 1
     assert data["top_products"] == [{"sku_snapshot": "DASH-41", "quantity": 1}]
     assert data["metrics_policy"] == "dec_012"
+
+    extra_event = OrderStatusEvent.objects.create(
+        order=order_completed, to_status=Order.Status.COMPLETED
+    )
+    OrderStatusEvent.objects.filter(pk=extra_event.pk).update(
+        created_at=datetime(2026, 11, 24, 0, 0, tzinfo=UTC)
+    )
+    Order.objects.filter(number="QHS-DASH-PENDING").update(
+        created_at=datetime(2026, 11, 22, 16, 59, tzinfo=UTC)
+    )
+    Order.objects.exclude(number="QHS-DASH-PENDING").update(
+        created_at=datetime(2026, 11, 17, 0, 0, tzinfo=UTC)
+    )
+    report = client.get(endpoint, {"date": "2026-11-24", "days": "7"}, **headers).json()
+    assert report["start_date"] == "2026-11-18"
+    assert report["revenue_delivered"] == "650000.00"
+    assert len(report["series"]) == 7
+    assert report["series"][-3]["orders_created"] == 1
+    assert report["series"][-2] == {
+        "date": "2026-11-23",
+        "orders_created": 0,
+        "orders_completed": 1,
+        "revenue_delivered": "650000.00",
+    }
+    assert report["series"][-1]["orders_completed"] == 0
+    assert report["top_skus"][0]["name"] == "Giày Dash"
+    assert report["inventory"]["watch"][0]["stock_qty"] == 3
+    assert report["catalog"]["published"] == 1
+    assert report["recent_orders"][0]["number"] == "QHS-DASH-PENDING"
+    assert "user" not in report["recent_orders"][0]
+    assert client.get(endpoint, {"days": "31"}, **headers).status_code == 400

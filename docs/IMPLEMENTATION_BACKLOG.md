@@ -116,3 +116,12 @@ Kiểm chứng QHS-035.2: migration bổ sung `reviews.0002` đã xem SQL và á
 - QHS-039 · FR-CHAT-001 / NFR-SEC-001/002 · **Review**. QHS-039-AC1: từ sản phẩm mở chat, giữ cùng một cuộc trò chuyện với thẻ biến thể đúng. QHS-039-AC2: Admin xem inbox, lọc/tìm và chat hai chiều, có trạng thái gửi/nhận/xem, typing và unread. QHS-039-AC3: kiểm quyền và Origin, kết nối lại, retry không trùng, TTL xóa nội dung RAM không ghi PostgreSQL. Phụ thuộc QHS-005/009 và QHS-008.1. Phạm vi Channels/ASGI, React và test. [Báo cáo nghiệm thu local](evidence/PRODUCT_CHAT_2026-11-25.md).
 
 Hồi quy QHS-008.1-AC1, 25/11/2026. Thanh điều hướng Customer/Admin dùng avatar và tên từ cùng hồ sơ. API tách `full_name` khỏi tên trình bày, hồ sơ cũ chưa có họ tên có ô trống và username trong header. Chrome local kiểm tài khoản test từ đăng nhập, cập nhật họ tên/ảnh đến reload và Admin, PASS. `python -m pytest -q` 54/54 PostgreSQL 18.6, Ruff và mypy đạt. `npx vitest run --maxWorkers=4` 28/28 và `npm run build` đạt. Không phát sinh migration.
+
+### QHS-022.1 — Báo cáo tổng quan Admin theo kỳ
+
+27/11/2026 · **Review** · FR-DASH-001, FR-ADM-001, NFR-UX-001 · QHS-022, DEC-011/012 · Baseline `14f84d5`.
+
+- QHS-022.1-AC1 · Kỳ 1/7/14/30 ngày kết thúc theo Asia/Saigon. Giá trị hàng theo DEC-012, có ngày trống, loại phí ship, một đơn chỉ tính theo event hoàn tất đầu tiên. COD vẫn hiện “Chưa theo dõi”. **PASS** regression PostgreSQL về biên ngày, event trùng, phép tính giá trị và quyền ADMIN.
+- QHS-022.1-AC2 · Biểu đồ tương tác chuyển giữa giá trị hàng và đơn mới/hoàn thành. Có trạng thái đơn hiện tại, đơn mới nhất, Top SKU có tên và biến thể, tồn thấp/hết hàng, tổng quan sản phẩm và khách hàng. **PASS** Chrome 1440/390 px với API local thật, kiểm kỳ 7/30 ngày, đổi ngày, trạng thái rỗng, focus và chế độ giảm chuyển động.
+
+Phạm vi `apps/analytics`, `AdminDashboardPage`, CSS, service và test. `python -m pytest -q` 56/56 trên PostgreSQL 18.6, Ruff và mypy cho backend liên quan đạt. `npm run build`, `npm run lint` và `npx vitest run --maxWorkers=4` 28/28 đạt, exit 0. Ảnh Chrome local đã che phần thông tin tài khoản và mã đơn tại `%LOCALAPPDATA%/QuangHuySport/dashboard-2026-11-27/`. Rollback mã nguồn cùng frontend/backend. Không có migration.

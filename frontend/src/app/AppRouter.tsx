@@ -42,6 +42,7 @@ import {
 } from '../pages/InformationPages'
 import { NewReviewPage, ReviewHistoryPage } from '../pages/ReviewsPages'
 import { AdminReviewsPage } from '../pages/AdminReviewsPage'
+import { AdminDashboardPage } from '../pages/AdminDashboardPage'
 import { AdminMessagesPage } from '../pages/AdminMessagesPage'
 import { CustomerProductChat } from '../components/CustomerProductChat'
 import {
@@ -59,7 +60,6 @@ import {
   AiPrivacyPage,
 } from '../pages/AiPaymentPages'
 import {
-  AdminDashboardPage,
   AdminProductsPage,
   AdminProductFormPage,
   AdminOrdersPage,
