@@ -1,7 +1,7 @@
 import { MemoryRouter } from 'react-router-dom'
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, expect, it, vi } from 'vitest'
-import { AdminDashboardPage } from './AdminPages'
+import { AdminDashboardPage } from './AdminDashboardPage'
 import { mockApi } from '../services/mockApi'
 
 afterEach(() => {
@@ -14,26 +14,60 @@ afterEach(() => {
 it('shows the approved dashboard metrics and requests the selected day', async () => {
   const metrics = vi.spyOn(mockApi, 'getDashboardMetrics').mockResolvedValue({
     date: '2026-11-23',
-    orders: { pending: 1 },
-    inventory: { low_stock_count: 1 },
+    start_date: '2026-11-23',
+    orders: {
+      pending: 1,
+      confirmed: 0,
+      shipping: 0,
+      completed: 1,
+      cancelled: 0,
+      total: 2,
+    },
+    inventory: { low_stock_count: 1, out_of_stock_count: 0, watch: [] },
+    catalog: { published: 1, draft: 0, archived: 0, active_customers: 1 },
     revenue_delivered: '650000.00',
     cod_collected: null,
-    top_products: [{ sku_snapshot: 'DASH-41', quantity: 2 }],
+    series: [
+      {
+        date: '2026-11-23',
+        revenue_delivered: '650000.00',
+        orders_created: 0,
+        orders_completed: 1,
+      },
+    ],
+    top_skus: [
+      {
+        sku_snapshot: 'DASH-41',
+        name: 'Giày Dash',
+        color: 'Đen',
+        size: '41',
+        quantity: 2,
+      },
+    ],
+    recent_orders: [],
   })
   render(
     <MemoryRouter>
       <AdminDashboardPage />
     </MemoryRouter>,
   )
-  expect(await screen.findByText('Giá trị hàng đã giao sau giảm')).toBeVisible()
-  expect(screen.getByText(/650[.,]000/)).toBeVisible()
-  expect(screen.getByText('Chưa theo dõi')).toBeVisible()
-  expect(screen.getByText('DASH-41 · 2')).toBeVisible()
-  fireEvent.change(screen.getByLabelText('Ngày báo cáo (Asia/Saigon)'), {
+  expect(await screen.findByText('COD đã thu · Chưa theo dõi')).toBeVisible()
+  expect(screen.getAllByText(/650[.,]000/)).toHaveLength(2)
+  expect(screen.getByText(/DASH-41/)).toBeVisible()
+  fireEvent.click(screen.getByRole('button', { name: 'Đơn hàng' }))
+  expect(
+    screen.getByRole('button', { name: /0 đơn mới, 1 hoàn thành/ }),
+  ).toHaveAttribute('aria-pressed', 'true')
+  fireEvent.change(screen.getByLabelText('Khoảng báo cáo'), {
+    target: { value: '14' },
+  })
+  expect(metrics).toHaveBeenLastCalledWith('', 14)
+  await screen.findByText(/DASH-41/)
+  fireEvent.change(screen.getByLabelText('Ngày kết thúc'), {
     target: { value: '2026-11-22' },
   })
-  expect(metrics).toHaveBeenLastCalledWith('2026-11-22')
-  await screen.findByText('DASH-41 · 2')
+  expect(metrics).toHaveBeenLastCalledWith('2026-11-22', 14)
+  await screen.findByText(/DASH-41/)
 })
 
 it.each(['offline', '500'])(
@@ -49,7 +83,7 @@ it.each(['offline', '500'])(
       </MemoryRouter>,
     )
     expect(await screen.findByRole('alert')).toHaveTextContent(
-      'Không thể tải dashboard',
+      'Không thể tải báo cáo',
     )
     expect(screen.queryByText('Giá trị hàng đã giao sau giảm')).toBeNull()
   },

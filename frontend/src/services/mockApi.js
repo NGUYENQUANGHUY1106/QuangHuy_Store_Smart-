@@ -365,9 +365,10 @@ export const mockApi = {
   async getAdminOrderDetail(id) {
     return fetchJson(`/admin/orders/${id}`, { headers: authHeaders() })
   },
-  async getDashboardMetrics(date = '') {
-    const query = date ? `?date=${encodeURIComponent(date)}` : ''
-    return fetchJson(`/admin/analytics/dashboard${query}`, {
+  async getDashboardMetrics(date = '', days = 1) {
+    const query = new URLSearchParams({ days: String(days) })
+    if (date) query.set('date', date)
+    return fetchJson(`/admin/analytics/dashboard?${query}`, {
       headers: authHeaders(),
     })
   },
