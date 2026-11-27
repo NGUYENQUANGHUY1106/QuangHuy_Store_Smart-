@@ -20,7 +20,7 @@ class AdminDashboardMetricsView(APIView):
     permission_classes = [IsAdminRole]
 
     def get(self, request: Request) -> Response:
-        saigon_tz = ZoneInfo("Asia/Saigon")
+        saigon_tz = ZoneInfo("Asia/Ho_Chi_Minh")
         now_saigon = timezone.now().astimezone(saigon_tz)
         day = now_saigon.date()
         requested_day = request.query_params.get("date")
