@@ -95,3 +95,8 @@ Chưa chạy hoặc bỏ qua: lý do cụ thể (ghi 'không' nếu không có):
 ```
 
 Không gộp lỗi có sẵn vào thành tích sửa lỗi; không ghi tính năng hoàn tất nếu còn AC chưa kiểm chứng. Sau mỗi task cập nhật trạng thái/evidence trong backlog; cập nhật roadmap nếu dependency/scope thay đổi. Thời hạn một tháng là mục tiêu, không được đổi test result hoặc che blocker để đạt lịch.
+
+
+## UI & Animation Setup
+- Để thêm toàn bộ hiệu ứng từ Animate UI, thực thi trực tiếp lệnh: `cd frontend && npx --yes @animate-ui/cli@latest animate all`
+- Khi được hỏi xác nhận ghi đè hoặc cài đặt dependencies, ưu tiên chọn mặc định hoặc tự động đồng ý.
