@@ -64,11 +64,11 @@ JWT, bcrypt, CUSTOMER/ADMIN theo DEC-004. Dùng route MVP ở trên. Đổi mậ
 |---|---|---|
 | GET /categories | G; `parent_id?` | page `{id,name,slug,parent_id}` active |
 | GET /brands | G | page `{id,name,slug}` active |
-| GET /products | G; `q,category,brand,size,color,min_price,max_price,in_stock,sort,page` | page ProductSummary (20 mục) |
+| GET /products | G; `q,category,brand,size,color,min_price,max_price,in_stock,sort,page,page_size` | page ProductSummary (20 mục mặc định, tối đa 40 mục mỗi trang) |
 | GET /products/{slug} | G | ProductDetail; 404 draft/archived |
 | GET /search/suggestions | G; `q` sau trim: dưới 2 trả hai mảng rỗng; trên 100 trả 400 | `{products: ProductSummary[], categories: Category[]}`; tối đa 5 mỗi nhóm |
 
-ProductSummary `{id,name,slug,thumbnail,from_price,currency,in_stock}`; ProductDetail thêm description/category/brand, images `{id,url,alt_text,variant_id,sort_order}`, variants `{id,sku,size,color,unit_price,currency,stock_qty,is_active,revision}`. Chỉ public active variants; size/color/in_stock phải match **cùng variant**, không kết hợp size từ một SKU và stock từ SKU khác. Price range trên variant đủ điều kiện, không phải giá parent hardcode. Sort allowlist `price,-price,newest,name,-name`; rating/review filter chỉ bổ sung khi FR-REV được bật và contract revision duyệt. Size chart nếu DEC-014 duyệt là nội dung có nguồn gắn product/brand, không dự đoán fit từ ảnh AI.
+ProductSummary `{id,name,slug,thumbnail,category,brand,from_price,currency,in_stock}`. Có thể lặp `category` để lấy sản phẩm từ bất kỳ danh mục đã chọn, ví dụ `?category=giay-bong-da&category=phu-kien&page_size=12`. Giá trị là slug hoặc tên chính xác. Client gửi cả slug danh mục con nếu cần. ProductDetail thêm description, images `{id,url,alt_text,variant_id,sort_order}` và variants `{id,sku,size,color,unit_price,currency,stock_qty,is_active,revision}`. Chỉ public active variants; size/color/in_stock phải match **cùng variant**, không kết hợp size từ một SKU và stock từ SKU khác. Price range trên variant đủ điều kiện, không phải giá parent hardcode. Sort allowlist `price,-price,newest,name,-name`; rating/review filter chỉ bổ sung khi FR-REV được bật và contract revision duyệt. Size chart nếu DEC-014 duyệt là nội dung có nguồn gắn product/brand, không dự đoán fit từ ảnh AI.
 
 ## 4. Cart — FR-CART-001; M04
 
@@ -112,6 +112,7 @@ Theo DEC-011, thao tác admin MVP yêu cầu role ADMIN ở server. Write trả 
 | Routes | Writable request / read response |
 |---|---|
 | GET/POST /admin/products; GET/PUT/PATCH/DELETE /admin/products/{id} | Ghi name, slug, description, category, brand, status; version và variants chỉ đọc. |
+| POST /admin/products; POST /admin/products/{id}/colors | Multipart dành cho tạo sản phẩm kèm phối màu hoặc thêm phối màu vào sản phẩm hiện có. Trường `colors` là JSON gồm `[{color,sizes:[{size,unit_price,stock_qty}]}]`. Tệp `main_0` là ảnh chính màu đầu, `extras_0` lặp lại cho ảnh phụ. Chỉ số tăng theo thứ tự màu. Tối đa 10 màu, 30 size/màu, 8 ảnh phụ/màu, 5 MB/ảnh và 50 MB/lần lưu. Trả 201 kèm sản phẩm hoặc 400 và rollback toàn bộ nếu dữ liệu hay ảnh lỗi. Server sinh SKU, lưu ảnh WebP và ghi movement có actor cho tồn khởi tạo dương. POST JSON tạo metadata theo hợp đồng hiện có và PATCH đổi tên màu vẫn được hỗ trợ. |
 | GET/POST /admin/variants; GET/PUT/PATCH/DELETE /admin/variants/{id} | Lọc product_id; ghi product, sku, size, color, unit_price, is_active. PATCH không đổi product. revision, stock_qty chỉ đọc. Tạo bản ghi balance 0. |
 | GET/POST /admin/categories; GET/PUT/PATCH/DELETE /admin/categories/{id} | Ghi name, slug, parent, is_active; phát hiện vòng cha con khi cập nhật. |
 | GET/POST /admin/brands; GET/PUT/PATCH/DELETE /admin/brands/{id} | Ghi name, slug, is_active. |

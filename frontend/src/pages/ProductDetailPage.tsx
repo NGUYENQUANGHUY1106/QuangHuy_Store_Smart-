@@ -89,9 +89,12 @@ export function ProductDetailPage() {
     (variant) =>
       variant.color === selectedColor && variant.size === selectedSize,
   )
-  const photos = (product.images ?? []).filter(
-    (image) => !image.color || image.color === selectedColor,
-  )
+  const photos = [
+    ...(product.images ?? []).filter((image) => image.color === selectedColor),
+    ...(product.images ?? []).filter(
+      (image) => !image.color && image.color !== selectedColor,
+    ),
+  ]
   const currentImage = photos.find((image) => image.url === photo)
   const colorPrices = product.variants
     .filter((variant) => variant.color === selectedColor)

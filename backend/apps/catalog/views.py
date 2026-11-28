@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+import json
 import uuid
 from decimal import Decimal, InvalidOperation
 from io import BytesIO
@@ -10,15 +13,17 @@ from django.db.models import Max, Min, Prefetch, Q, QuerySet
 from django.db.models.deletion import ProtectedError
 from django.urls import reverse
 from PIL import Image, ImageOps, UnidentifiedImageError
-from rest_framework import generics, status
+from rest_framework import generics, serializers, status
 from rest_framework.exceptions import ValidationError
 from rest_framework.generics import ListAPIView, RetrieveAPIView, get_object_or_404
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.parsers import MultiPartParser
 from rest_framework.permissions import AllowAny
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from apps.identity.models import User
 from apps.identity.permissions import IsAdminRole
 
 from .images import prefetch_thumbnails
@@ -26,6 +31,7 @@ from .models import (
     Brand,
     Category,
     InventoryBalance,
+    InventoryMovement,
     Product,
     ProductImage,
     ProductVariant,
@@ -68,10 +74,16 @@ class BrandListView(ListAPIView[Brand]):
         return Brand.objects.filter(is_active=True)
 
 
+class ProductListPagination(PageNumberPagination):
+    page_size_query_param = "page_size"
+    max_page_size = 40
+
+
 class ProductListView(ListAPIView[Product]):
     authentication_classes = []
     permission_classes = [AllowAny]
     serializer_class = ProductSummarySerializer
+    pagination_class = ProductListPagination
 
     def get_queryset(self) -> QuerySet[Product]:
         variants = ProductVariant.objects.filter(is_active=True).select_related(
@@ -88,7 +100,7 @@ class ProductListView(ListAPIView[Product]):
 
         params = self.request.query_params
         query = params.get("q", "").strip()
-        category = params.get("category")
+        categories = [value for value in params.getlist("category") if value]
         brand = params.get("brand")
         size = params.get("size")
         color = params.get("color")
@@ -102,9 +114,9 @@ class ProductListView(ListAPIView[Product]):
                 | Q(description__icontains=query)
                 | Q(brand__name__icontains=query)
             )
-        if category:
+        if categories:
             queryset = queryset.filter(
-                Q(category__slug=category) | Q(category__name=category)
+                Q(category__slug__in=categories) | Q(category__name__in=categories)
             )
         if brand:
             queryset = queryset.filter(
@@ -255,6 +267,20 @@ class AdminProductListCreateView(generics.ListCreateAPIView[Product]):
         prefetch_thumbnails(), "variants__inventory"
     ).order_by("-created_at")
 
+    @transaction.atomic
+    def create(self, request: Request, *args: Any, **kwargs: Any) -> Response:
+        if (
+            request.content_type.split(";", 1)[0] == "multipart/form-data"
+            and "colors" in request.data
+        ):
+            groups = read_color_groups(request)
+            serializer = self.get_serializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            product = serializer.save()
+            save_color_groups(product, groups, request)
+            return Response(self.get_serializer(product).data, status=201)
+        return super().create(request, *args, **kwargs)
+
 
 class AdminProductDetailView(
     CatalogDeleteView, generics.RetrieveUpdateDestroyAPIView[Product]
@@ -268,6 +294,13 @@ class AdminProductDetailView(
 
 class AdminProductColorView(APIView):
     permission_classes = [IsAdminRole]
+
+    @transaction.atomic
+    def post(self, request: Request, pk: uuid.UUID) -> Response:
+        groups = read_color_groups(request)
+        product = get_object_or_404(Product.objects.select_for_update(), pk=pk)
+        save_color_groups(product, groups, request)
+        return Response(AdminProductSerializer(product).data, status=201)
 
     def patch(self, request: Request, pk: uuid.UUID) -> Response:
         current = request.data.get("color")
@@ -297,6 +330,113 @@ class AdminProductColorView(APIView):
                 {"detail": "Tên màu xung đột với biến thể hiện có."}
             ) from exc
         return Response({"color": new})
+
+
+class InitialSizeSerializer(serializers.Serializer[dict[str, Any]]):
+    size = serializers.CharField(max_length=16)
+    stock_qty = serializers.IntegerField(min_value=0, max_value=2_147_483_647)
+    unit_price = serializers.DecimalField(
+        max_digits=14, decimal_places=2, min_value=Decimal(0)
+    )
+
+
+class InitialColorSerializer(serializers.Serializer[dict[str, Any]]):
+    color = serializers.CharField(max_length=32)
+    sizes: serializers.ListSerializer[dict[str, Any]] = serializers.ListSerializer(
+        child=InitialSizeSerializer(), allow_empty=False, max_length=30
+    )
+
+
+def read_color_groups(request: Request) -> list[dict[str, Any]]:
+    if (
+        sum(
+            upload.size
+            for key in request.FILES
+            for upload in request.FILES.getlist(key)
+        )
+        > 50 * 1024 * 1024
+    ):
+        raise ValidationError(
+            {"detail": "Tổng dung lượng ảnh mỗi lần lưu tối đa 50 MB."}
+        )
+    try:
+        raw = json.loads(request.data.get("colors", ""))
+    except (TypeError, ValueError) as exc:
+        raise ValidationError(
+            {"colors": "Thông tin màu và size không hợp lệ."}
+        ) from exc
+    groups: serializers.ListSerializer[dict[str, Any]] = serializers.ListSerializer(
+        child=InitialColorSerializer(), data=raw, allow_empty=False, max_length=10
+    )
+    if not groups.is_valid():
+        raise ValidationError(
+            {
+                "detail": "Kiểm tra tên màu, size, giá và tồn kho.",
+                "colors": groups.errors,
+            }
+        )
+    return list(groups.validated_data)
+
+
+def save_color_groups(
+    product: Product, groups: list[dict[str, Any]], request: Request
+) -> None:
+    user = request.user
+    assert isinstance(user, User)
+    colors = {
+        color.casefold() for color in product.variants.values_list("color", flat=True)
+    }
+    order = product.images.aggregate(last=Max("sort_order"))["last"]
+    order = 0 if order is None else order + 1
+    for index, group in enumerate(groups):
+        color = group["color"]
+        rows = group["sizes"]
+        if color.casefold() in colors:
+            raise ValidationError({"colors": f"Màu {color} đã tồn tại."})
+        colors.add(color.casefold())
+        if len({row["size"].casefold() for row in rows}) != len(rows):
+            raise ValidationError({"colors": f"Màu {color} có size bị trùng."})
+        main = request.FILES.get(f"main_{index}")
+        extras = request.FILES.getlist(f"extras_{index}")
+        if main is None or len(extras) > 8:
+            raise ValidationError(
+                {"file": f"Màu {color} cần 1 ảnh chính và tối đa 8 ảnh phụ."}
+            )
+        anchor = None
+        for row in rows:
+            variant = ProductVariant.objects.create(
+                product=product,
+                sku=f"SKU-{uuid.uuid4().hex.upper()}",
+                color=color,
+                size=row["size"],
+                unit_price=row["unit_price"],
+            )
+            if anchor is None:
+                anchor = variant
+            stock = row["stock_qty"]
+            InventoryBalance.objects.create(variant=variant, stock_qty=stock)
+            if stock:
+                InventoryMovement.objects.create(
+                    variant=variant,
+                    kind=InventoryMovement.Kind.ADJUST,
+                    delta=stock,
+                    before_qty=0,
+                    after_qty=stock,
+                    actor=user,
+                    reason="Nhập tồn ban đầu khi thêm phối màu",
+                    operation_key=f"initial-{variant.pk}",
+                )
+        for upload in [main, *extras]:
+            image = ProductImage(
+                product=product,
+                variant=anchor,
+                webp_data=normalize_catalog_image(upload),
+                sort_order=order,
+                alt_text=f"{product.name} – {color}"[:200],
+            )
+            image.storage_key = reverse("catalog-db-image", args=[image.pk])
+            image.save()
+            order += 1
 
 
 class AdminVariantListCreateView(generics.ListCreateAPIView[ProductVariant]):

@@ -1,4 +1,6 @@
 import { AdminProductAssets, type ProductAssets } from './AdminProductAssets'
+import { AdminColorFields } from './AdminColorFields'
+import { packColorGroups } from './adminColorForm'
 import { useAuth } from '../context/AuthContext'
 import { useEffect, useState, type FormEvent } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
@@ -785,6 +787,7 @@ export function AdminProductFormPage() {
     status: 'draft',
   })
   const [assets, setAssets] = useState<ProductAssets>()
+  const [groups, setGroups] = useState([0])
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
   useEffect(() => {
@@ -810,13 +813,21 @@ export function AdminProductFormPage() {
     }
   }, [id])
 
-  async function submit(event: FormEvent) {
+  async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     if (busy) return
     setBusy(true)
     setError('')
     try {
-      await mockApi.saveProduct(id, form)
+      if (id) await mockApi.saveProduct(id, form)
+      else {
+        const payload = packColorGroups(
+          new FormData(event.currentTarget),
+          groups,
+        )
+        Object.entries(form).forEach(([key, value]) => payload.set(key, value))
+        await mockApi.saveProductColors(payload)
+      }
       navigate('/admin/products')
     } catch (failure) {
       setError(
@@ -930,7 +941,32 @@ export function AdminProductFormPage() {
               }
             />
           </label>
-          <Button type="submit" disabled={busy}>
+          {!id && (
+            <section className="admin-editor-full admin-color-groups">
+              <h2>Phối màu, ảnh và tồn kho</h2>
+              {groups.map((group, index) => (
+                <AdminColorFields
+                  key={group}
+                  group={group}
+                  number={index + 1}
+                  remove={
+                    groups.length > 1
+                      ? () => setGroups(groups.filter((item) => item !== group))
+                      : undefined
+                  }
+                />
+              ))}
+              <Button
+                type="button"
+                variant="secondary"
+                disabled={busy || groups.length >= 10}
+                onClick={() => setGroups([...groups, Math.max(...groups) + 1])}
+              >
+                Thêm phối màu
+              </Button>
+            </section>
+          )}
+          <Button type="submit" disabled={busy || Boolean(id && !assets)}>
             {busy ? 'Đang lưu…' : 'Lưu sản phẩm'}
           </Button>
         </form>

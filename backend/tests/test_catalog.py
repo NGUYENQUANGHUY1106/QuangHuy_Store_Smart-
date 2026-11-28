@@ -86,6 +86,49 @@ def test_hidden_product_is_not_public(
 
 
 @pytest.mark.django_db
+def test_cabinet_paginates_published_products_across_categories(
+    client: Client, catalog_data: CatalogFixture
+) -> None:
+    shoes, brand, product, _ = catalog_data
+    accessories = Category.objects.create(name="Phụ kiện", slug="phu-kien")
+    ball = Product.objects.create(
+        category=accessories,
+        brand=brand,
+        name="Bóng đá",
+        slug="bong-da",
+        status=Product.Status.PUBLISHED,
+    )
+    ProductVariant.objects.create(
+        product=ball, sku="BALL-5", size="5", color="Trắng", unit_price="500000"
+    )
+    draft = Product.objects.create(
+        category=shoes,
+        brand=brand,
+        name="Nháp",
+        slug="nhap",
+        status=Product.Status.DRAFT,
+    )
+    ProductVariant.objects.create(
+        product=draft, sku="DRAFT-41", size="41", color="Đen", unit_price="400000"
+    )
+    query: dict[str, str | int | list[str]] = {
+        "category": [shoes.slug, accessories.slug],
+        "page_size": 1,
+        "sort": "newest",
+    }
+    first = client.get("/products", query)
+    second = client.get("/products", {**query, "page": 2})
+    assert (first.status_code, second.status_code) == (200, 200)
+    assert first.json()["count"] == second.json()["count"] == 2
+    assert first.json()["next"] is not None
+    assert second.json()["next"] is None
+    rows = first.json()["results"] + second.json()["results"]
+    assert [row["slug"] for row in rows] == [ball.slug, product.slug]
+    assert [row["category"]["slug"] for row in rows] == [accessories.slug, shoes.slug]
+    assert all(row["brand"]["slug"] == brand.slug for row in rows)
+
+
+@pytest.mark.django_db
 def test_variant_duplicate_and_negative_stock_are_rejected(
     catalog_data: CatalogFixture,
 ) -> None:

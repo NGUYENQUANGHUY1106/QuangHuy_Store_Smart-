@@ -100,7 +100,9 @@ async function fetchJson(path, init) {
       const messages = Object.keys(body ?? {}).flatMap((field) =>
         Array.isArray(body?.[field])
           ? body[field].filter((message) => typeof message === 'string')
-          : [],
+          : typeof body?.[field] === 'string'
+            ? [body[field]]
+            : [],
       )
       if (messages.length) throw new Error(messages.join(' '))
     }
@@ -141,6 +143,9 @@ function mapCatalogProduct(summary, detail) {
     brand: source.brand?.name ?? 'QuangHuy Sport',
     category: source.category?.name ?? '',
     description: source.description ?? '',
+    ...(typeof source.in_stock === 'boolean'
+      ? { inStock: source.in_stock }
+      : {}),
     originalPrice: salePrice,
     salePrice,
     rating: 0,
@@ -477,31 +482,43 @@ export const mockApi = {
       headers: authHeaders(),
     })
   },
-  async getPublicCatalogOptions() {
+  async getPublicCatalogOptions(allCategories = false) {
     const [categoryPage, brandPage] = await Promise.all([
       fetchJson('/categories'),
       fetchJson('/brands'),
     ])
-    return { categories: categoryPage.results, brands: brandPage.results }
+    const categories = [...categoryPage.results]
+    let next = categoryPage.next
+    for (let page = 2; allCategories && next; page++) {
+      const result = await fetchJson(`/categories?page=${page}`)
+      categories.push(...result.results)
+      next = result.next
+    }
+    return { categories, brands: brandPage.results }
   },
   async getSearchSuggestions(query) {
     return fetchJson(`/search/suggestions?q=${encodeURIComponent(query)}`)
   },
-  async getCatalogProducts(params = {}) {
+  /** @param {Record<string, string | number | string[] | undefined>} params */
+  async getCatalogProducts(params = {}, includeDetails = true) {
     const search = new URLSearchParams()
     Object.entries(params).forEach(([key, value]) => {
-      if (value !== undefined && value !== null && value !== '')
+      if (Array.isArray(value))
+        value.forEach((item) => search.append(key, item))
+      else if (value !== undefined && value !== null && value !== '')
         search.set(key, String(value))
     })
     const page = await fetchJson(
       `/products${search.size ? `?${search.toString()}` : ''}`,
     )
     const summaries = page.results ?? page
-    const details = await Promise.all(
-      summaries.map((summary) =>
-        fetchJson(`/products/${summary.slug}`).catch(() => null),
-      ),
-    )
+    const details = includeDetails
+      ? await Promise.all(
+          summaries.map((summary) =>
+            fetchJson(`/products/${summary.slug}`).catch(() => null),
+          ),
+        )
+      : []
     return {
       products: summaries.map((summary, index) =>
         mapCatalogProduct(summary, details[index]),
@@ -567,6 +584,19 @@ export const mockApi = {
         method: id ? 'PATCH' : 'POST',
         headers: authHeaders({ 'Content-Type': 'application/json' }),
         body: JSON.stringify(product),
+      },
+    )
+  },
+  /** @param {FormData} form @param {string} [id] */
+  async saveProductColors(form, id) {
+    return fetchJson(
+      id
+        ? `/admin/products/${encodeURIComponent(id)}/colors`
+        : '/admin/products',
+      {
+        method: 'POST',
+        headers: authHeaders(),
+        body: form,
       },
     )
   },
