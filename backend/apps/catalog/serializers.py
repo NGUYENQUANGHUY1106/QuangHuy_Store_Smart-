@@ -49,6 +49,8 @@ class VariantSerializer(serializers.ModelSerializer[ProductVariant]):
 
 class ProductSummarySerializer(serializers.ModelSerializer[Product]):
     thumbnail = serializers.SerializerMethodField()
+    category = CategorySerializer(read_only=True)
+    brand = BrandSerializer(read_only=True)
     from_price = serializers.DecimalField(
         max_digits=14,
         decimal_places=2,
@@ -65,6 +67,8 @@ class ProductSummarySerializer(serializers.ModelSerializer[Product]):
             "name",
             "slug",
             "thumbnail",
+            "category",
+            "brand",
             "from_price",
             "currency",
             "in_stock",
@@ -86,8 +90,6 @@ class ProductSummarySerializer(serializers.ModelSerializer[Product]):
 
 
 class ProductDetailSerializer(ProductSummarySerializer):
-    category = CategorySerializer(read_only=True)
-    brand = BrandSerializer(read_only=True)
     images = serializers.SerializerMethodField()
     variants = VariantSerializer(many=True, read_only=True)
 

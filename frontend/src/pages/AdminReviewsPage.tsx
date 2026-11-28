@@ -97,8 +97,10 @@ export function AdminReviewsPage() {
   }
 
   return (
-    <div className="admin-review-page">
-      <h1>Quản lý đánh giá</h1>
+    <div className="admin-page admin-review-page">
+      <header className="admin-page-header">
+        <h1>Quản lý đánh giá</h1>
+      </header>
       {notice && <p role="status">{notice}</p>}
       {actionError && !pendingRemoval && (
         <p className="form-error" role="alert">
@@ -121,14 +123,14 @@ export function AdminReviewsPage() {
           <article className="admin-panel admin-review" key={review.id}>
             <header className="admin-review-header">
               <ReviewProduct review={review} />
-              <div>
+              <div className="admin-review-customer">
                 <ReviewAuthor
                   name={review.author}
                   avatarUrl={review.avatar_url}
                 />
                 <p>{review.customer_email}</p>
               </div>
-              <div>
+              <div className="admin-review-rating">
                 <strong className="product-review-stars">
                   {review.rating}/5 sao
                 </strong>
@@ -139,11 +141,17 @@ export function AdminReviewsPage() {
                 </p>
               </div>
             </header>
-            <p>
-              SKU {review.sku} · Đơn {review.order_number}
+            <p className="admin-review-reference">
+              <span>SKU {review.sku}</span>
+              <span>Đơn {review.order_number}</span>
             </p>
-            <p>{review.body}</p>
-            <ReviewReplies replies={review.replies} />
+            <p className="admin-review-body">{review.body}</p>
+            {review.replies.length > 0 && (
+              <section className="admin-review-replies">
+                <h2>Phản hồi ({review.replies.length})</h2>
+                <ReviewReplies replies={review.replies} />
+              </section>
+            )}
             {replyId === review.id && (
               <form
                 className="product-review-form"
@@ -164,7 +172,7 @@ export function AdminReviewsPage() {
                 </Button>
               </form>
             )}
-            <div className="hero-actions">
+            <div className="hero-actions admin-review-actions">
               <Button
                 type="button"
                 variant="secondary"

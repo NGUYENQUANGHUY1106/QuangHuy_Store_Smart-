@@ -1,5 +1,5 @@
 import { ArrowRight } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import equipmentPhoto from '../assets/home-categories/bong-dung-cu.webp'
 import bootsPhoto from '../assets/home-categories/giay-bong-da.webp'
@@ -10,6 +10,19 @@ import { mockApi } from '../services/mockApi.js'
 import { Badge } from '../components/Badge'
 import { Button } from '../components/Button'
 import { ProductCard, type Product } from '../components/ProductCard'
+import type { CatalogCategory } from '../components/home/showcaseCatalog'
+import '../components/home/showcase.css'
+
+const CircularBootShowcase = lazy(() =>
+  import('../components/home/CircularBootShowcase').then(
+    ({ CircularBootShowcase: component }) => ({ default: component }),
+  ),
+)
+const InteractiveShoeCabinet = lazy(() =>
+  import('../components/home/InteractiveShoeCabinet').then(
+    ({ InteractiveShoeCabinet: component }) => ({ default: component }),
+  ),
+)
 
 const categoryPhotos: Partial<Record<string, string>> = {
   'bong-dung-cu': equipmentPhoto,
@@ -19,34 +32,37 @@ const categoryPhotos: Partial<Record<string, string>> = {
   'quan-ao-the-thao': apparelPhoto,
 }
 
-const homeFootballBoots = import.meta.glob<string>('../assets/*', {
-  eager: true,
-  import: 'default',
-  query: '?url',
-})['../assets/home-football-boots.jpg']
-
 export function HomePage() {
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>()
   const [{ categories, brands }, setOptions] = useState<{
-    categories: { id: string; slug: string; name: string }[]
+    categories?: CatalogCategory[]
     brands: { id: string; slug: string; name: string }[]
-  }>({ categories: [], brands: [] })
+  }>({ brands: [] })
+  const [catalogError, setCatalogError] = useState(false)
+  const [catalogAttempt, setCatalogAttempt] = useState(0)
   const [error, setError] = useState('')
 
   useEffect(() => {
     let active = true
     mockApi
-      .getPublicCatalogOptions()
+      .getPublicCatalogOptions(true)
       .then((options) => {
         if (active) setOptions(options)
       })
       .catch(() => {
-        if (active) setError('Không thể tải danh mục.')
+        if (active) setCatalogError(true)
       })
+    return () => {
+      active = false
+    }
+  }, [catalogAttempt])
+
+  useEffect(() => {
+    let active = true
     mockApi
-      .getCatalogProducts()
+      .getCatalogProducts({ page_size: 4 })
       .then(({ products }) => {
-        if (active) setFeaturedProducts(products.slice(0, 4))
+        if (active) setFeaturedProducts(products)
       })
       .catch(() => {
         if (active) setError('Không thể tải sản phẩm.')
@@ -68,30 +84,34 @@ export function HomePage() {
           </h1>
           <p>Bộ sưu tập giày bóng đá và trang phục thể thao mới nhất.</p>
           <div className="hero-actions">
-            <Link to="/category/giay-bong-da">
-              <Button size="lg">Mua giày bóng đá</Button>
+            <Link
+              className="button button-primary button-lg"
+              to="/category/giay-bong-da"
+            >
+              Mua giày bóng đá
             </Link>
-            <Link to="/category/quan-ao-the-thao">
-              <Button variant="secondary" size="lg">
-                Xem trang phục
-              </Button>
+            <Link
+              className="button button-secondary button-lg"
+              to="/category/quan-ao-the-thao"
+            >
+              Xem trang phục
             </Link>
           </div>
         </div>
-        {homeFootballBoots ? (
-          <img
-            className="hero-visual"
-            src={homeFootballBoots}
-            alt="Các mẫu giày bóng đá màu đỏ và đen"
-            width={1080}
-            height={1080}
-            fetchPriority="high"
-          />
-        ) : (
-          <div className="hero-visual hero-visual-fallback" aria-hidden="true">
-            TF · FG · IC
-          </div>
-        )}
+        <Suspense
+          fallback={
+            <div className="boot-showcase">
+              <div className="boot-orbit-stage">
+                <p className="boot-loading" role="status">
+                  Đang tải giày bóng đá…
+                </p>
+              </div>
+              <div className="boot-showcase-footer" />
+            </div>
+          }
+        >
+          <CircularBootShowcase />
+        </Suspense>
       </section>
 
       <section className="section-block category-section">
@@ -102,7 +122,7 @@ export function HomePage() {
           </div>
         </div>
         <div className="category-grid">
-          {categories.map((category) => {
+          {categories?.map((category) => {
             const photo = categoryPhotos[category.slug]
             return (
               <Link
@@ -163,36 +183,28 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="section-block sport-blog">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">Tin thể thao</p>
-            <h2>Hướng dẫn & trải nghiệm</h2>
-          </div>
-        </div>
-        <div className="blog-grid">
-          <article>
-            <span>01</span>
-            <h3>Cách chọn giày theo mặt sân</h3>
-            <p>
-              FG, TF và IC — ba lựa chọn phù hợp với từng điều kiện thi đấu.
-            </p>
-          </article>
-          <article>
-            <span>02</span>
-            <h3>Size giày bền đẹp khi thi đấu</h3>
-            <p>
-              Đo bàn chân và chọn size chuẩn giúp nâng cao cảm giác kiểm soát
-              bóng.
-            </p>
-          </article>
-          <article>
-            <span>03</span>
-            <h3>Góc nhìn bóng đá phong cách</h3>
-            <p>Phối trang phục tập luyện năng động cho mọi buổi ra sân.</p>
-          </article>
-        </div>
-      </section>
+      <Suspense
+        fallback={
+          <section className="section-block cabinet-section">
+            <div className="cabinet-frame">
+              <div className="cabinet-shelves">
+                <p className="cabinet-state" role="status">
+                  Đang tải tủ trưng bày…
+                </p>
+              </div>
+            </div>
+          </section>
+        }
+      >
+        <InteractiveShoeCabinet
+          categories={categories}
+          catalogError={catalogError}
+          retryCatalog={() => {
+            setCatalogError(false)
+            setCatalogAttempt(catalogAttempt + 1)
+          }}
+        />
+      </Suspense>
       <section className="section-block brand-section">
         <div className="section-heading">
           <div>

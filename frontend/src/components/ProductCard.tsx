@@ -21,6 +21,7 @@ export type Product = {
   description: string
   originalPrice: number
   salePrice: number
+  inStock?: boolean
   rating: number
   reviewCount: number
   image: string

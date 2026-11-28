@@ -1,3 +1,4 @@
+import json
 from decimal import Decimal
 from io import BytesIO
 from pathlib import Path
@@ -12,12 +13,120 @@ from apps.catalog.models import (
     Brand,
     Category,
     InventoryBalance,
+    InventoryMovement,
     Product,
     ProductVariant,
 )
 from apps.identity.models import User
 from apps.orders.models import Order, OrderItem
 from tests.auth_headers import auth_headers
+
+
+@pytest.mark.django_db
+def test_create_product_and_append_colors_with_images_and_initial_stock(
+    client: Client,
+) -> None:
+    admin = User.objects.create_user(username="color-admin", role=User.Role.ADMIN)
+    customer = User.objects.create_user(username="color-customer")
+    category = Category.objects.create(name="Giày", slug="giay")
+    brand = Brand.objects.create(name="Nike", slug="nike")
+
+    def picture(color: str) -> SimpleUploadedFile:
+        buffer = BytesIO()
+        Image.new("RGB", (20, 20), color).save(buffer, "PNG")
+        return SimpleUploadedFile("shoe.png", buffer.getvalue(), "image/png")
+
+    def colors(*names: str) -> str:
+        return json.dumps(
+            [
+                {
+                    "color": name,
+                    "sizes": [
+                        {"size": "40", "unit_price": "100000", "stock_qty": 7},
+                        {"size": "41", "unit_price": "120000", "stock_qty": 0},
+                    ],
+                }
+                for name in names
+            ]
+        )
+
+    product = {
+        "name": "Vapor",
+        "slug": "vapor",
+        "status": "published",
+        "category": str(category.pk),
+        "brand": str(brand.pk),
+    }
+    invalid = client.post(
+        "/admin/products",
+        {
+            **product,
+            "colors": colors("Đỏ", "Xanh"),
+            "main_0": picture("red"),
+            "main_1": SimpleUploadedFile("bad.png", b"bad", "image/png"),
+        },
+        **auth_headers(admin),
+    )
+    assert invalid.status_code == 400
+    assert not Product.objects.exists()
+    assert not InventoryMovement.objects.exists()
+
+    created = client.post(
+        "/admin/products",
+        {
+            **product,
+            "colors": colors("Đỏ", "Xanh"),
+            "main_0": picture("red"),
+            "extras_0": [picture("orange"), picture("pink")],
+            "main_1": picture("blue"),
+        },
+        **auth_headers(admin),
+    )
+    assert created.status_code == 201, created.json()
+    body = created.json()
+    variants = body["variants"]
+    assert len({row["sku"] for row in variants}) == 4
+    assert [(row["size"], row["stock_qty"]) for row in variants] == [
+        ("40", 7),
+        ("40", 7),
+        ("41", 0),
+        ("41", 0),
+    ]
+    assert (
+        InventoryMovement.objects.filter(actor=admin, delta=7, after_qty=7).count() == 2
+    )
+    media = body["images"]
+    assert [entry["sort_order"] for entry in media] == [0, 1, 2, 3]
+    assert body["thumbnail"] == media[0]["url"]
+    detail = client.get("/products/vapor").json()
+    assert len(detail["images"]) == 4
+    response = client.get(detail["images"][0]["url"])
+    assert response.status_code == 200 and response["Content-Type"] == "image/webp"
+
+    url = f"/admin/products/{body['id']}/colors"
+    denied = client.post(url, {"colors": colors("Vàng")}, **auth_headers(customer))
+    assert denied.status_code == 403
+    added = client.post(
+        url,
+        {
+            "colors": colors("Vàng"),
+            "main_0": picture("yellow"),
+        },
+        **auth_headers(admin),
+    )
+    assert added.status_code == 201
+    assert len(added.json()["variants"]) == 6
+    duplicate = client.post(
+        url,
+        {
+            "colors": colors("vàng"),
+            "main_0": picture("yellow"),
+        },
+        **auth_headers(admin),
+    )
+    assert duplicate.status_code == 400
+    assert ProductVariant.objects.count() == 6
+    assert InventoryMovement.objects.count() == 3
 
 
 @pytest.mark.django_db

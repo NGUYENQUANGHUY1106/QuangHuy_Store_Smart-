@@ -1,4 +1,6 @@
 import { AdminProductAssets, type ProductAssets } from './AdminProductAssets'
+import { AdminColorFields } from './AdminColorFields'
+import { packColorGroups } from './adminColorForm'
 import { useAuth } from '../context/AuthContext'
 import { useEffect, useState, type FormEvent } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
@@ -27,110 +29,6 @@ type AdminProduct = {
   variants: AdminVariant[]
 }
 type CatalogOption = { id: string; name: string }
-
-export function AdminDashboardPage() {
-  const [date, setDate] = useState('')
-  const [metrics, setMetrics] = useState<{
-    date: string
-    revenue_delivered: string
-    cod_collected: string | null
-    top_products: { sku_snapshot: string; quantity: number }[]
-    orders: { pending: number }
-    inventory: { low_stock_count: number }
-  }>()
-  const [error, setError] = useState(false)
-  useEffect(() => {
-    let active = true
-    mockApi
-      .getDashboardMetrics(date)
-      .then((result) => {
-        if (active) setMetrics(result)
-      })
-      .catch(() => {
-        if (active) setError(true)
-      })
-    return () => {
-      active = false
-    }
-  }, [date])
-  return (
-    <div className="admin-page">
-      <header className="admin-page-header admin-dashboard-heading">
-        <h1>Tổng quan</h1>
-        <label className="admin-report-date">
-          Ngày báo cáo (Asia/Saigon)
-          <input
-            type="date"
-            value={date || metrics?.date || ''}
-            onChange={(event) => {
-              setError(false)
-              setMetrics(undefined)
-              setDate(event.target.value)
-            }}
-          />
-        </label>
-      </header>
-      {error ? (
-        <p className="form-error" role="alert">
-          Không thể tải dashboard.
-        </p>
-      ) : metrics ? (
-        <>
-          <div className="admin-kpis admin-overview-kpis">
-            <article>
-              <div>
-                <p>Đơn chờ xác nhận</p>
-                <strong>{metrics.orders.pending}</strong>
-                <Link to="/admin/orders">Xem đơn hàng</Link>
-              </div>
-            </article>
-            <article>
-              <div>
-                <p>SKU sắp hết hàng</p>
-                <strong>{metrics.inventory.low_stock_count}</strong>
-                <Link to="/admin/inventory">Xem tồn kho</Link>
-              </div>
-            </article>
-            <article>
-              <div>
-                <p>Giá trị hàng đã giao sau giảm</p>
-                <strong>{formatVnd(Number(metrics.revenue_delivered))}</strong>
-              </div>
-            </article>
-            <article>
-              <div>
-                <p>COD đã thu</p>
-                {metrics.cod_collected === null ? (
-                  <span className="admin-metric-empty">Chưa theo dõi</span>
-                ) : (
-                  <strong>{formatVnd(Number(metrics.cod_collected))}</strong>
-                )}
-              </div>
-            </article>
-          </div>
-          <section className="admin-panel admin-top-products">
-            <div className="admin-panel-heading">
-              <h2>Top SKU đã giao</h2>
-            </div>
-            {metrics.top_products.length ? (
-              <ol>
-                {metrics.top_products.map((line) => (
-                  <li key={line.sku_snapshot}>
-                    {line.sku_snapshot} · {line.quantity}
-                  </li>
-                ))}
-              </ol>
-            ) : (
-              <p>Chưa có SKU đã giao trong ngày.</p>
-            )}
-          </section>
-        </>
-      ) : (
-        <p role="status">Đang tải dashboard…</p>
-      )}
-    </div>
-  )
-}
 
 export function AdminOrdersPage() {
   const navigate = useNavigate()
@@ -889,6 +787,7 @@ export function AdminProductFormPage() {
     status: 'draft',
   })
   const [assets, setAssets] = useState<ProductAssets>()
+  const [groups, setGroups] = useState([0])
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
   useEffect(() => {
@@ -914,13 +813,21 @@ export function AdminProductFormPage() {
     }
   }, [id])
 
-  async function submit(event: FormEvent) {
+  async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     if (busy) return
     setBusy(true)
     setError('')
     try {
-      await mockApi.saveProduct(id, form)
+      if (id) await mockApi.saveProduct(id, form)
+      else {
+        const payload = packColorGroups(
+          new FormData(event.currentTarget),
+          groups,
+        )
+        Object.entries(form).forEach(([key, value]) => payload.set(key, value))
+        await mockApi.saveProductColors(payload)
+      }
       navigate('/admin/products')
     } catch (failure) {
       setError(
@@ -1034,7 +941,32 @@ export function AdminProductFormPage() {
               }
             />
           </label>
-          <Button type="submit" disabled={busy}>
+          {!id && (
+            <section className="admin-editor-full admin-color-groups">
+              <h2>Phối màu, ảnh và tồn kho</h2>
+              {groups.map((group, index) => (
+                <AdminColorFields
+                  key={group}
+                  group={group}
+                  number={index + 1}
+                  remove={
+                    groups.length > 1
+                      ? () => setGroups(groups.filter((item) => item !== group))
+                      : undefined
+                  }
+                />
+              ))}
+              <Button
+                type="button"
+                variant="secondary"
+                disabled={busy || groups.length >= 10}
+                onClick={() => setGroups([...groups, Math.max(...groups) + 1])}
+              >
+                Thêm phối màu
+              </Button>
+            </section>
+          )}
+          <Button type="submit" disabled={busy || Boolean(id && !assets)}>
             {busy ? 'Đang lưu…' : 'Lưu sản phẩm'}
           </Button>
         </form>

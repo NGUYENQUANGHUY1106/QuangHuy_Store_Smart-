@@ -1,6 +1,9 @@
 import { useState, type FormEvent } from 'react'
+import { Link } from 'react-router-dom'
 import { Button } from '../components/Button'
 import { mockApi, productImageUrl } from '../services/mockApi'
+import { AdminColorFields } from './AdminColorFields'
+import { packColorGroups } from './adminColorForm'
 
 export type ProductAssets = {
   status: string
@@ -10,6 +13,7 @@ export type ProductAssets = {
     color: string
     size: string
     unit_price: string
+    stock_qty: number
   }[]
   images: {
     id: string
@@ -32,6 +36,7 @@ export function AdminProductAssets({
     initial.variants[0]?.color ?? '',
   )
   const [editingImage, setEditingImage] = useState('')
+  const [addingColor, setAddingColor] = useState(false)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
   const [notice, setNotice] = useState('')
@@ -88,6 +93,15 @@ export function AdminProductAssets({
       <section className="admin-panel">
         <div className="admin-panel-heading">
           <h2>Màu sắc, giá và ảnh</h2>
+          <Button
+            type="button"
+            size="sm"
+            variant="secondary"
+            disabled={busy}
+            onClick={() => setAddingColor(!addingColor)}
+          >
+            {addingColor ? 'Hủy thêm màu' : 'Thêm phối màu'}
+          </Button>
         </div>
         <label className="admin-asset-color">
           Màu đang chỉnh
@@ -114,6 +128,29 @@ export function AdminProductAssets({
           <p className="admin-notice" role="status">
             {notice}
           </p>
+        )}
+        {addingColor && (
+          <form
+            className="admin-color-groups"
+            onSubmit={(event) => {
+              event.preventDefault()
+              const fields = new FormData(event.currentTarget)
+              void save('Đã thêm phối màu, ảnh và tồn kho.', async () => {
+                await mockApi.saveProductColors(
+                  packColorGroups(fields, [0]),
+                  id,
+                )
+                setSelectedColor(String(fields.get('color-0-name')).trim())
+                setEditingImage('')
+                setAddingColor(false)
+              })
+            }}
+          >
+            <AdminColorFields group={0} number={colors.length + 1} />
+            <Button type="submit" disabled={busy}>
+              {busy ? 'Đang lưu…' : 'Lưu phối màu mới'}
+            </Button>
+          </form>
         )}
         {selectedColor ? (
           <>
@@ -171,7 +208,9 @@ export function AdminProductAssets({
                 >
                   <label>
                     Giá size {variant.size} (₫)
-                    <small>{variant.sku}</small>
+                    <small>
+                      {variant.sku} · Tồn hiện tại: {variant.stock_qty}
+                    </small>
                     <input
                       type="number"
                       min="0"
@@ -192,6 +231,9 @@ export function AdminProductAssets({
                 </form>
               ))}
             </div>
+            <Link to="/admin/inventory" className="text-link">
+              Điều chỉnh tồn kho
+            </Link>
           </>
         ) : (
           <p>Chọn một màu để sửa giá theo size và quản lý ảnh của màu đó.</p>
@@ -217,7 +259,10 @@ export function AdminProductAssets({
                     loading="lazy"
                   />
                 )}
-                <span>{asset.alt_text || `Ảnh ${index + 1}`}</span>
+                <span>
+                  {index === 0 ? 'Ảnh chính' : `Ảnh phụ ${index}`} ·{' '}
+                  {asset.alt_text || 'Chưa có mô tả'}
+                </span>
                 <Button
                   type="button"
                   variant="secondary"
